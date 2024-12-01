@@ -12,13 +12,14 @@ import { ExercisesService } from '../../services/exercises.service';
 export class ExerciseDetailsComponent implements OnInit {
   exerciseData: Exercise | null = null;
 
-  constructor(private exerciseService: ExercisesService, private route: ActivatedRoute){}
-  ngOnInit(){
+  constructor(private exerciseService: ExercisesService, private route: ActivatedRoute) { }
+  ngOnInit() {
     const exerciseId = this.route.snapshot.paramMap.get('exercise');
 
-    if(exerciseId)
-    this.exerciseService.getExerciseById(exerciseId).subscribe(data => {
-      this.exerciseData = data;
-    });
+    if (exerciseId)
+      this.exerciseService.getExerciseById(exerciseId)
+        .subscribe(data => {
+          this.exerciseData = data;
+        });
   }
 }

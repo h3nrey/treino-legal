@@ -1,0 +1,24 @@
+<div class="flex flex-col p-8 justify-between bg-lightBlack text-lightGray h-full px-4 transition">
+    <div>
+        @if (isOpen) {
+        <h1 class="text-lightRed font-bold text-[3rem] w-max overflow-hidden">
+            Treino Legal</h1>
+        } @else {
+        <h1 class="text-lightRed text-[3rem] font-bold text-center">TL</h1>
+        }
+
+        <nav class="flex flex-col w-full mt-4">
+            @for (link of siteLinks; track $index) {
+            <sidebar-link [isOpen]="isOpen" [link]="link">
+                {{link.text}}
+            </sidebar-link>
+            }
+
+        </nav>
+    </div>
+
+
+    <button (click)="toggleSidebar()" class="p-4 bg-red rounded-md w-min">
+        <img src="assets/icons/arrowForward.svg" alt="" class="w-6 h-6">
+    </button>
+</div>
