@@ -1,8 +1,10 @@
 <div class="flex">
-  <div class="flex h-full min-h-screen">
+  <div class="flex h-full w-full min-h-screen">
     <sidebar></sidebar>
-    <main class="main">
-
+    <main class="main mx-8 w-full">
+      @if (!bannerClosed) {
+      <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
+      }
       <div></div>
     </main>
 

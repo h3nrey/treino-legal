@@ -3,7 +3,7 @@ import { ListExercisesComponent } from './pages/list-exercises/list-exercises.co
 import { ExerciseDetailsComponent } from './pages/exercise-details/exercise-details.component';
 
 export const routes: Routes = [
-    {path: "exercises/:musclegroup", component: ListExercisesComponent},
-    {path: "exercise/:exercise", component: ExerciseDetailsComponent}
-    
+    { path: "exercises/:musclegroup", component: ListExercisesComponent },
+    { path: "exercise/:exercise", component: ExerciseDetailsComponent }
+
 ];
