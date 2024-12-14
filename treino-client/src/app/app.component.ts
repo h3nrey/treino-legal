@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   checkBannerStatus() {
-    console.log(localStorage.getItem('home__banner__closed'));
     this.bannerClosed = localStorage.getItem('home__banner__closed') === 'true';
   }
 }
