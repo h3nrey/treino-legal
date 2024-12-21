@@ -24,4 +24,8 @@ export class ExercisesService {
     return of(data);
     // return this.http.get(`${}`)
   }
+
+  // searchExercises(searchTerm): Observable<any> {
+  //   // const data =
+  // }
 }

@@ -1,0 +1,19 @@
+<div>
+    <div class="flex flex-col relative w-fit">
+        <div id="searchbar"
+            class="bg-lightBlack px-4 py-2 rounded-lg text-lightGray overflow-hidden w-fit relative origin-bottom-left">
+            <div class=" inline px-2">a</div>
+            <input type="text" placeholder="Pesquisar"
+                class="bg-[transparent] w-[14rem] focus-visible:outline-none placeholder:text-gray"
+                [(ngModel)]="searchTerm" (input)="onSearchInput($event)">
+        </div>
+        @if (searchedResults.length > 0) {
+        <div class="bg-lightBlack absolute top-full text-lightGray w-full z-10 flex flex-col rounded-md pb-4">
+            @for (item of searchedResults; track $index) {
+            <a class="p-2 cursor-pointer" [routerLink]="">{{item.name}}</a>
+            }
+
+        </div>
+        }
+    </div>
+</div>
