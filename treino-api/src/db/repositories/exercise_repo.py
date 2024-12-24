@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
-from src.db.models.exercise import Exercise
-from src.schemas.exercise import ExerciseCreate, ExerciseUpdate
+from db.models.exercise import Exercise
+from schemas.exercise import ExerciseCreate, ExerciseUpdate
+from sqlalchemy import select
 
 def create_exercise(db: Session, exercise: ExerciseCreate):
     db_exercise = Exercise(**exercise.dict())
@@ -12,8 +13,11 @@ def create_exercise(db: Session, exercise: ExerciseCreate):
 def get_exercise(db: Session, exercise_id: int):
     return db.query(Exercise).filter(Exercise.id == exercise_id).first()
 
-def get_exercises(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Exercise).offset(skip).limit(limit).all()
+async def get_exercises(db: Session, skip: int = 0, limit: int = 100):
+    query = select(Exercise).offset(skip).limit(limit)
+    result = await db.execute(query)
+    exercises = result.scalars().all() 
+    return exercises
 
 def update_exercise(db: Session, exercise_id: int, exercise: ExerciseUpdate):
     db_exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()

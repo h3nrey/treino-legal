@@ -1,14 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
-# from sqlalchemy.orm import Session
-# from db.session import get_db
-# from app.schemas.product import ProductCreate, ProductUpdate, ProductResponse
-# from app.db.repositories.product_repo import create_product, get_product, get_products, update_product, delete_product
+from sqlalchemy.orm import Session
+from database import get_db
+from schemas.exercise import ExerciseCreate, ExerciseUpdate, ExerciseResponse
+from db.repositories.exercise_repo import create_exercise, get_exercise, get_exercises, update_exercise, delete_exercise
 
 router = APIRouter()
 
-@router.get("/")
-def get_exercises():
-    return "supino reto articulado"
 
 # @router.post("/", response_model=ProductResponse)
 # def create_new_product(product: ProductCreate, db: Session = Depends(get_db)):
@@ -21,9 +18,10 @@ def get_exercises():
 #         raise HTTPException(status_code=404, detail="Product not found")
 #     return db_product
 
-# @router.get("/", response_model=list[ProductResponse])
-# def read_products(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     return get_products(db, skip, limit)
+@router.get("/", response_model=list[ExerciseResponse])
+async def read_exercises(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    exercises = await get_exercises(db, skip, limit)
+    return exercises
 
 # @router.put("/{product_id}", response_model=ProductResponse)
 # def update_existing_product(product_id: int, product: ProductUpdate, db: Session = Depends(get_db)):
