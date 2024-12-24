@@ -19,8 +19,8 @@ router = APIRouter()
 #     return db_product
 
 @router.get("/", response_model=list[ExerciseResponse])
-async def read_exercises(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    exercises = await get_exercises(db, skip, limit)
+async def read_exercises(skip: int = 0, limit: int = 100, sort_by: str = "name", asc: bool = True, db: Session = Depends(get_db)):
+    exercises = await get_exercises(db, skip, limit, sort_by, asc)
     return exercises
 
 # @router.put("/{product_id}", response_model=ProductResponse)

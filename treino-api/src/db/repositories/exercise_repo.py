@@ -13,8 +13,15 @@ def create_exercise(db: Session, exercise: ExerciseCreate):
 def get_exercise(db: Session, exercise_id: int):
     return db.query(Exercise).filter(Exercise.id == exercise_id).first()
 
-async def get_exercises(db: Session, skip: int = 0, limit: int = 100):
+async def get_exercises(db: Session, skip: int = 0, limit: int = 100, sort_by: str = 'title', asc: bool = True):
     query = select(Exercise).offset(skip).limit(limit)
+
+    if sort_by in ["name", "created_at"]:
+        order_by = getattr(Exercise, sort_by)
+        if not asc:
+            order_by = order_by.desc()
+        query = query.order_by(order_by)
+
     result = await db.execute(query)
     exercises = result.scalars().all() 
     return exercises
