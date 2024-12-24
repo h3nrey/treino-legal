@@ -1,0 +1,6 @@
+fastapi
+uvicorn[reload]
+sqlalchemy
+asyncpg
+alembic
+psycopg2-binary
