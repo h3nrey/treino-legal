@@ -1,14 +1,39 @@
-from sqlalchemy.orm import Session
-from db.models.exercise import Exercise
+from sqlalchemy.orm import Session, joinedload, selectinload
+from db.models.exercise import Exercise, ExerciseInstruction, ExercisesMuscles
 from schemas.exercise import ExerciseCreate, ExerciseUpdate
 from sqlalchemy import select
 
-def create_exercise(db: Session, exercise: ExerciseCreate):
-    db_exercise = Exercise(**exercise.dict())
-    db.add(db_exercise)
-    db.commit()
-    db.refresh(db_exercise)
-    return db_exercise
+async def create_exercise(db: Session, exercise: ExerciseCreate):
+    new_exercise = Exercise(
+        name=exercise.name,
+        description=exercise.description,
+        tutorial_url=exercise.tutorial_url,
+        grip_id=exercise.grip_id,
+        experience_level_id=exercise.experience_level_id,
+        equipment_id=exercise.equipment_id,
+    )
+    db.add(new_exercise)
+    await db.commit()
+    await db.refresh(new_exercise)
+
+    for muscle in exercise.muscles:
+        new_exercise_muscle = ExercisesMuscles(
+            exercise_id = new_exercise.id,
+            muscle_id = muscle.muscle_id,
+            level_type = muscle.level_type
+        )
+        db.add(new_exercise_muscle)
+
+    for instruction in exercise.instructions:
+        new_instruction = ExerciseInstruction(
+            text = instruction.text,
+            exercise_id = new_exercise.id
+        )
+        db.add(new_instruction)
+
+    await db.commit()
+
+    return new_exercise
 
 def get_exercise(db: Session, exercise_id: int):
     return db.query(Exercise).filter(Exercise.id == exercise_id).first()
