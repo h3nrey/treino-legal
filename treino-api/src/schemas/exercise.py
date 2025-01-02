@@ -1,14 +1,46 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class ExerciseBase(BaseModel):
+class GripBase(BaseModel):
+    id: int
     name: str
-    description: str
-    grip: str
-    experience_level: str
+    class Config:
+        from_attributes = True
 
+class MuscleSchema(BaseModel):
+    id: int
+    name: str
+    level_type: int
+
+    class Config:
+        from_attributes = True
+
+class ExerciseInstructionBase(BaseModel):
+    text: str
+    class Config:
+        from_attributes = True
+
+class ExperienceLevelBase(BaseModel):
+    name: str
+    class Config:
+        from_attributes = True
+
+class ExerciseBase(BaseModel):
+    id: int
+    name: str
+    muscles: list[MuscleSchema]
+    # muscles: list[MuscleSchema]
+    # description: str
+    # equipment_id: int
+
+    
 class ExerciseCreate(ExerciseBase):
-    pass
+    experience_level_id: int
+    grip_id: int
+    tutorial_url: Optional[str] = None
+    description: str
+    instructions: Optional[list[ExerciseInstructionBase]]
+    muscles: list
 
 class ExerciseUpdate(ExerciseBase):
     name: Optional[str] = None
@@ -18,6 +50,15 @@ class ExerciseUpdate(ExerciseBase):
 
 class ExerciseResponse(ExerciseBase):
     id: int
-
+    # grip: GripBase
+    # experience_level: ExperienceLevelBase
+    description: str
+    # muscles: list[MuscleSchema]
+    
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class ExercisePage(ExerciseBase):
+    description: str
+    experience_level: str
+    grip: str
