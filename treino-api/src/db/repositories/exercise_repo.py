@@ -3,10 +3,10 @@ from db.models.exercise import Exercise, Muscle,ExercisesMuscles, ExerciseInstru
 from schemas.exercise import ExerciseCreate, ExerciseUpdate
 from sqlalchemy import select
 from sqlalchemy import and_
-from fastapi import Query
+from fastapi import Query, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 
 async def create_exercise(db: Session, exercise: ExerciseCreate):
-    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     new_exercise = Exercise(
         name=exercise.name,
         description=exercise.description,
@@ -35,8 +35,6 @@ async def create_exercise(db: Session, exercise: ExerciseCreate):
         db.add(new_instruction)
 
     await db.commit()
-    print("NEW EXERCISE")
-    print(new_exercise)
 
     # return new_exercise
     return "created sucessfully"
@@ -86,14 +84,21 @@ async def get_exercises(db: Session, skip: int = 0, limit: int = 100, sort_by: s
     # print(exercises[0].equipment_id)
     return exercises
 
-def update_exercise(db: Session, exercise_id: int, exercise: ExerciseUpdate):
-    db_exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()
-    if db_exercise:
-        for key, value in exercise.dict(exclude_unset=True).items():
-            setattr(db_exercise, key, value)
-        db.commit()
-        db.refresh(db_exercise)
-    return db_exercise
+async def update_exercise(db: Session, exercise_id: int, new_exercise: ExerciseUpdate):
+    result = await db.execute(select(Exercise).filter(Exercise.id == exercise_id).options(joinedload(Exercise.muscles)))
+    exercise = result.scalars().first()
+
+    if not exercise:
+        raise HTTPException(status_code=404, detail="Exercise not found")
+
+    for key, value in new_exercise.dict(exclude_unset=True).items():
+        setattr(exercise, key, value)
+
+    await db.commit()
+    await db.refresh(exercise)
+
+    return exercise
+    
 
 def delete_exercise(db: Session, exercise_id: int):
     db_exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()

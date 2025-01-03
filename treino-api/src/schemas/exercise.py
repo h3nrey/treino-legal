@@ -53,11 +53,14 @@ class ExerciseCreate(ExerciseBase):
     instructions: Optional[list[ExerciseInstructionBase]]
     muscles: list[MuscleCreate]
 
-class ExerciseUpdate(ExerciseBase):
+class ExerciseUpdate(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
-    grip: Optional[str] = None
-    experience_level: Optional[str] = None
+    grip_id: Optional[int] = None
+    equipment_id: Optional[int] = None
+    experience_level_id: Optional[int] = None
+    muscles: Optional[list[MuscleCreate]] = []
+    instructions: Optional[list[ExerciseInstructionBase]] = []
 
 class ExerciseResponse(ExerciseBase):
     id: int

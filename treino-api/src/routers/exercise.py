@@ -3,14 +3,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 from schemas.exercise import ExerciseCreate, ExerciseUpdate, ExerciseResponse, ExercisePage, ExerciseBase
 from db.repositories.exercise_repo import create_exercise, get_exercise, get_exercises, update_exercise, delete_exercise
-
+from sqlalchemy.ext.asyncio import AsyncSession
 router = APIRouter()
-
-
-@router.post("/", response_model=str)
-async def create_new_product(exercise: ExerciseCreate, db: Session = Depends(get_db)):
-    created_exercise = await create_exercise(db, exercise)
-    return created_exercise
 
 @router.get("/{exercise_id}", response_model=ExercisePage)
 async def read_exercise(exercise_id: int, db: Session = Depends(get_db)):
@@ -25,12 +19,17 @@ async def read_exercises(skip: int = 0, limit: int = 100, sort_by: str = "name",
     exercises = await get_exercises(db, skip, limit, sort_by, asc, filters)
     return exercises
 
-# @router.put("/{product_id}", response_model=ProductResponse)
-# def update_existing_product(product_id: int, product: ProductUpdate, db: Session = Depends(get_db)):
-#     db_product = update_product(db, product_id, product)
-#     if db_product is None:
-#         raise HTTPException(status_code=404, detail="Product not found")
-#     return db_product
+@router.post("/", response_model=str)
+async def create_new_exercise(exercise: ExerciseCreate, db: Session = Depends(get_db)):
+    created_exercise = await create_exercise(db, exercise)
+    return created_exercise
+
+@router.put("/{exercise_id}", response_model=ExerciseResponse)
+async def update_existing_exercise(exercise_id: int, exercise: ExerciseUpdate, db: Session = Depends(get_db)):
+    db_exercise = await update_exercise(db, exercise_id, exercise)
+    if db_exercise is None:
+        raise HTTPException(status_code=404, detail="Exercise not found")
+    return db_exercise
 
 # @router.delete("/{product_id}", response_model=ProductResponse)
 # def delete_existing_product(product_id: int, db: Session = Depends(get_db)):
