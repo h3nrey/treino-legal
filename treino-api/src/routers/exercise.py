@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from database import get_db
-from schemas.exercise import ExerciseCreate, ExerciseUpdate, ExerciseResponse, ExercisePage
+from schemas.exercise import ExerciseCreate, ExerciseUpdate, ExerciseResponse, ExercisePage, ExerciseBase
 from db.repositories.exercise_repo import create_exercise, get_exercise, get_exercises, update_exercise, delete_exercise
 
 router = APIRouter()
 
 
-@router.post("/", response_model=ExerciseResponse)
+@router.post("/", response_model=str)
 async def create_new_product(exercise: ExerciseCreate, db: Session = Depends(get_db)):
     created_exercise = await create_exercise(db, exercise)
     return created_exercise
@@ -21,8 +21,8 @@ async def read_exercise(exercise_id: int, db: Session = Depends(get_db)):
     return db_exercise
 
 @router.get("/", response_model=list[ExerciseResponse])
-async def read_exercises(skip: int = 0, limit: int = 100, sort_by: str = "name", asc: bool = True, db: Session = Depends(get_db)):
-    exercises = await get_exercises(db, skip, limit, sort_by, asc)
+async def read_exercises(skip: int = 0, limit: int = 100, sort_by: str = "name", asc: bool = True, filters: list[str] = Query(None), db: Session = Depends(get_db)):
+    exercises = await get_exercises(db, skip, limit, sort_by, asc, filters)
     return exercises
 
 # @router.put("/{product_id}", response_model=ProductResponse)

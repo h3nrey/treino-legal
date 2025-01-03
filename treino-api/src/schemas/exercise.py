@@ -7,9 +7,21 @@ class GripBase(BaseModel):
     class Config:
         from_attributes = True
 
-class MuscleSchema(BaseModel):
+class MuscleBase(BaseModel):
     id: int
     name: str
+
+    class Config:
+        from_attributes = True
+
+class MuscleCreate(BaseModel):
+    id: int
+    level_type: int
+
+    class Config:
+        from_attributes = True
+
+class MuscleExercise(MuscleBase):
     level_type: int
 
     class Config:
@@ -26,9 +38,7 @@ class ExperienceLevelBase(BaseModel):
         from_attributes = True
 
 class ExerciseBase(BaseModel):
-    id: int
     name: str
-    muscles: list[MuscleSchema]
     # muscles: list[MuscleSchema]
     # description: str
     # equipment_id: int
@@ -36,11 +46,12 @@ class ExerciseBase(BaseModel):
     
 class ExerciseCreate(ExerciseBase):
     experience_level_id: int
+    equipment_id: int
     grip_id: int
     tutorial_url: Optional[str] = None
     description: str
     instructions: Optional[list[ExerciseInstructionBase]]
-    muscles: list
+    muscles: list[MuscleCreate]
 
 class ExerciseUpdate(ExerciseBase):
     name: Optional[str] = None
@@ -50,10 +61,7 @@ class ExerciseUpdate(ExerciseBase):
 
 class ExerciseResponse(ExerciseBase):
     id: int
-    # grip: GripBase
-    # experience_level: ExperienceLevelBase
-    description: str
-    # muscles: list[MuscleSchema]
+    muscles: list[MuscleBase]
     
     class Config:
         from_attributes = True
@@ -62,3 +70,4 @@ class ExercisePage(ExerciseBase):
     description: str
     experience_level: str
     grip: str
+    muscles: list[MuscleExercise]
