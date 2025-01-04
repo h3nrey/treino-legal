@@ -43,7 +43,7 @@ class Exercise(Base):
     grip = relationship("Grip", back_populates="exercise")
 
     muscles = relationship("Muscle", secondary="exercises_muscles", back_populates="exercises")
-    exercise_muscles = relationship("ExercisesMuscles", back_populates="exercise")
+    exercise_muscles = relationship("ExercisesMuscles", back_populates="exercise", cascade="all,delete")
 
     experience_level_id = Column(Integer, ForeignKey("experience_levels.id"), nullable=False)
     experience_level = relationship("ExperienceLevel", back_populates="exercise")
@@ -51,8 +51,8 @@ class Exercise(Base):
     equipment_id = Column(Integer, ForeignKey("equipments.id"), nullable=False)
     equipment = relationship("Equipment", back_populates="exercise")
 
-    tips = relationship("ExerciseTip", back_populates="exercise")
-    instructions = relationship("ExerciseInstruction", back_populates="exercise")
+    tips = relationship("ExerciseTip", back_populates="exercise", cascade="all,delete")
+    instructions = relationship("ExerciseInstruction", back_populates="exercise", cascade="all,delete")
 
     def __repr__(self):
         return f"<Exercise(id={self.id} name={self.name})>"

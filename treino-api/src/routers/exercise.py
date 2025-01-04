@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from database import get_db
 from schemas.exercise import ExerciseCreate, ExerciseUpdate, ExerciseResponse, ExercisePage, ExerciseBase
 from db.repositories.exercise_repo import create_exercise, get_exercise, get_exercises, update_exercise, delete_exercise
-from sqlalchemy.ext.asyncio import AsyncSession
 router = APIRouter()
 
 @router.get("/{exercise_id}", response_model=ExercisePage)
@@ -31,9 +30,9 @@ async def update_existing_exercise(exercise_id: int, exercise: ExerciseUpdate, d
         raise HTTPException(status_code=404, detail="Exercise not found")
     return db_exercise
 
-# @router.delete("/{product_id}", response_model=ProductResponse)
-# def delete_existing_product(product_id: int, db: Session = Depends(get_db)):
-#     db_product = delete_product(db, product_id)
-#     if db_product is None:
-#         raise HTTPException(status_code=404, detail="Product not found")
-#     return db_product
+@router.delete("/{exercise_id}", response_model=str)
+async def delete_existing_exercise(exercise_id: int, db: Session = Depends(get_db)):
+    db_exercise = await delete_exercise(db, exercise_id)
+    if db_exercise is None:
+        raise HTTPException(status_code=404, detail="Exercise not found")
+    return db_exercise

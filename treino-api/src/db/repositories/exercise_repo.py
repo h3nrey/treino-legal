@@ -100,9 +100,12 @@ async def update_exercise(db: Session, exercise_id: int, new_exercise: ExerciseU
     return exercise
     
 
-def delete_exercise(db: Session, exercise_id: int):
-    db_exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()
-    if db_exercise:
-        db.delete(db_exercise)
-        db.commit()
-    return db_exercise
+async def delete_exercise(db: Session, exercise_id: int):
+    result =  await db.execute(select(Exercise).filter(Exercise.id == exercise_id).options(joinedload(Exercise.muscles)))
+    exercise = result.scalars().first()
+
+    if exercise:
+        await db.delete(exercise)
+        await db.commit()
+        return "Exercise sucessfully deleted"
+    return None
