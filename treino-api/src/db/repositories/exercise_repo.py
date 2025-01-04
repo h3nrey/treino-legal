@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session, joinedload, selectinload
 from db.models.exercise import Exercise, Muscle,ExercisesMuscles, ExerciseInstruction, ExercisesMuscles
 from schemas.exercise import ExerciseCreate, ExerciseUpdate
 from sqlalchemy import select
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 from fastapi import Query, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -72,9 +72,6 @@ async def get_exercises(db: Session, skip: int = 0, limit: int = 100, sort_by: s
             order_by = order_by.desc()
         query = query.order_by(order_by)
 
-
-    print("FILTERS")
-    print(filters)
     if(filters):
         muscle_ids = [int(f.split(":")[1]) for f in filters if f.startswith("muscle:")]
         query = query.filter(Exercise.muscles.any(Muscle.id.in_(muscle_ids)))
@@ -82,6 +79,35 @@ async def get_exercises(db: Session, skip: int = 0, limit: int = 100, sort_by: s
     result = await db.execute(query)
     exercises = result.scalars().unique().all() 
     # print(exercises[0].equipment_id)
+    return exercises
+
+async def search_exercises(db: Session, skip: int = 0, limit: int = 100, sort_by: str = 'title', asc: bool = True, filters: list[str] = Query(None), search_query: str = None):
+    query = select(Exercise).options(
+        joinedload(Exercise.experience_level), 
+        joinedload(Exercise.grip), 
+        joinedload(Exercise.muscles)
+    ).offset(skip).limit(limit)
+
+    if sort_by in ["name", "created_at"]:
+        order_by = getattr(Exercise, sort_by)
+        if not asc:
+            order_by = order_by.desc()
+        query = query.order_by(order_by)
+
+    if(filters):
+        muscle_ids = [int(f.split(":")[1]) for f in filters if f.startswith("muscle:")]
+        query = query.filter(Exercise.muscles.any(Muscle.id.in_(muscle_ids)))
+
+    if(search_query):
+        search_term = f"%{search_query}%"
+        query = query.filter(
+            or_(
+                Exercise.name.ilike(search_term),
+            )
+        )
+
+    result = await db.execute(query)
+    exercises = result.scalars().unique().all()
     return exercises
 
 async def update_exercise(db: Session, exercise_id: int, new_exercise: ExerciseUpdate):
