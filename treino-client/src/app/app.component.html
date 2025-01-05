@@ -7,10 +7,16 @@
       <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
       }
       <div>
-        <h3>Exercicios Populares</h3>
-        @for(exercise of popularExercises; track $index) {
-        <exercise-card [exercise]="exercise" />
-        }
+        <div class="flex justify-between">
+          <h3>Exercicios Populares</h3>
+          <a [routerLink]="'/exercises'">ver mais </a>
+
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          @for(exercise of popularExercises; track $index) {
+          <exercise-card [exercise]=" exercise" />
+          }
+        </div>
       </div>
     </main>
 

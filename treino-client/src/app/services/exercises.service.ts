@@ -20,7 +20,7 @@ export class ExercisesService {
   }
 
   getPopularExercises(): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(`${this.apiUrl}/exercises`)
+    return this.http.get<Exercise[]>(`${this.apiUrl}/exercises?sort_by=popularity`)
   }
 
   getExerciseById(id: string): Observable<any> {

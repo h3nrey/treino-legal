@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { BannerComponent } from "./components/home/banner/banner.component";
 import { HomeHeaderComponent } from "./components/home/header/header.component";
@@ -9,7 +9,7 @@ import { ExercisesService } from './services/exercises.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, BannerComponent, HomeHeaderComponent, ExerciseCardComponent],
+  imports: [RouterOutlet, SidebarComponent, BannerComponent, HomeHeaderComponent, ExerciseCardComponent, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
