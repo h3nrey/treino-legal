@@ -2,21 +2,25 @@ import { Injectable } from '@angular/core';
 import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
 import { Exercise } from '../utils/interfaces';
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExercisesService {
 
-  readonly apiUrl = 'localhost'
-  // constructor(private http: HttpClient) { }
+  readonly apiUrl = 'http://localhost:8000'
+  constructor(private http: HttpClient) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
     console.log(muscleGroup);
     const exercisesList = exercises.filter(exercise => exercise.type == muscleGroup)
     console.log(exercisesList)
     return exercisesList;
+  }
+
+  getPopularExercises(): Observable<Exercise[]> {
+    return this.http.get<Exercise[]>(`${this.apiUrl}/exercises`)
   }
 
   getExerciseById(id: string): Observable<any> {

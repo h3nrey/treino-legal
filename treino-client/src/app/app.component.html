@@ -6,7 +6,12 @@
       @if (!bannerClosed) {
       <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
       }
-      <div></div>
+      <div>
+        <h3>Exercicios Populares</h3>
+        @for(exercise of popularExercises; track $index) {
+        <exercise-card [exercise]="exercise" />
+        }
+      </div>
     </main>
 
   </div>
