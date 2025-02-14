@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: treino_db
+    restart: always
+    environment:
+      POSTGRES_USER: ramondino
+      POSTGRES_PASSWORD: chrisbumbstead
+      POSTGRES_DB: treino-legal
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
