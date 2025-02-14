@@ -22,7 +22,7 @@ model Exercise {
 
 model Muscle {
   id   Int    @id @default(autoincrement())
-  name String
+  name String @unique
   muscles_exercises MusclesExercises[]
 }
 
