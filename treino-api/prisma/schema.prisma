@@ -15,8 +15,8 @@ model Exercise {
   equipamentId      Int
   gripId            Int?
   createdAt         DateTime @default(now())
-  tutorial_url      String?
-  thumbnail_url     String?
+  tutorialUrl       String?
+  thumbnailUrl      String?
   riskLevel         String
 
   grip            Grip?              @relation(fields: [gripId], references: [id])
