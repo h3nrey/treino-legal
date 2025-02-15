@@ -5,6 +5,7 @@ interface IInfo {
   otherMuscles: string[],
   experienceLevel: string,
   grip: string,
+  equipament: string,
   usedMusclesImageUrl?: string
 }
 

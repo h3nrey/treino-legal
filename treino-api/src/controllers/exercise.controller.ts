@@ -16,6 +16,7 @@ export const getExercise = async (req: Request, res: Response) => {
     include: {
       usedMuscles: { include: { muscle: true } },
       experienceLevel: true,
+      equipament: true,
       grip: true,
     },
   });
@@ -33,6 +34,7 @@ export const createExercise = async (req: Request, res: Response) => {
     tutorial_url,
     riskLevel,
     muscles,
+    equipamentId,
   } = req.body;
 
   try {
@@ -44,6 +46,7 @@ export const createExercise = async (req: Request, res: Response) => {
         gripId,
         tutorial_url,
         riskLevel,
+        equipamentId,
         usedMuscles: {
           create: muscles.map((m: { muscleId: number; levelType: string }) => ({
             muscle: { connect: { id: m.muscleId } },

@@ -17,6 +17,7 @@ export class ExerciseDetailsComponent implements OnInit {
     otherMuscles: string[],
     experienceLevel: string,
     grip: string,
+    equipament: string
   } | null  = null;
   constructor(private exerciseService: ExercisesService, private route: ActivatedRoute) { }
   ngOnInit() {
@@ -31,7 +32,8 @@ export class ExerciseDetailsComponent implements OnInit {
             primaryMuscle: data.usedMuscles.filter((muscle: any) => muscle.level_type = 'primário')[0].muscle.name,
             otherMuscles: data.usedMuscles.map((muscle: any) => muscle.muscle.name),
             experienceLevel: data.experienceLevel.name,
-            grip: data.grip.name
+            grip: data.grip.name,
+            equipament: data.equipament.name
           }
 
           console.log(this.info)
