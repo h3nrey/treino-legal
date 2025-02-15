@@ -6,7 +6,11 @@ import exerciseRoutes from "./routes/exercise.routes";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+let corsOptions = {
+  origin: ["http://localhost:4200"],
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
