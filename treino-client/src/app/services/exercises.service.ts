@@ -24,9 +24,8 @@ export class ExercisesService {
   }
 
   getExerciseById(id: string): Observable<any> {
-    const data = exercises.find(exercise => exercise.name == id);
-    return of(data);
-    // return this.http.get(`${}`)
+    const exercise = this.http.get(`${this.apiUrl}/exercises/${id}`)
+    return exercise;
   }
 
   // searchExercises(searchTerm): Observable<any> {

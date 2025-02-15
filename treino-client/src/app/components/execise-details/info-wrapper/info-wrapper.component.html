@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-2">
+    <header>Detalhes</header>
+    <img [src]="info?.usedMusclesImageUrl ?? imagePlaceholder" alt="" class="max-h-[22rem]">
+    
+    <div class="bg-red p-2 rounded-md text-white">
+        <div class="flex justify-between">
+            <span>Músculo primário</span>
+            <span>{{info?.primaryMuscle}}</span>
+        </div>
+        <div class="flex justify-between">
+            <span>Outros músculos</span>
+            <span class="flex gap-1">
+                @for(muscle of info?.otherMuscles; track $index){
+                    <span>{{muscle}}</span>
+                }
+            </span>
+        </div>
+        <div class="flex justify-between">
+            <span>Equipamentos</span>
+            <span>{{info?.primaryMuscle}}</span>
+        </div>
+        <div class="flex justify-between">
+            <span>Pegada</span>
+            <span>{{info?.grip}}</span>
+        </div>
+        <div class="flex justify-between">
+            <span>Nivel de experiência</span>
+            <span>{{info?.experienceLevel}}</span>
+        </div>
+
+    </div>
+</div>
