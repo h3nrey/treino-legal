@@ -8,30 +8,44 @@ datasource db {
 }
 
 model Exercise {
-  id                  Int      @id @default(autoincrement())
-  name                String
-  description         String
-  experience_level_id Int
-  grip_id            Int
-  created_at         DateTime @default(now())
-  tutorial_url       String?
-  risk_level         String
+  id                Int      @id @default(autoincrement())
+  name              String
+  description       String
+  experienceLevelId Int
+  gripId            Int
+  createdAt         DateTime @default(now())
+  tutorial_url      String?
+  riskLevel         String
 
-  muscles_exercises MusclesExercises[]
+  grip            Grip               @relation(fields: [gripId], references: [id])
+  experienceLevel ExperienceLevel    @relation(fields: [experienceLevelId], references: [id])
+  usedMuscles     MusclesExercises[]
 }
 
 model Muscle {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  muscles_exercises MusclesExercises[]
+  id        Int                @id @default(autoincrement())
+  name      String             @unique
+  exercises MusclesExercises[]
+}
+
+model ExperienceLevel {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  Exercise Exercise[]
+}
+
+model Grip {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Exercise Exercise[]
 }
 
 model MusclesExercises {
   id         Int    @id @default(autoincrement())
-  muscle_id  Int
-  exercise_id Int
-  level_type String
+  muscleId   Int
+  exerciseId Int
+  levelType  String
 
-  muscle   Muscle   @relation(fields: [muscle_id], references: [id])
-  exercise Exercise @relation(fields: [exercise_id], references: [id])
+  muscle   Muscle   @relation(fields: [muscleId], references: [id])
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
 }
