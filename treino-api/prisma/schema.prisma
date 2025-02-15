@@ -12,13 +12,15 @@ model Exercise {
   name              String
   description       String
   experienceLevelId Int
-  gripId            Int
+  equipamentId      Int
+  gripId            Int?
   createdAt         DateTime @default(now())
   tutorial_url      String?
   riskLevel         String
 
-  grip            Grip               @relation(fields: [gripId], references: [id])
+  grip            Grip?              @relation(fields: [gripId], references: [id])
   experienceLevel ExperienceLevel    @relation(fields: [experienceLevelId], references: [id])
+  equipament      Equipament         @relation(fields: [equipamentId], references: [id])
   usedMuscles     MusclesExercises[]
 }
 
@@ -35,6 +37,12 @@ model ExperienceLevel {
 }
 
 model Grip {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Exercise Exercise[]
+}
+
+model Equipament {
   id       Int        @id @default(autoincrement())
   name     String
   Exercise Exercise[]
