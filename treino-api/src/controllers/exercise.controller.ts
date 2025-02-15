@@ -13,7 +13,11 @@ export const getExercises = async (_req: Request, res: Response) => {
 export const getExercise = async (req: Request, res: Response) => {
   const exercise = await prisma.exercise.findUnique({
     where: { id: Number(req.params.id) },
-    include: { usedMuscles: { include: { muscle: true } } },
+    include: {
+      usedMuscles: { include: { muscle: true } },
+      experienceLevel: true,
+      grip: true,
+    },
   });
 
   if (!exercise) return res.status(404).json({ error: "Exercise not found" });
