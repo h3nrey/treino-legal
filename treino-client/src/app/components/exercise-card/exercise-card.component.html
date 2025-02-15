@@ -1,5 +1,5 @@
 <a [routerLink]="'/exercise/'+exercise?.id">
-    <img [src]="exercise?.coverUrl ? exercise?.coverUrl : PLACEHOLDERIMAGE " alt="">
+    <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="">
     <span>
         {{exercise?.name}}
     </span>

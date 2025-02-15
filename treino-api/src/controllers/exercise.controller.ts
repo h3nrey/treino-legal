@@ -31,7 +31,8 @@ export const createExercise = async (req: Request, res: Response) => {
     description,
     experienceLevelId,
     gripId,
-    tutorial_url,
+    tutorialUrl,
+    thumbnailUrl,
     riskLevel,
     muscles,
     equipamentId,
@@ -44,7 +45,8 @@ export const createExercise = async (req: Request, res: Response) => {
         description,
         experienceLevelId,
         gripId,
-        tutorial_url,
+        tutorialUrl,
+        thumbnailUrl,
         riskLevel,
         equipamentId,
         usedMuscles: {
@@ -70,7 +72,8 @@ export const updateExercise = async (req: Request, res: Response) => {
     description,
     experienceLevelId,
     gripId,
-    tutorial_url,
+    tutorialUrl,
+    thumbnailUrl,
     riskLevel,
   } = req.body;
 
@@ -84,7 +87,8 @@ export const updateExercise = async (req: Request, res: Response) => {
         description,
         experienceLevelId,
         gripId,
-        tutorial_url,
+        tutorialUrl,
+        thumbnailUrl,
         riskLevel,
         usedMuscles: {
           deleteMany: {},
