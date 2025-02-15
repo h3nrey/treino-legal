@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const getExercises = async (_req: Request, res: Response) => {
   const exercises = await prisma.exercise.findMany({
-    include: { muscles_exercises: { include: { muscle: true } } },
+    include: { usedMuscles: { include: { muscle: true } } },
   });
   res.json(exercises);
 };
@@ -13,7 +13,7 @@ export const getExercises = async (_req: Request, res: Response) => {
 export const getExercise = async (req: Request, res: Response) => {
   const exercise = await prisma.exercise.findUnique({
     where: { id: Number(req.params.id) },
-    include: { muscles_exercises: { include: { muscle: true } } },
+    include: { usedMuscles: { include: { muscle: true } } },
   });
 
   if (!exercise) return res.status(404).json({ error: "Exercise not found" });
@@ -24,10 +24,10 @@ export const createExercise = async (req: Request, res: Response) => {
   const {
     name,
     description,
-    experience_level_id,
-    grip_id,
+    experienceLevelId,
+    gripId,
     tutorial_url,
-    risk_level,
+    riskLevel,
     muscles,
   } = req.body;
 
@@ -36,20 +36,18 @@ export const createExercise = async (req: Request, res: Response) => {
       data: {
         name,
         description,
-        experience_level_id,
-        grip_id,
+        experienceLevelId,
+        gripId,
         tutorial_url,
-        risk_level,
-        muscles_exercises: {
-          create: muscles.map(
-            (m: { muscle_id: number; level_type: string }) => ({
-              muscle: { connect: { id: m.muscle_id } },
-              level_type: m.level_type,
-            })
-          ),
+        riskLevel,
+        usedMuscles: {
+          create: muscles.map((m: { muscleId: number; levelType: string }) => ({
+            muscle: { connect: { id: m.muscleId } },
+            levelType: m.levelType,
+          })),
         },
       },
-      include: { muscles_exercises: { include: { muscle: true } } },
+      include: { usedMuscles: { include: { muscle: true } } },
     });
 
     res.status(201).json(newExercise);
@@ -63,10 +61,10 @@ export const updateExercise = async (req: Request, res: Response) => {
   const {
     name,
     description,
-    experience_level_id,
-    grip_id,
+    experienceLevelId,
+    gripId,
     tutorial_url,
-    risk_level,
+    riskLevel,
   } = req.body;
 
   const muscles = req.body.muscles ?? [];
@@ -77,21 +75,19 @@ export const updateExercise = async (req: Request, res: Response) => {
       data: {
         name,
         description,
-        experience_level_id,
-        grip_id,
+        experienceLevelId,
+        gripId,
         tutorial_url,
-        risk_level,
-        muscles_exercises: {
+        riskLevel,
+        usedMuscles: {
           deleteMany: {},
-          create: muscles.map(
-            (m: { muscle_id: number; level_type: string }) => ({
-              muscle: { connect: { id: m.muscle_id } },
-              level_type: m.level_type,
-            })
-          ),
+          create: muscles.map((m: { muscleId: number; levelType: string }) => ({
+            muscle: { connect: { id: m.muscleId } },
+            levelType: m.levelType,
+          })),
         },
       },
-      include: { muscles_exercises: { include: { muscle: true } } },
+      include: { usedMuscles: { include: { muscle: true } } },
     });
 
     res.json(updatedExercise);
@@ -104,7 +100,7 @@ export const updateExercise = async (req: Request, res: Response) => {
 export const deleteExercise = async (req: Request, res: Response) => {
   try {
     await prisma.musclesExercises.deleteMany({
-      where: { exercise_id: Number(req.params.id) },
+      where: { exerciseId: Number(req.params.id) },
     });
 
     await prisma.exercise.delete({ where: { id: Number(req.params.id) } });
