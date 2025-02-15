@@ -2,25 +2,17 @@
   <div class="flex h-full w-full min-h-screen">
     <sidebar></sidebar>
     <main class="main mx-8 w-full">
-      <home-header></home-header>
-      @if (!bannerClosed) {
-      <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
-      }
-      <div>
-        <div class="flex justify-between">
-          <h3>Exercicios Populares</h3>
-          <a [routerLink]="'/exercises'">ver mais </a>
+      <div class="flex flex-col">
+        <div class="mt-2">
+          <home-header></home-header>
+          <router-outlet />
 
         </div>
-        <div class="grid grid-cols-4 gap-4">
-          @for(exercise of popularExercises; track $index) {
-          <exercise-card [exercise]=" exercise" />
-          }
-        </div>
+
       </div>
+      
     </main>
 
   </div>
-  <router-outlet />
 
 </div>

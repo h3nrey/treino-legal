@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ExercisesService {
 
-  readonly apiUrl = 'http://localhost:8000'
+  readonly apiUrl = 'http://localhost:3000'
   constructor(private http: HttpClient) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
