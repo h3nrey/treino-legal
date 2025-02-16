@@ -1,11 +1,27 @@
-<div class="flex">
-    <div class="w-full">
+<div class="flex justify-between">
+    <div class="w-full max-w-[40rem]">
         <h2 class="text-[2rem] font-bold">
             {{exerciseData?.name}}
         </h2>
         <p>{{exerciseData?.description}}</p>
-        <img [src]="exerciseData?.thumbnailUrl" alt="">
+        <img [src]="exerciseData?.thumbnailUrl" alt="" class="max-h-[19rem] object-cover">
+
+        <div>
+            <h3 class="text-[2rem] font-bold mt-4">Instruções</h3>
+            <ul class="flex flex-col gap-4">
+                @for(instruction of exerciseData?.instructions; track $index) {
+                <li class="flex gap-2 items-center">
+                    <div
+                        class="bg-red rounded-md text-white p-2 px-4 text-2xl">
+                        {{instruction.step}}</div>
+                        <span class="text-base text-lightBlack">
+                            {{instruction.description}}
+                        </span>
+                </li>
+                }
+            </ul>
+        </div>
     </div>
 
-    <app-info-wrapper [info]="info"></app-info-wrapper>
+    <app-info-wrapper [info]=" info"></app-info-wrapper>
 </div>

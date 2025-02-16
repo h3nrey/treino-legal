@@ -4,6 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ExercisesService } from '../../services/exercises.service';
 import { InfoWrapperComponent } from '../../components/execise-details/info-wrapper/info-wrapper.component';
 
+interface ExericiseDetails extends Exercise {
+  instructions: { step: number, description: string }[]
+}
+
 @Component({
   selector: 'app-exercise-details',
   imports: [InfoWrapperComponent],
@@ -11,14 +15,14 @@ import { InfoWrapperComponent } from '../../components/execise-details/info-wrap
   styleUrl: './exercise-details.component.scss'
 })
 export class ExerciseDetailsComponent implements OnInit {
-  exerciseData: Exercise | null = null;
+  exerciseData: ExericiseDetails | null = null;
   info: {
     primaryMuscle: string,
     otherMuscles: string[],
     experienceLevel: string,
     grip: string,
     equipament: string
-  } | null  = null;
+  } | null = null;
   constructor(private exerciseService: ExercisesService, private route: ActivatedRoute) { }
   ngOnInit() {
     const exerciseId = this.route.snapshot.paramMap.get('exercise');
@@ -27,7 +31,7 @@ export class ExerciseDetailsComponent implements OnInit {
       this.exerciseService.getExerciseById(exerciseId)
         .subscribe(data => {
           console.log(data);
-          this.exerciseData = data;
+          this.exerciseData = { ...data, instructions: data.ExerciseInstruction };
           this.info = {
             primaryMuscle: data.usedMuscles.filter((muscle: any) => muscle.level_type = 'primário')[0].muscle.name,
             otherMuscles: data.usedMuscles.map((muscle: any) => muscle.muscle.name),
