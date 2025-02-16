@@ -64,7 +64,7 @@ model MusclesExercises {
   id         Int    @id @default(autoincrement())
   muscleId   Int
   exerciseId Int
-  levelType  String
+  isPrimary  Boolean @default(false)
 
   muscle   Muscle   @relation(fields: [muscleId], references: [id])
   exercise Exercise @relation(fields: [exerciseId], references: [id])
