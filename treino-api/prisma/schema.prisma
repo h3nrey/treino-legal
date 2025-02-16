@@ -19,10 +19,21 @@ model Exercise {
   thumbnailUrl      String?
   riskLevel         String
 
-  grip            Grip?              @relation(fields: [gripId], references: [id])
-  experienceLevel ExperienceLevel    @relation(fields: [experienceLevelId], references: [id])
-  equipament      Equipament         @relation(fields: [equipamentId], references: [id])
-  usedMuscles     MusclesExercises[]
+  grip                Grip?                 @relation(fields: [gripId], references: [id])
+  experienceLevel     ExperienceLevel       @relation(fields: [experienceLevelId], references: [id])
+  equipament          Equipament            @relation(fields: [equipamentId], references: [id])
+  usedMuscles         MusclesExercises[]
+  ExerciseInstruction ExerciseInstruction[]
+}
+
+model ExerciseInstruction {
+  exerciseId  Int
+  step        Int
+  description String
+  imageUrl    String?
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+
+  @@id([exerciseId, step])
 }
 
 model Muscle {
