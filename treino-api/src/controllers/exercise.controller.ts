@@ -58,11 +58,13 @@ export const createExercise = async (req: Request, res: Response) => {
           })),
         },
         ExerciseInstruction: {
-          create: instructions.map((i: { step: number; description: string }) => ({
-            step: i.step,
-            description: i.description,
-          })),
-        }
+          create: instructions.map(
+            (i: { step: number; description: string }) => ({
+              step: i.step,
+              description: i.description,
+            })
+          ),
+        },
       },
       include: { usedMuscles: { include: { muscle: true } } },
     });
@@ -83,6 +85,7 @@ export const updateExercise = async (req: Request, res: Response) => {
     tutorialUrl,
     thumbnailUrl,
     riskLevel,
+    instructions,
   } = req.body;
 
   const muscles = req.body.muscles ?? [];
@@ -104,6 +107,15 @@ export const updateExercise = async (req: Request, res: Response) => {
             muscle: { connect: { id: m.muscleId } },
             levelType: m.levelType,
           })),
+        },
+        ExerciseInstruction: {
+          deleteMany: {},
+          create: instructions.map(
+            (i: { step: number; description: string }) => ({
+              step: i.step,
+              description: i.description,
+            })
+          ),
         },
       },
       include: { usedMuscles: { include: { muscle: true } } },
