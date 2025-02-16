@@ -39,13 +39,13 @@ model ExperienceLevel {
 
 model Grip {
   id       Int        @id @default(autoincrement())
-  name     String
+  name     String     @unique
   Exercise Exercise[]
 }
 
 model Equipament {
   id       Int        @id @default(autoincrement())
-  name     String
+  name     String     @unique
   Exercise Exercise[]
 }
 
