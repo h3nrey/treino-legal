@@ -11,8 +11,7 @@ import { Exercise } from '../../utils/interfaces';
 export class ExerciseCardComponent implements OnInit {
   @Input() exercise?: Exercise;
   tags: string[] = [];
-  PLACEHOLDERIMAGE = "https://memusclenutrition.b-cdn.net/wp-content/uploads/2023/01/Do-you-want-to-start-working-out-your-biceps-but-dont-know-ware-to-start-.jpg"
-
+  PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
   ngOnInit() {
     this.extractTags();
   }

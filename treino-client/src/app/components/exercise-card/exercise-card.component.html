@@ -1,5 +1,5 @@
-<a [routerLink]="'/exercise/'+exercise?.id">
-    <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="">
+<a [routerLink]="'/exercise/'+exercise?.id" class="h-fit">
+    <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="" class="object-cover w-full h-fit max-h-[10.25rem] rounded-md">
     <span>
         {{exercise?.name}}
     </span>
