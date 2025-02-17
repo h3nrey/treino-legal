@@ -5,7 +5,17 @@ import { ExercisesService } from '../../services/exercises.service';
 import { InfoWrapperComponent } from '../../components/execise-details/info-wrapper/info-wrapper.component';
 
 interface ExericiseDetails extends Exercise {
+  primaryMuscle: string,
+  otherMuscles: string[],
+  grip: string,
+  equipament: string,
+  experienceLevel: string,
   instructions: { step: number, description: string }[]
+}
+
+export interface exerciseMuscle {
+  name: string,
+  isPrimary: boolean
 }
 
 @Component({
@@ -16,13 +26,7 @@ interface ExericiseDetails extends Exercise {
 })
 export class ExerciseDetailsComponent implements OnInit {
   exerciseData: ExericiseDetails | null = null;
-  info: {
-    primaryMuscle: string,
-    otherMuscles: string[],
-    experienceLevel: string,
-    grip: string,
-    equipament: string
-  } | null = null;
+
   constructor(private exerciseService: ExercisesService, private route: ActivatedRoute) { }
   ngOnInit() {
     const exerciseId = this.route.snapshot.paramMap.get('exercise');
@@ -31,16 +35,24 @@ export class ExerciseDetailsComponent implements OnInit {
       this.exerciseService.getExerciseById(exerciseId)
         .subscribe(data => {
           console.log(data);
-          this.exerciseData = { ...data, instructions: data.ExerciseInstruction };
-          this.info = {
-            primaryMuscle: data.usedMuscles.filter((muscle: any) => muscle.level_type = 'primário')[0].muscle.name,
-            otherMuscles: data.usedMuscles.map((muscle: any) => muscle.muscle.name),
-            experienceLevel: data.experienceLevel.name,
+          this.exerciseData = { 
+            ...data, 
             grip: data.grip.name,
-            equipament: data.equipament.name
-          }
+            equipament: data.equipament.name,
+            experienceLevel: data.experienceLevel.name,
+            instructions: data.ExerciseInstruction ,
+            primaryMuscle: data.usedMuscles.filter((muscle: exerciseMuscle) => muscle.isPrimary)[0].name,
+            otherMuscles: data.usedMuscles.filter((muscle: exerciseMuscle) => !muscle.isPrimary).map((muscle: exerciseMuscle) => muscle.name),
+          };
+          // this.info = {
+          //   primaryMuscle: data.usedMuscles.filter((muscle: any) => muscle.isPrimary)[0],
+          //   otherMuscles: data.usedMuscles.filter((muscle: any) => !muscle.isPrimary),
+          //   experienceLevel: data.experienceLevel.name,
+          //   grip: data.grip.name,
+          //   equipament: data.equipament.name
+          // }
 
-          console.log(this.info)
+          // console.log(this.info)
         });
   }
 }

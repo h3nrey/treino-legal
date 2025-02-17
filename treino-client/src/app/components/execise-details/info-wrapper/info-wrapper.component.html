@@ -7,14 +7,16 @@
             <span>Músculo primário</span>
             <span>{{info?.primaryMuscle}}</span>
         </div>
-        <div class="flex justify-between">
-            <span>Outros músculos</span>
-            <span class="flex gap-1">
-                @for(muscle of info?.otherMuscles; track $index){
-                    <span>{{muscle}}</span>
-                }
-            </span>
-        </div>
+        @if(info && info.otherMuscles.length > 0) {
+            <div class="flex justify-between">
+                <span>Outros músculos</span>
+                <span class="flex gap-1">
+                    @for(muscle of info.otherMuscles; track $index){
+                        <span>{{muscle}}</span>
+                    }
+                </span>   
+            </div>
+        }
         <div class="flex justify-between">
             <span>Equipamentos</span>
             <span>{{info?.equipament}}</span>
