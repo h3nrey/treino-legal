@@ -2,32 +2,32 @@
     <h3 class="text-2xl font-semibold">Detalhes</h3>
     <img [src]="info?.usedMusclesImageUrl ?? imagePlaceholder" alt="" class="max-h-[22rem]">
     
-    <div class="bg-red p-2 rounded-md text-white">
+    <div class="flex flex-col gap-2 bg-red p-2 rounded-md text-white">
         <div class="flex justify-between">
             <span>Músculo primário</span>
-            <span>{{info?.primaryMuscle}}</span>
+            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.primaryMuscle}}</span>
         </div>
         @if(info && info.otherMuscles.length > 0) {
             <div class="flex justify-between">
                 <span>Outros músculos</span>
                 <span class="flex gap-1">
                     @for(muscle of info.otherMuscles; track $index){
-                        <span>{{muscle}}</span>
+                        <span class="bg-lightBlack p-[2px] rounded-sm">{{muscle}}</span>
                     }
                 </span>   
             </div>
         }
         <div class="flex justify-between">
             <span>Equipamentos</span>
-            <span>{{info?.equipament}}</span>
+            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.equipament}}</span>
         </div>
         <div class="flex justify-between">
             <span>Pegada</span>
-            <span>{{info?.grip}}</span>
+            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.grip}}</span>
         </div>
         <div class="flex justify-between">
             <span>Nivel de experiência</span>
-            <span>{{info?.experienceLevel}}</span>
+            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.experienceLevel}}</span>
         </div>
 
     </div>

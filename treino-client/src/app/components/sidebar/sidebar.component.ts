@@ -2,7 +2,6 @@ import { NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SidebarLinkComponent } from "../sidebar-link/sidebar-link.component";
-
 export interface SiteLink {
   text: string,
   url: string,
@@ -17,6 +16,7 @@ export interface SiteLink {
 
 export class SidebarComponent {
   isOpen: boolean = true;
+  expandArrowIcon = "assets/icons/arrowExpand.svg"
 
   siteLinks: SiteLink[] = [
     {
