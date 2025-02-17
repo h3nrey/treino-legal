@@ -16,6 +16,7 @@ export const getExercise = async (req: Request, res: Response) => {
     include: {
       usedMuscles: { include: { muscle: true } },
       ExerciseInstruction: true,
+      ExerciseTips: true,
       experienceLevel: true,
       equipament: true,
       grip: true,
@@ -28,7 +29,7 @@ export const getExercise = async (req: Request, res: Response) => {
     ...exercise,
     usedMuscles: exercise.usedMuscles.map((um) => ({
       ...um.muscle,
-      isPrimary: um.isPrimary, // Keep any other fields from usedMuscles if needed
+      isPrimary: um.isPrimary,
     })),
   };
 
@@ -47,7 +48,10 @@ export const createExercise = async (req: Request, res: Response) => {
     equipamentId,
     muscles,
     instructions,
+    tips,
   } = req.body;
+
+  console.log(tips);
 
   try {
     const newExercise = await prisma.exercise.create({
@@ -61,9 +65,9 @@ export const createExercise = async (req: Request, res: Response) => {
         riskLevel,
         equipamentId,
         usedMuscles: {
-          create: muscles.map((m: { muscleId: number; levelType: string }) => ({
+          create: muscles.map((m: { muscleId: number; isPrimary: string }) => ({
             muscle: { connect: { id: m.muscleId } },
-            levelType: m.levelType,
+            isPrimary: m.isPrimary,
           })),
         },
         ExerciseInstruction: {
@@ -74,9 +78,13 @@ export const createExercise = async (req: Request, res: Response) => {
             })
           ),
         },
+        ExerciseTips: {
+          create: tips.map((t: { description: string }) => ({ description: t.description })),
+        },
       },
       include: { usedMuscles: { include: { muscle: true } } },
     });
+
 
     res.status(201).json(newExercise);
   } catch (error) {
@@ -95,9 +103,11 @@ export const updateExercise = async (req: Request, res: Response) => {
     thumbnailUrl,
     riskLevel,
     instructions,
+    tips,
   } = req.body;
 
   const muscles = req.body.muscles ?? [];
+  console.log(tips);
 
   try {
     const updatedExercise = await prisma.exercise.update({
@@ -112,9 +122,9 @@ export const updateExercise = async (req: Request, res: Response) => {
         riskLevel,
         usedMuscles: {
           deleteMany: {},
-          create: muscles.map((m: { muscleId: number; levelType: string }) => ({
+          create: muscles.map((m: { muscleId: number; isPrimary: string }) => ({
             muscle: { connect: { id: m.muscleId } },
-            levelType: m.levelType,
+            isPrimary: m.isPrimary,
           })),
         },
         ExerciseInstruction: {
@@ -126,6 +136,10 @@ export const updateExercise = async (req: Request, res: Response) => {
             })
           ),
         },
+        ExerciseTips: {
+          deleteMany: {},
+          create: tips.map((t: { description: string }) => ({ description: t.description })),
+        }
       },
       include: { usedMuscles: { include: { muscle: true } } },
     });

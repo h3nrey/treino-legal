@@ -1,4 +1,4 @@
-<div class="flex justify-between">
+<div class="flex justify-between mb-8">
     <div class="w-full max-w-[40rem]">
         <h2 class="text-[2rem] font-bold">
             {{exerciseData?.name}}
@@ -17,6 +17,19 @@
                         <span class="text-base text-lightBlack">
                             {{instruction.description}}
                         </span>
+                </li>
+                }
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-[2rem] font-bold mt-4">Dicas</h3>
+            <ul class="flex flex-col gap-4">
+                @for(instruction of exerciseData?.tips; track $index) {
+                <li class="bg-lightBlack text-white rounded-md p-2">
+                    <span class="">
+                        {{instruction.description}}
+                    </span>   
                 </li>
                 }
             </ul>

@@ -11,6 +11,7 @@ interface ExericiseDetails extends Exercise {
   equipament: string,
   experienceLevel: string,
   instructions: { step: number, description: string }[]
+  tips: {description: string}[]
 }
 
 export interface exerciseMuscle {
@@ -40,19 +41,11 @@ export class ExerciseDetailsComponent implements OnInit {
             grip: data.grip.name,
             equipament: data.equipament.name,
             experienceLevel: data.experienceLevel.name,
-            instructions: data.ExerciseInstruction ,
+            instructions: data.ExerciseInstruction,
+            tips: data.ExerciseTips,
             primaryMuscle: data.usedMuscles.filter((muscle: exerciseMuscle) => muscle.isPrimary)[0].name,
             otherMuscles: data.usedMuscles.filter((muscle: exerciseMuscle) => !muscle.isPrimary).map((muscle: exerciseMuscle) => muscle.name),
           };
-          // this.info = {
-          //   primaryMuscle: data.usedMuscles.filter((muscle: any) => muscle.isPrimary)[0],
-          //   otherMuscles: data.usedMuscles.filter((muscle: any) => !muscle.isPrimary),
-          //   experienceLevel: data.experienceLevel.name,
-          //   grip: data.grip.name,
-          //   equipament: data.equipament.name
-          // }
-
-          // console.log(this.info)
         });
   }
 }

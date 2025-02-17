@@ -24,6 +24,7 @@ model Exercise {
   equipament          Equipament            @relation(fields: [equipamentId], references: [id])
   usedMuscles         MusclesExercises[]
   ExerciseInstruction ExerciseInstruction[]
+  ExerciseTips        ExerciseTips[]
 }
 
 model ExerciseInstruction {
@@ -34,6 +35,13 @@ model ExerciseInstruction {
   exercise    Exercise @relation(fields: [exerciseId], references: [id])
 
   @@id([exerciseId, step])
+}
+
+model ExerciseTips {
+  id          Int      @id @default(autoincrement())
+  exerciseId  Int
+  description String
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
 }
 
 model Muscle {
@@ -61,7 +69,7 @@ model Equipament {
 }
 
 model MusclesExercises {
-  id         Int    @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   muscleId   Int
   exerciseId Int
   isPrimary  Boolean @default(false)
