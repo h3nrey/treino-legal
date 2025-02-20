@@ -79,12 +79,13 @@ export const createExercise = async (req: Request, res: Response) => {
           ),
         },
         ExerciseTips: {
-          create: tips.map((t: { description: string }) => ({ description: t.description })),
+          create: tips.map((t: { description: string }) => ({
+            description: t.description,
+          })),
         },
       },
       include: { usedMuscles: { include: { muscle: true } } },
     });
-
 
     res.status(201).json(newExercise);
   } catch (error) {
@@ -102,24 +103,23 @@ export const updateExercise = async (req: Request, res: Response) => {
     tutorialUrl,
     thumbnailUrl,
     riskLevel,
-    instructions,
-    tips,
   } = req.body;
 
-  const muscles = req.body.muscles ?? [];
-  console.log(tips);
+  const muscles = req.body.muscles ?? null;
+  const instructions = req.body.instructions ?? null;
+  const tips = req.body.tips ?? null;
+  console.log(req.params.id);
 
   try {
-    const updatedExercise = await prisma.exercise.update({
-      where: { id: Number(req.params.id) },
-      data: {
-        name,
-        description,
-        experienceLevelId,
-        gripId,
-        tutorialUrl,
-        thumbnailUrl,
-        riskLevel,
+    const updateData: any = {
+      name,
+      description,
+      experienceLevelId,
+      gripId,
+      tutorialUrl,
+      thumbnailUrl,
+      riskLevel,
+      ...(muscles?.length && {
         usedMuscles: {
           deleteMany: {},
           create: muscles.map((m: { muscleId: number; isPrimary: string }) => ({
@@ -127,6 +127,8 @@ export const updateExercise = async (req: Request, res: Response) => {
             isPrimary: m.isPrimary,
           })),
         },
+      }),
+      ...(instructions?.length && {
         ExerciseInstruction: {
           deleteMany: {},
           create: instructions.map(
@@ -136,11 +138,20 @@ export const updateExercise = async (req: Request, res: Response) => {
             })
           ),
         },
+      }),
+      ...(tips?.length && {
         ExerciseTips: {
           deleteMany: {},
-          create: tips.map((t: { description: string }) => ({ description: t.description })),
-        }
-      },
+          create: tips.map((t: { description: string }) => ({
+            description: t.description,
+          })),
+        },
+      }),
+    };
+
+    const updatedExercise = await prisma.exercise.update({
+      where: { id: Number(req.params.id) },
+      data: updateData,
       include: { usedMuscles: { include: { muscle: true } } },
     });
 

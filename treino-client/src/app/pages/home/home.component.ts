@@ -15,6 +15,7 @@ export class HomeComponent {
     title = 'treino-client';
     bannerClosed = false;
   popularExercises: Exercise[] = [];
+  arrowRight = "assets/icons/arrowRight.svg"
 
   ngOnInit() {
     this.checkBannerStatus();
