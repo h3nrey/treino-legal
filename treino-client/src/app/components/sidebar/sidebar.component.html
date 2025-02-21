@@ -3,9 +3,11 @@
         <div>
             <div class="flex items-center gap-2">
                 @if (isOpen) {
-                    <h1 class="text-lightRed font-bold text-[3rem] w-max overflow-hidden">
-                        Treino Legal
-                    </h1>
+                    <a [routerLink]="'/'">
+                        <h1 class="text-lightRed font-bold text-[3rem] w-max overflow-hidden">
+                            Treino Legal
+                        </h1>
+                    </a>
                 }
                 <button (click)="toggleSidebar()" class="p-1 h-fit hover:bg-red rounded-md w-min">
                     <img [src]="expandArrowIcon" alt="" class="!w-6 !h-6 transition" [ngStyle]="{'transform': isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}">

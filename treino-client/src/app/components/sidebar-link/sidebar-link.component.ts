@@ -13,6 +13,7 @@ export class SidebarLinkComponent {
   @Input() isOpen: boolean = false;
   @Input() link: SiteLink | null = null;
   isContentOpen: boolean = false;
+  dumbellIcon = "assets/icons/dumbell.svg";
 
   toggleSublinks() {
     this.isContentOpen = !this.isContentOpen;
