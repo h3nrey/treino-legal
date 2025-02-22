@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Exercise, Muscle } from '../../utils/interfaces';
+import { Equipament, Exercise, Muscle } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { ExercisesService } from '../../services/exercises.service';
 import { MuscleCardComponent } from '../../components/cards/muscle-card/muscle-card.component';
@@ -17,6 +17,7 @@ export class HomeComponent {
   bannerClosed = false;
   popularExercises: Exercise[] = [];
   muscles: Muscle[] = [];
+  equipaments: Equipament[] = [];
   arrowRight = "assets/icons/arrowRight.svg"
 
   ngOnInit() {
@@ -31,6 +32,13 @@ export class HomeComponent {
     this.exerciseService.getMuscles().subscribe({
       next: (res) => {
         this.muscles = res;
+        console.log(res)
+      }
+    });
+
+    this.exerciseService.getEquipaments().subscribe({
+      next: (res) => {
+        this.equipaments = res;
         console.log(res)
       }
     });

@@ -12,3 +12,8 @@ export interface Muscle {
     id: number,
     name: string
 }
+
+export interface Equipament {
+    id: number,
+    name: string
+}

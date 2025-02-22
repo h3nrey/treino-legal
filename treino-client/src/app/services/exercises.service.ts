@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
-import { Exercise, Muscle } from '../utils/interfaces';
+import { Equipament, Exercise, Muscle } from '../utils/interfaces';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -30,6 +30,10 @@ export class ExercisesService {
 
   getMuscles(): Observable<Muscle[]> {
     return this.http.get<Muscle[]>(`${this.apiUrl}/muscles`)
+  }
+
+  getEquipaments(): Observable<Equipament[]> {
+    return this.http.get<Equipament[]>(`${this.apiUrl}/equipaments`)
   }
 
   // searchExercises(searchTerm): Observable<any> {
