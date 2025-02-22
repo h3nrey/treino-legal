@@ -4,7 +4,26 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const getExercises = async (_req: Request, res: Response) => {
+  const filtersQuery = _req.query.filters;
+  let filters = null;
+  const page = _req.query.page ?? 0;
+  const count = _req.query.count ?? 10;
+
+  if (typeof filtersQuery === 'string') {
+    filters = Object.fromEntries(
+      filtersQuery.split(",").map(filter => filter.split(":"))
+    );
+  } else {
+    console.log("No filters provided or filters are not a string");
+  }
+
   const exercises = await prisma.exercise.findMany({
+    where: {
+      equipament: { is: { name: filters.equipament } },
+      usedMuscles: { some: { muscle: { name: filters.muscle } } }
+    },
+    skip: Number(page) * Number(count),
+    take: Number(count),
     include: { usedMuscles: { include: { muscle: true } } },
   });
   res.json(exercises);
