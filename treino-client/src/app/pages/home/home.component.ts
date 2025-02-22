@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Exercise } from '../../utils/interfaces';
+import { Exercise, Muscle } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { ExercisesService } from '../../services/exercises.service';
+import { MuscleCardComponent } from '../../components/cards/muscle-card/muscle-card.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ExerciseCardComponent],
+  imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(private exerciseService: ExercisesService) { }
-    title = 'treino-client';
-    bannerClosed = false;
+  title = 'treino-client';
+  bannerClosed = false;
   popularExercises: Exercise[] = [];
+  muscles: Muscle[] = [];
   arrowRight = "assets/icons/arrowRight.svg"
 
   ngOnInit() {
@@ -25,6 +27,13 @@ export class HomeComponent {
         this.popularExercises = res
       }
     })
+
+    this.exerciseService.getMuscles().subscribe({
+      next: (res) => {
+        this.muscles = res;
+        console.log(res)
+      }
+    });
 
   }
 

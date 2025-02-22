@@ -7,3 +7,8 @@ export interface Exercise {
     type: string,
     level: string,
 }
+
+export interface Muscle {
+    id: number,
+    name: string
+}
