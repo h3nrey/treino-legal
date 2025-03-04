@@ -10,6 +10,8 @@ import { Muscle } from '../../../utils/interfaces';
 })
 export class MuscleCardComponent {
   @Input() muscle: Muscle = { id: 0, name: '' };
+  @Input() queryParams: { equipament?: string, muscle?: string, page?: number } = { page: 0 };
+  @Input() sectionType: string = '';
 
   PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
 }

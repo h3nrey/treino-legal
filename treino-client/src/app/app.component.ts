@@ -14,7 +14,7 @@ import { ExercisesService } from './services/exercises.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  constructor(private exerciseService: ExercisesService) { }
+  constructor() { }
   title = 'treino-client';
   bannerClosed = false;
   popularExercises: Exercise[] = [];
@@ -22,15 +22,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkBannerStatus();
 
-    this.exerciseService.getPopularExercises().subscribe({
-      next: (res) => {
-        this.popularExercises = res
-      }
-    })
-
   }
 
   checkBannerStatus() {
-    this.bannerClosed = localStorage.getItem('home__banner__closed') === 'true';
+    // this.bannerClosed = localStorage.getItem('home__banner__closed') === 'true';
   }
 }

@@ -17,3 +17,9 @@ export interface Equipament {
     id: number,
     name: string
 }
+
+export interface ReqParams {
+    page: number,
+    count: number,
+    sortBy: string
+}

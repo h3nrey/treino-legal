@@ -25,6 +25,8 @@ export class HomeComponent {
 
     this.exerciseService.getPopularExercises().subscribe({
       next: (res) => {
+        console.log("popular exercises")
+        console.log(res)
         this.popularExercises = res
       }
     })

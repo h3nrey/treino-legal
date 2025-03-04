@@ -4,29 +4,34 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const getExercises = async (_req: Request, res: Response) => {
-  const filtersQuery = _req.query.filters;
-  let filters = null;
+  const equipament = typeof _req.query.equipament === 'string' ? _req.query.equipament : undefined
+  const muscle = typeof _req.query.muscle === 'string' ? _req.query.muscle : undefined
   const page = _req.query.page ?? 0;
   const count = _req.query.count ?? 10;
+  console.log(_req.query);
 
-  if (typeof filtersQuery === 'string') {
-    filters = Object.fromEntries(
-      filtersQuery.split(",").map(filter => filter.split(":"))
-    );
-  } else {
-    console.log("No filters provided or filters are not a string");
-  }
+  const totalCount = await prisma.exercise.count({
+    where: {
+      equipament: { is: { name: equipament } },
+      usedMuscles: { some: { muscle: { name: muscle } } }
+    }
+  });
 
   const exercises = await prisma.exercise.findMany({
     where: {
-      equipament: { is: { name: filters.equipament } },
-      usedMuscles: { some: { muscle: { name: filters.muscle } } }
+      equipament: { is: { name: equipament } },
+      usedMuscles: { some: { muscle: { name: muscle } } }
     },
     skip: Number(page) * Number(count),
     take: Number(count),
     include: { usedMuscles: { include: { muscle: true } } },
   });
-  res.json(exercises);
+
+  res.json({
+    data: exercises,
+    currentPage: page,
+    totalCount: totalCount
+  });
 };
 
 export const getExercise = async (req: Request, res: Response) => {

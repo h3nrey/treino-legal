@@ -8,6 +8,6 @@ export const routes: Routes = [
     // { path: "exercises/:musclegroup", component: ListExercisesComponent },
     { path: "exercises/:exercise", component: ExerciseDetailsComponent },
     { path: "exercises", component: HomeComponent },
-    { path: "exercises/section/:exercise", component: ExerciseSectionComponent }
+    { path: "exercises/section/:sectionType", component: ExerciseSectionComponent }
 
 ];
