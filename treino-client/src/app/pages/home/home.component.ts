@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Equipament, Exercise, Muscle } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
@@ -11,7 +11,7 @@ import { MuscleCardComponent } from '../../components/cards/muscle-card/muscle-c
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private exerciseService: ExercisesService) { }
   title = 'treino-client';
   bannerClosed = false;
@@ -23,6 +23,11 @@ export class HomeComponent {
   ngOnInit() {
     this.checkBannerStatus();
 
+
+
+  }
+
+  ngAfterViewInit() {
     this.exerciseService.getPopularExercises().subscribe({
       next: (res) => {
         this.popularExercises = res
@@ -40,7 +45,6 @@ export class HomeComponent {
         this.equipaments = res;
       }
     });
-
   }
 
   checkBannerStatus() {
