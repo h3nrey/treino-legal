@@ -47,8 +47,6 @@ export class ExerciseSectionComponent implements OnInit {
   }
 
   loadHeaderData() {
-    console.log("header data")
-    console.log(this.sectionType)
     if (this.sectionType == 'equipament') {
       this.exerciseService.getEquipaments(this.sectionParams.equipament).subscribe(equipament => {
         this.headerData = {
@@ -57,9 +55,7 @@ export class ExerciseSectionComponent implements OnInit {
         }
       })
     } else if (this.sectionType == 'muscle-group') {
-      console.log("haha")
       this.exerciseService.getMuscle(this.sectionParams.muscle).subscribe(muscle => {
-        console.log(muscle)
         this.headerData = {
           title: muscle.name,
           description: muscle.description ?? '',

@@ -25,8 +25,6 @@ export class HomeComponent {
 
     this.exerciseService.getPopularExercises().subscribe({
       next: (res) => {
-        console.log("popular exercises")
-        console.log(res)
         this.popularExercises = res
       }
     })
@@ -34,14 +32,12 @@ export class HomeComponent {
     this.exerciseService.getMuscles().subscribe({
       next: (res) => {
         this.muscles = res;
-        console.log(res)
       }
     });
 
     this.exerciseService.getEquipaments().subscribe({
       next: (res) => {
         this.equipaments = res;
-        console.log(res)
       }
     });
 

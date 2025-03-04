@@ -10,21 +10,19 @@ import { ExerciseCardComponent } from '../../components/exercise-card/exercise-c
   styleUrl: './list-exercises.component.scss'
 })
 export class ListExercisesComponent {
-  constructor(private route: ActivatedRoute, private exercisesService: ExercisesService) {}
+  constructor(private route: ActivatedRoute, private exercisesService: ExercisesService) { }
 
-  muscleGroupId : string | null = null;
+  muscleGroupId: string | null = null;
   exercises: any[] = []
 
   ngOnInit(): void {
     this.muscleGroupId = this.route.snapshot.paramMap.get("musclegroup");
-    console.log(this.muscleGroupId);
     this.loadExercises();
   }
 
-  async loadExercises () {
-    if(!this.muscleGroupId) return;
+  async loadExercises() {
+    if (!this.muscleGroupId) return;
     this.exercises = await this.exercisesService.listMusclesByMuscleGroup(this.muscleGroupId);
-    console.log(this.exercises)
   }
 
 

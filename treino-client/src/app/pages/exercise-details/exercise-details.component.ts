@@ -11,7 +11,7 @@ interface ExericiseDetails extends Exercise {
   equipament: string,
   experienceLevel: string,
   instructions: { step: number, description: string }[]
-  tips: {description: string}[]
+  tips: { description: string }[]
 }
 
 export interface exerciseMuscle {
@@ -35,9 +35,8 @@ export class ExerciseDetailsComponent implements OnInit {
     if (exerciseId)
       this.exerciseService.getExerciseById(exerciseId)
         .subscribe(data => {
-          console.log(data);
-          this.exerciseData = { 
-            ...data, 
+          this.exerciseData = {
+            ...data,
             grip: data.grip.name,
             equipament: data.equipament.name,
             experienceLevel: data.experienceLevel.name,

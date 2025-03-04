@@ -19,7 +19,6 @@ export class HomeHeaderComponent {
 
     const debouncedSearch = debounce((searchTerm: string) => {
       this.searchedResults = exercises;
-      console.log(searchTerm);
     }, searchDelay);
 
     debouncedSearch(searchTerm);

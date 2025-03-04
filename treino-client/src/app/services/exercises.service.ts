@@ -31,9 +31,7 @@ export class ExercisesService {
   constructor(private http: HttpClient) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
-    console.log(muscleGroup);
     const exercisesList = exercises.filter(exercise => exercise.type == muscleGroup)
-    console.log(exercisesList)
     return exercisesList;
   }
 
@@ -54,7 +52,6 @@ export class ExercisesService {
       }
     });
 
-    console.log(httpParams)
     return this.http.get<ExerciseReponse>(`${this.apiUrl}/exercises`, { params: httpParams })
   }
 
