@@ -40,25 +40,29 @@ export class ExerciseSectionComponent implements OnInit {
     this.route.queryParams.subscribe(param => {
       this.sectionParams = { ...param, count: this.itemsPerPage }
       this.page = param['page']
+      this.sectionType = this.route.snapshot.url[2].path
       this.loadHeaderData();
       this.loadExercises();
     })
-    this.route.params.subscribe((param) => this.sectionType = param['sectionType'])
   }
 
   loadHeaderData() {
     console.log("header data")
+    console.log(this.sectionType)
     if (this.sectionType == 'equipament') {
-      this.headerData = {
-        title: "Barra W",
-        description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ipsum, debitis error sequi dolore nihil molestias necessitatibus minus perspiciatis dolorem non laboriosam possimus fugiat architecto cum beatae, nisi impedit officia."
-      }
+      this.exerciseService.getEquipaments(this.sectionParams.equipament).subscribe(equipament => {
+        this.headerData = {
+          title: equipament[0].name,
+          description: equipament[0].description ?? '',
+        }
+      })
     } else if (this.sectionType == 'muscle-group') {
+      console.log("haha")
       this.exerciseService.getMuscle(this.sectionParams.muscle).subscribe(muscle => {
         console.log(muscle)
         this.headerData = {
           title: muscle.name,
-          description: '"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ipsum, debitis error sequi dolore nihil molestias necessitatibus minus perspiciatis dolorem non laboriosam possimus fugiat architecto cum beatae, nisi impedit officia."'
+          description: muscle.description ?? '',
         }
       })
     }

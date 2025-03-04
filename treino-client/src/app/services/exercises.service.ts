@@ -70,8 +70,8 @@ export class ExercisesService {
     return this.http.get<Muscle>(`${this.apiUrl}/muscles/${muscleName}`)
   }
 
-  getEquipaments(): Observable<Equipament[]> {
-    return this.http.get<Equipament[]>(`${this.apiUrl}/equipaments`)
+  getEquipaments(equipament: string = ''): Observable<Equipament[]> {
+    return this.http.get<Equipament[]>(`${this.apiUrl}/equipaments?name=${equipament}`)
   }
 
   // searchExercises(searchTerm): Observable<any> {

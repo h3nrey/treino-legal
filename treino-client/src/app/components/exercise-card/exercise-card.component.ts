@@ -13,8 +13,6 @@ export class ExerciseCardComponent implements OnInit {
   tags: string[] = [];
   PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
   ngOnInit() {
-    console.log("Exercise data: ")
-    console.log(this.exercise);
     this.extractTags();
   }
 

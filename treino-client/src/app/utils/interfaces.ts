@@ -11,11 +11,15 @@ export interface Exercise {
 export interface Muscle {
     id: number,
     name: string
+    description?: string
+    imageUrl?: string
 }
 
 export interface Equipament {
     id: number,
     name: string
+    description?: string,
+    imageUrl?: string
 }
 
 export interface ReqParams {
