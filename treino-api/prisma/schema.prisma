@@ -45,9 +45,11 @@ model ExerciseTips {
 }
 
 model Muscle {
-  id        Int                @id @default(autoincrement())
-  name      String             @unique
-  exercises MusclesExercises[]
+  id          Int                @id @default(autoincrement())
+  name        String             @unique
+  description String?
+  imageUrl    String?
+  exercises   MusclesExercises[]
 }
 
 model ExperienceLevel {
@@ -63,9 +65,11 @@ model Grip {
 }
 
 model Equipament {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
-  Exercise Exercise[]
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  imageUrl    String?
+  Exercise    Exercise[]
 }
 
 model MusclesExercises {
