@@ -1,0 +1,22 @@
+<div class="relative cursor-pointer" (click)="toggleSelect()">
+    <div class="flex gap-4 bg-lightBlack rounded-full p-2 px-4 text-white">
+        <span class="min-w-28">
+            {{currentOption < 0 ? placeholderText : options[currentOption]}}
+        </span>
+        <img [src]="arrowIcon" alt="" class="h-6 w-6">
+    </div>
+
+    @if(optionsOpened){
+        <div class="absolute bg-lightBlack text-lightGray w-full rounded-md p-2 flex flex-col mt-1 max-h-36 overflow-y-scroll">
+            @for (option of options; track $index) {
+                <div 
+                    class="flex justify-between items-center p-1 hover:bg-red rounded-md transition" 
+                    (click)="selectOption($index)"
+                >
+                    <span class="">{{option}}</span>
+                    <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOption==$index ? 'visible' : 'invisible'">
+                </div>
+            }
+        </div>
+    }
+</div>
