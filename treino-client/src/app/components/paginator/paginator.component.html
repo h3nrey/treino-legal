@@ -1,11 +1,11 @@
-<div class="flex items-center gap-1">
-    <button>
-        <img src="assets/icons/arrowForward.svg" alt="" class="bg-lightBlack h-6 rounded-sm p-1 -rotate-180">
+<div class="flex w-full justify-center items-center gap-">
+    <button (click)="changePage(page - 1)" class="rounded-sm overflow-hidden" [ngClass]="page == 0 ? 'bg-gray' : 'bg-lightBlack'">
+        <img src="assets/icons/arrowForward.svg" alt="" class=" h-6 rounded-sm p-1 -rotate-180">
     </button>
-    <div class="flex gap-2">
+    <div class="flex gap-2 px-2">
         @for (item of items; track item) {
             <button 
-            (click)="changePage(item)"
+            (click)="changePage(item - 1)"
              [ngStyle]="{background: page == item-1 ? 'rgba(22,26,20)' : 'transparent', color: page == item-1 ? 'white': 'rgba(22,26,20)'}" 
              class=" outline-lightBlack outline-2 outline leading-none text-lightBlack px-1 rounded-sm h-fit"
              >
@@ -14,7 +14,7 @@
         }
     </div>
     
-    <button>
-        <img src="assets/icons/arrowForward.svg" alt="" class="bg-lightBlack h-6 rounded-sm p-1">
+    <button (click)="changePage(page+1)" class="rounded-sm overflow-hidden" [ngClass]="page >= items.length -1 ? 'bg-gray' : 'bg-lightBlack'">
+        <img src="assets/icons/arrowForward.svg" alt="" class=" h-6 rounded-sm p-1">
     </button>
 </div>

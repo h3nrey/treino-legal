@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { debounce } from '../../../utils/utils';
 import { FormsModule } from '@angular/forms';
 import { exercises } from '../../../../data';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ExercisesService } from '../../../services/exercises.service';
 import { Exercise } from '../../../utils/interfaces';
 
@@ -13,7 +13,7 @@ import { Exercise } from '../../../utils/interfaces';
   styleUrl: './header.component.scss'
 })
 export class HomeHeaderComponent {
-  constructor(private exerciseService: ExercisesService, private eRef: ElementRef) {}
+  constructor(private exerciseService: ExercisesService, private eRef: ElementRef, private router: Router) {}
   searchTerm: string = '';
   searchedResults: Exercise[] = [];
   private readonly searchDelay = 500;
@@ -60,5 +60,10 @@ export class HomeHeaderComponent {
     if (!this.eRef.nativeElement.contains(event.target)) {
       this.clearResults();
     }
+  }
+
+  submitSearch() {
+    this.clearResults();
+    this.router.navigate(['/search'], {queryParams: {keyword: this.searchTerm, page: 0}})
   }
 }

@@ -9,7 +9,7 @@
             </div>
             <input type="text" placeholder="Pesquisar"
                 class="bg-[transparent] w-[14rem] focus-visible:outline-none placeholder:text-darkGray text-lightGray"
-                [(ngModel)]="searchTerm" (input)="onSearchInput($event)">
+                [(ngModel)]="searchTerm" (input)="onSearchInput($event)" (keydown.enter)="submitSearch()">
         </div>
 
         @if (searchedResults.length > 0 || showResults) {
