@@ -25,5 +25,6 @@ export interface Equipament {
 export interface ReqParams {
     page: number,
     count: number,
-    sortBy: string
+    search?: string,
+    sortBy?: string
 }

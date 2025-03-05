@@ -25,7 +25,7 @@ export const getExercises = async (_req: Request, res: Response) => {
     where: {
       equipament: { is: { name: equipament } },
       usedMuscles: { some: { muscle: { name: muscle } } },
-      name: { contains: search }
+      name: { contains: search, mode: "insensitive" }
     },
     skip: Number(page) * Number(count),
     take: Number(count),

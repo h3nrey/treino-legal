@@ -30,11 +30,20 @@ export class ExerciseDetailsComponent implements OnInit {
 
   constructor(private exerciseService: ExercisesService, private route: ActivatedRoute) { }
   ngOnInit() {
-    const exerciseId = this.route.snapshot.paramMap.get('exercise');
+    this.route.paramMap.subscribe(params => {
+      const exerciseId = params.get("exercise");
+      console.log(exerciseId)
+      if(exerciseId) {
+        this.loadExercises(exerciseId);
+      }
+    })
 
-    if (exerciseId)
-      this.exerciseService.getExerciseById(exerciseId)
+  }
+
+  loadExercises(exerciseId: string) {
+    this.exerciseService.getExerciseById(exerciseId)
         .subscribe(data => {
+          console.log(data)
           this.exerciseData = {
             ...data,
             grip: data.grip.name,
