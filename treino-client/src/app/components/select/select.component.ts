@@ -17,7 +17,7 @@ export class SelectComponent {
   arrowIcon = 'assets/icons/arrowDown.svg'
   checkIcon = 'assets/icons/check.svg'
 
-  optionsOpened = true;
+  optionsOpened = false;
 
   selectOption(option: number) {
     this.currentOption = option;

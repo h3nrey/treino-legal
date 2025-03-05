@@ -8,31 +8,36 @@ export const getExercises = async (_req: Request, res: Response) => {
     typeof _req.query.equipament === "string"
       ? _req.query.equipament
       : undefined;
-  const muscle =
-    typeof _req.query.muscle === "string" ? _req.query.muscle : undefined;
+  const muscle = _req.query.muscle;
   const search =
     typeof _req.query.search === "string" ? _req.query.search : undefined;
   const page = _req.query.page ?? 0;
   const count = _req.query.count ?? 10;
   console.log(_req.query);
 
+  const whereCondition: any = {};
+
+  if (equipament) {
+    whereCondition.equipament = { is: { name: equipament } };
+  }
+
+  if (muscle) {
+    whereCondition.usedMuscles = { some: { muscle: { name: muscle } } };
+  }
+
+  if (search) {
+    whereCondition.name = { contains: search, mode: "insensitive" };
+  }
+
   const [exercises, totalCount] = await Promise.all([
     prisma.exercise.findMany({
-      where: {
-        equipament: { is: { name: equipament } },
-        usedMuscles: { some: { muscle: { name: muscle } } },
-        name: { contains: search, mode: "insensitive" },
-      },
+      where: whereCondition,
       skip: Number(page) * Number(count),
       take: Number(count),
       include: { usedMuscles: { include: { muscle: true } } },
     }),
     prisma.exercise.count({
-      where: {
-        equipament: { is: { name: equipament } },
-        usedMuscles: { some: { muscle: { name: muscle } } },
-        name: { contains: search, mode: "insensitive" },
-      },
+      where: whereCondition,
     }),
   ]);
 

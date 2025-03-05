@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 
-interface ExerciseParams extends ReqParams {
+export interface ExerciseParams extends ReqParams {
   equipament?: string,
   muscle?: string,
   experienceLevel?: string

@@ -32,7 +32,6 @@ export class ExerciseDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const exerciseId = params.get("exercise");
-      console.log(exerciseId)
       if(exerciseId) {
         this.loadExercises(exerciseId);
       }
@@ -43,7 +42,6 @@ export class ExerciseDetailsComponent implements OnInit {
   loadExercises(exerciseId: string) {
     this.exerciseService.getExerciseById(exerciseId)
         .subscribe(data => {
-          console.log(data)
           this.exerciseData = {
             ...data,
             grip: data.grip.name,
