@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 export const getExercises = async (_req: Request, res: Response) => {
   const equipament = typeof _req.query.equipament === 'string' ? _req.query.equipament : undefined
   const muscle = typeof _req.query.muscle === 'string' ? _req.query.muscle : undefined
+  const search = typeof _req.query.search === 'string' ? _req.query.search : undefined
   const page = _req.query.page ?? 0;
   const count = _req.query.count ?? 10;
   console.log(_req.query);
@@ -17,15 +18,26 @@ export const getExercises = async (_req: Request, res: Response) => {
     }
   });
 
+  console.log("Search")
+  console.log(search);
+
   const exercises = await prisma.exercise.findMany({
     where: {
       equipament: { is: { name: equipament } },
-      usedMuscles: { some: { muscle: { name: muscle } } }
+      usedMuscles: { some: { muscle: { name: muscle } } },
+      name: { contains: search }
     },
     skip: Number(page) * Number(count),
     take: Number(count),
     include: { usedMuscles: { include: { muscle: true } } },
   });
+
+  // const exercises = await prisma.exercise.findMany({
+  //   where: {
+  //     name: {contains: "Puxada"}
+  //   }
+  // })
+  // res.json({data: exercises})
 
   res.json({
     data: exercises,
@@ -33,6 +45,7 @@ export const getExercises = async (_req: Request, res: Response) => {
     totalCount: totalCount
   });
 };
+
 
 export const getExercise = async (req: Request, res: Response) => {
   const exercise = await prisma.exercise.findUnique({
