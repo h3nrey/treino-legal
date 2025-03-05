@@ -16,6 +16,7 @@ export class SidebarLinkComponent {
   dumbellIcon = "assets/icons/dumbell.svg";
 
   toggleSublinks() {
+    if (this.link && this.link?.sublinks.length < 1) return;
     this.isContentOpen = !this.isContentOpen;
   }
 }

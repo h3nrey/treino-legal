@@ -1,5 +1,5 @@
-<div class="flex flex-col overflow-hidden lightBlack bg-black" (click)="toggleSublinks()" [ngStyle]="{'background': isContentOpen ? 'rgba(11,9,10, 0.5)' : 'transparent'}">
-    <a routerLink="/exercises" class="flex items-center gap-2 hover:bg-bg-red p-2 cursor-pointer w-full rounded-md"
+<div class="flex flex-col justify-center overflow-hidden lightBlack rounded-sm hover:bg-red" (click)="toggleSublinks()" >
+    <a routerLink="/exercises" class="flex items-center gap-2 bg-opacity-0 p-2 cursor-pointer w-full rounded-md"
         [ngStyle]="{'justify-content': isOpen ? 'left' : 'center'}">
         <img [src]="dumbellIcon" alt="" class="!w-6 !h-6" >
         @if (isOpen) {

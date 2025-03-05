@@ -4,15 +4,19 @@ import { Equipament, Exercise, Muscle } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { ExercisesService } from '../../services/exercises.service';
 import { MuscleCardComponent } from '../../components/cards/muscle-card/muscle-card.component';
+import { SidebarService } from '../../services/sidebar.service';
+import { CommonModule, NgClass } from '@angular/common';
+import { BannerComponent } from '../../components/home/banner/banner.component';
+import { HomeSectionComponent } from "../../components/home-section/home-section.component";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent],
+  imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent, NgClass, CommonModule, BannerComponent, HomeSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  constructor(private exerciseService: ExercisesService) { }
+  constructor(private exerciseService: ExercisesService, protected sidebarService: SidebarService) { }
   title = 'treino-client';
   bannerClosed = false;
   popularExercises: Exercise[] = [];
@@ -22,29 +26,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.checkBannerStatus();
-
-
-
   }
 
   ngAfterViewInit() {
-    this.exerciseService.getPopularExercises().subscribe({
+    this.popularExercises = []
+
+    const params = {
+      sortBy: 'popularity',
+      page: 0,
+      count: 6
+    }
+    this.exerciseService.getExercises(params).subscribe({
       next: (res) => {
-        this.popularExercises = res
+        console.log("EXERCICIOSSSSSSSSSS")
+        console.log(res)
+        this.popularExercises = res.data
       }
     })
-
-    this.exerciseService.getMuscles().subscribe({
-      next: (res) => {
-        this.muscles = res;
-      }
-    });
-
-    this.exerciseService.getEquipaments().subscribe({
-      next: (res) => {
-        this.equipaments = res;
-      }
-    });
   }
 
   checkBannerStatus() {

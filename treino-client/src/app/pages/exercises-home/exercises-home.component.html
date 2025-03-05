@@ -1,0 +1,46 @@
+<!-- @if (!bannerClosed) {
+      <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
+      } -->
+      <div class="flex flex-col gap-8">
+
+        <!-- <div class="flex flex-col gap-2">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-xl">Exercicios Populares</h3>
+            <div class="flex gap-2 items-center cursor-pointer">
+              <a [routerLink]="'/exercises'" class="font-semibold min-w-fit text-black  transition">Ver mais </a>
+              <img [src]="arrowRight" />
+            </div>
+  
+          </div>
+          <div class="grid grid-cols-4 gap-4">
+            @for(exercise of popularExercises; track $index) {
+            <exercise-card [exercise]=" exercise" />
+            }
+          </div>
+        </div> -->
+  
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-xl">Exercicios por grupo musculares</h3>
+  
+          </div>
+          <div class="grid grid-cols-6 gap-4" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-5' : 'grid-cols-6'">
+            @for(muscle of muscles; track $index) {
+              <app-muscle-card [muscle]="muscle" [sectionType]="'muscle-group'" [queryParams]="{muscle: muscle.name, page: 0}"/>
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-xl">Exercicios por equipamentos</h3>
+  
+          </div>
+          <div class="grid grid-cols-6 gap-4" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-5' : 'grid-cols-6'">
+            @for(equipament of equipaments; track $index) {
+              <app-muscle-card [muscle]="equipament" [sectionType]="'equipament'" [queryParams]="{equipament: equipament.name}" />
+            }
+          </div>
+        </div>
+      </div>
+      
