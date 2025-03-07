@@ -6,7 +6,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts",
+    "scrapper": "ts-node src/scrapper.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,13 +15,16 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.3.1",
+    "axios": "^1.8.1",
+    "cheerio": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.35",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.9",
     "nodemon": "^3.1.9",
     "prisma": "^6.3.1",
     "ts-node": "^10.9.2",

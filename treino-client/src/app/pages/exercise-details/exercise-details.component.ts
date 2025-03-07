@@ -7,7 +7,7 @@ import { InfoWrapperComponent } from '../../components/execise-details/info-wrap
 interface ExericiseDetails extends Exercise {
   primaryMuscle: string,
   otherMuscles: string[],
-  grip: string,
+  grip?: string,
   equipament: string,
   experienceLevel: string,
   instructions: { step: number, description: string }[]
@@ -44,7 +44,7 @@ export class ExerciseDetailsComponent implements OnInit {
         .subscribe(data => {
           this.exerciseData = {
             ...data,
-            grip: data.grip.name,
+            grip: data.grip?.name,
             equipament: data.equipament.name,
             experienceLevel: data.experienceLevel.name,
             instructions: data.ExerciseInstruction,

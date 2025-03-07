@@ -4,7 +4,7 @@ interface IInfo {
   primaryMuscle: string,
   otherMuscles: string[],
   experienceLevel: string,
-  grip: string,
+  grip?: string,
   equipament: string,
   usedMusclesImageUrl?: string
 }

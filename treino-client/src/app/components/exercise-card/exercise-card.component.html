@@ -1,5 +1,5 @@
 
-<a [routerLink]="'/exercises/'+exercise?.id" class="h-auto block">
+<a [routerLink]="'/exercises/'+exercise?.id" class="block hover:p-2 hover:bg-lightBlack hover:text-white transition rounded-md h-full">
     <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="" class="object-cover w-full min-h-full h-fit max-h-[10.25rem] rounded-md">
     <span>
         {{exercise?.name}}

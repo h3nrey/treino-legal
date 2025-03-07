@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-
+import { Prisma, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { readFileSync } from "fs";
 
 async function seedMuscles() {
   await prisma.muscle.deleteMany({});
@@ -41,11 +41,7 @@ async function seedGrips() {
 
   await prisma.$executeRaw`ALTER SEQUENCE "Grip_id_seq" RESTART WITH 1`;
 
-  const grips = [
-    "Supinada",
-    "Pronada",
-    "Neutra",
-  ];
+  const grips = ["Supinada", "Pronada", "Neutra"];
 
   for (const grip of grips) {
     await prisma.grip.upsert({
@@ -89,11 +85,7 @@ async function seedExperienceLevels() {
 
   await prisma.$executeRaw`ALTER SEQUENCE "ExperienceLevel_id_seq" RESTART WITH 1`;
 
-  const experienceLevels = [
-    "Iniciante",
-    "Intermediário",
-    "Avançado",
-  ];
+  const experienceLevels = ["Iniciante", "Intermediário", "Avançado"];
 
   for (const experienceLevel of experienceLevels) {
     await prisma.experienceLevel.upsert({
@@ -106,11 +98,60 @@ async function seedExperienceLevels() {
   console.log("✅ Experience Levels table seeded successfully!");
 }
 
+async function seedExercises() {
+  const data = JSON.parse(readFileSync("prisma/exercises.json", "utf-8"));
+
+  await prisma.exerciseInstruction.deleteMany();
+  await prisma.exerciseTips.deleteMany();
+  await prisma.musclesExercises.deleteMany();
+  await prisma.exercise.deleteMany();
+
+  await prisma.$executeRaw`ALTER SEQUENCE "Exercise_id_seq" RESTART WITH 1`;
+
+  for (const exercise of data) {
+    console.log(exercise.muscles);
+    await prisma.exercise.create({
+      data: {
+        name: exercise.name,
+        description: exercise.description,
+        experienceLevelId: exercise.experienceLevelId,
+        gripId: exercise.gripId,
+        tutorialUrl: exercise.tutorialUrl,
+        thumbnailUrl: exercise.thumbnailUrl,
+        riskLevel: exercise.riskLevel,
+        equipamentId: exercise.equipamentId,
+        usedMuscles: {
+          create: exercise.muscles.map(
+            (m: { muscleId: number; isPrimary: string }) => ({
+              muscle: { connect: { id: m.muscleId } },
+              isPrimary: m.isPrimary,
+            })
+          ),
+        },
+        ExerciseInstruction: {
+          create: exercise.instructions.map(
+            (i: { step: number; description: string }) => ({
+              step: i.step,
+              description: i.description,
+            })
+          ),
+        },
+        ExerciseTips: {
+          create: exercise.tips.map((t: { description: string }) => ({
+            description: t.description,
+          })),
+        },
+      },
+    });
+  }
+}
+
 async function main() {
-  seedMuscles();
-  seedGrips();
-  seedEquipaments();
-  seedExperienceLevels();
+  // seedMuscles();
+  // seedGrips();
+  // seedEquipaments();
+  // seedExperienceLevels();
+  seedExercises();
 }
 
 main()
