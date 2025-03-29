@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import exerciseRoutes from "./routes/exercise.routes";
 import muscleRoutes from "./routes/muscle.routes";
 import equipamentRoutes from "./routes/equipament.routes";
+import userRoutes from "./routes/user.routes";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/exercises", exerciseRoutes);
 app.use("/muscles", muscleRoutes);
 app.use("/equipaments", equipamentRoutes);
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
