@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { AuthRequest } from "../middleware/auth";
 
 const prisma = new PrismaClient();
 
@@ -69,7 +70,7 @@ export async function loginUser(req: Request, res: Response) {
     .json({ token: userToken, user: { username, email: user.email } });
 }
 
-export function getMe(req: any, res: Response) {
+export function getMe(req: AuthRequest, res: Response) {
   res.json(req.user);
 }
 
