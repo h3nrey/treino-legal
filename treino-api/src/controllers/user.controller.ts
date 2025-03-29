@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
@@ -31,5 +32,10 @@ export async function createUser(req: Request, res: Response) {
       password: hashedPassword,
     },
   });
-  res.json({ data: username });
+
+  const userToken = jwt.sign({ username }, process.env.JWT_SECRET as string, {
+    algorithm: "HS256",
+  });
+
+  res.status(201).json({ token: userToken, user: { username, email } });
 }
