@@ -69,6 +69,10 @@ export async function loginUser(req: Request, res: Response) {
     .json({ token: userToken, user: { username, email: user.email } });
 }
 
+export function getMe(req: any, res: Response) {
+  res.json(req.user);
+}
+
 function generateToken(username: string) {
   const token = jwt.sign({ username }, process.env.JWT_SECRET as string, {
     algorithm: "HS256",
