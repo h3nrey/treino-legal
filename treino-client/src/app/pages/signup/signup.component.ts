@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/users.service.ts.service';
 
 @Component({
@@ -12,8 +12,10 @@ import { UserService } from '../../services/users.service.ts.service';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  loading: boolean = false;
+  response: any = null;
   
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private readonly fb: FormBuilder, private readonly userService: UserService, private readonly router: Router) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -23,17 +25,23 @@ export class SignupComponent {
 
   onSubmit() {
     if(this.signupForm.valid) {
-      console.log('Form Submitted!', this.signupForm.value);
-      this.userService.createUser(this.signupForm.value).subscribe({
-        next: (res) => {
-          console.log('User created successfully!', res);
-          // Handle successful signup, e.g., redirect to login or home page
-        },
-        error: (err) => {
-          console.error('Error creating user', err);
-          // Handle error, e.g., show error message to user
-        }
-      });
+      this.loading = true;
+      this.signupForm.disable(); 
+
+      setTimeout(() => {
+        console.log(this.signupForm.value);
+        this.userService.createUser(this.signupForm.value).subscribe({
+          next: (res) => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
+            this.router.navigate(['/']);
+          },
+          error: (err) => {
+            console.error('Error creating user', err);
+            console.log("teste");
+          }
+        });
+      }, 500)
     }
   }
 }

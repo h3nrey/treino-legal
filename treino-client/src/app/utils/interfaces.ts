@@ -28,3 +28,8 @@ export interface ReqParams {
     search?: string,
     sortBy?: string
 }
+
+export interface User {
+    username: string,
+    email: string,
+}

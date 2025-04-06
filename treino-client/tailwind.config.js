@@ -16,7 +16,8 @@ module.exports = {
       "white": "#FFFFFF",
       "darkGray": "#B1A7A6",
       "black": "#0B090A",
-      "lightBlack": "#161A1D"
+      "lightBlack": "#161A1D",
+      "brightBlack": "#2F3539"
     }
   },
   plugins: [],

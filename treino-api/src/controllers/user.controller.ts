@@ -9,6 +9,7 @@ const prisma = new PrismaClient();
 export async function createUser(req: Request, res: Response) {
   const { username, email, password } = req.body;
 
+  console.log(req.body);
   if (!username || !email || !password) {
     res.status(400).json({ message: "not all mandatory fields was provided" });
   }
@@ -23,20 +24,29 @@ export async function createUser(req: Request, res: Response) {
     res.status(401).json({ message: "User already exists" });
   }
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-  await prisma.user.create({
-    data: {
-      username: username,
-      email: email,
-      password: hashedPassword,
-    },
-  });
+    const createUser = await prisma.user.create({
+      data: {
+        username: username,
+        email: email,
+        password: hashedPassword,
+      },
+    });
 
-  const userToken = generateToken(username);
+    if (!createUser) {
+      res.status(500).json({ message: "User not created" });
+      return;
+    }
 
-  res.status(201).json({ token: userToken, user: { username, email } });
+    const userToken = generateToken(username);
+
+    res.status(201).json({ token: userToken, user: { username, email } });
+  } catch (error) {
+    console.error("Error creating user:", error);
+  }
 }
 
 export async function loginUser(req: Request, res: Response) {

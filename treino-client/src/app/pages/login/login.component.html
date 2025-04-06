@@ -2,36 +2,32 @@
     <div class="bg-lightRed p-5 rounded-lg">
         <h1 
         class="text-2xl font-bold text-lightGray w-full text-center">
-            Signup
+            Login
         </h1>
-        <form class="mt-8" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <form class="mt-8" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="flex flex-col gap-4 mb-6">
                 <div class="input-container">
                     <label for="username">Apelido</label>
                     <input type="text" id="username" formControlName="username" placeholder="apelido" required>
                 </div>
-                <div class="input-container">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" formControlName="email" placeholder="email" required>
-                </div>
         
                 <div class="input-container">
-                    <label for="password">Password</label>
+                    <label for="password">Senha</label>
                     <input type="password" id="password" formControlName="password" placeholder="Senha" required>
                 </div>
             </div>
-            <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed">Sign Up</button>
+            <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed">Login</button>
         </form>
     
         
         <div class="text-gray mt-4">
-            <span>Já tem uma conta?</span>
-            <a [routerLink]="'/login'" class="text-white font-bold">acesse</a>
+            <span>Ainda não tem uma conta?</span>
+            <a [routerLink]="'/register'" class="text-white font-bold">Cadastrar</a>
         </div>
     </div>
     <div class="mt-4">
         @if(2==2) {
-            <div class="bg-lightBlack p-4 rounded-md text-lightGray">Cadastro do usuário bem succedido.</div>
+            <div class="bg-lightBlack p-4 rounded-md text-lightGray">Login bem succedido.</div>
         } @else {
             <div class="bg-lightBlack p-4 rounded-md text-lightGray">Erro ao cadastrar o usuário</div>
         }
