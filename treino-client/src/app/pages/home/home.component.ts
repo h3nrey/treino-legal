@@ -38,8 +38,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
     this.exerciseService.getExercises(params).subscribe({
       next: (res) => {
-        console.log("EXERCICIOSSSSSSSSSS")
-        console.log(res)
         this.popularExercises = res.data
       }
     })

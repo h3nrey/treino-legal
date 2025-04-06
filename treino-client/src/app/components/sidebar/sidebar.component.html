@@ -24,30 +24,6 @@
         
                 </nav>
             </div>
-
-            <div>
-                <div class="flex gap-2 items-center justify-between  rounded-sm">
-                    @if(isOpen && !user) {
-                        <a [routerLink]="'register'">cadastro</a>
-                    }
-                    @if(user) {
-                        <div class="flex items-center gap-2 p-2 hover:bg-brightBlack cursor-pointer rounded-sm transition">
-                            <img src="assets/icons/userAvatar.svg" alt="" class="w-6 h-6"/>
-
-                            @if(isOpen) {
-                                <span class="text-xl">{{user?.username}}</span>
-                            }
-                        </div>
-                    }
-
-                    @if(isOpen && user) {
-                        <button (click)="logout()" class="hover:bg-lightRed p-2 rounded-sm hover:text-white">
-                            <img src="assets/icons/logout.svg" alt="" class="w-6 h-6"/>
-                        </button>
-                    }
-
-                </div>
-            </div>
         </div>
     </div>
 </div>

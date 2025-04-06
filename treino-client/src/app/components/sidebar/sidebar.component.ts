@@ -62,8 +62,7 @@ export class SidebarComponent implements OnInit{
     })
   }
   ngOnInit() {
-    this.user = this.userService.getUser();
-    console.log(this.user);
+    // this.user = this.userService.getUser();
   }
 
   toggleSidebar() {

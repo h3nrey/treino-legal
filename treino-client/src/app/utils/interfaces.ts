@@ -33,3 +33,8 @@ export interface User {
     username: string,
     email: string,
 }
+
+export interface Enviroment {
+    production: boolean,
+    apiUrl: string,
+}

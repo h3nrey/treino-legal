@@ -29,7 +29,6 @@ export class SignupComponent {
       this.signupForm.disable(); 
 
       setTimeout(() => {
-        console.log(this.signupForm.value);
         this.userService.createUser(this.signupForm.value).subscribe({
           next: (res) => {
             localStorage.setItem('token', res.token);
@@ -38,7 +37,6 @@ export class SignupComponent {
           },
           error: (err) => {
             console.error('Error creating user', err);
-            console.log("teste");
           }
         });
       }, 500)

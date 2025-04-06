@@ -26,9 +26,7 @@ export class LoginComponent {
 
     this.userService.loginUser(this.loginForm.value).subscribe({
       next: (res) => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
-        this.router.navigate(['/']);
+        this.router.navigate(["/"])
       }, 
       error: (err) => {
         console.error('Error logging in', err);
