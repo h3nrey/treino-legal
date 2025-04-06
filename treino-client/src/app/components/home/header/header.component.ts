@@ -7,10 +7,11 @@ import { ExercisesService } from '../../../services/exercises.service';
 import { Exercise, User } from '../../../utils/interfaces';
 import { UserService } from '../../../services/users.service.ts.service';
 import { Observable } from 'rxjs';
+import { UserTooltipComponent } from "../../user-tooltip/user-tooltip.component";
 
 @Component({
   selector: 'home-header',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, UserTooltipComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
