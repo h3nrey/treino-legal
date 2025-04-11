@@ -1,0 +1,15 @@
+<div class="flex flex-col relative w-fit">
+    <div id="searchbar"
+        class="bg-lightBlack flex gap-2 items-center px-4 py-2 rounded-lg text-lightGray overflow-hidden w-fit relative origin-bottom-left">
+        <div class=" inline">
+            <img [src]="searchIcon"/>
+        </div>
+        <input type="text" placeholder="Pesquisar"
+            class="bg-[transparent] w-[14rem] focus-visible:outline-none placeholder:text-darkGray text-lightGray"
+            [(ngModel)]="searchTerm" (input)="onSearchInput($event)" (keydown.enter)="submitSearch()">
+    </div>
+
+    @if (searchedResults.length > 0 || showResults) {
+        <SearchResultsContainer [results]="searchedResults" (clearResultsEv)="clearResults()"></SearchResultsContainer>
+    }
+</div>

@@ -1,35 +1,7 @@
 <div 
     class="mb-8 flex justify-between items-center"
 >
-    <div class="flex flex-col relative w-fit">
-        <div id="searchbar"
-            class="bg-lightBlack flex gap-2 items-center px-4 py-2 rounded-lg text-lightGray overflow-hidden w-fit relative origin-bottom-left">
-            <div class=" inline">
-                <img [src]="searchIcon"/>
-            </div>
-            <input type="text" placeholder="Pesquisar"
-                class="bg-[transparent] w-[14rem] focus-visible:outline-none placeholder:text-darkGray text-lightGray"
-                [(ngModel)]="searchTerm" (input)="onSearchInput($event)" (keydown.enter)="submitSearch()">
-        </div>
-
-        @if (searchedResults.length > 0 || showResults) {
-        <div 
-           
-            class="bg-lightBlack absolute top-full text-lightGray w-full z-10 mt-1 overflow-hidden flex flex-col rounded-md pb-4">
-            @for (item of searchedResults; track $index) {
-                <a 
-                    (click)="clearResults()"
-                    class="p-2 cursor-pointer hover:bg-red" 
-                    [routerLink]="'exercises/'+item.id"
-                >
-                    {{item.name}}
-                </a>
-            }
-
-        </div>
-        }
-    </div>
-
+    <HeaderSearchbar></HeaderSearchbar>
 
     <div>
         @if(!user) {
@@ -40,7 +12,7 @@
                 >
                     Login
                 </a>
-                <a [routerLink]="'/login'" class="as">Login</a>
+                <a [routerLink]="'/login'" class="p-2 bg-lightRed font-semibold text-lightGray rounded-lg px-4">Criar Conta</a>
     
             </div>
         } @else {
