@@ -12,9 +12,9 @@
             </div>
         } @else {
             <div class="relative group">
-                <div class="flex items-center gap-2 cursor-pointer">
-                    <img src="assets/icons/userAvatar.svg" alt="">
-                    <span>{{user.username}}</span>
+                <div class="flex items-center justify-center gap-2 cursor-pointer">
+                    <img src="assets/icons/userAvatar.svg" alt="" class="w-8 h-8 rounded-full">
+                    <span class="text-xl font-bold h-full">{{user.username}}</span>
                 </div>
                 <UserTooltip></UserTooltip>
             </div>
