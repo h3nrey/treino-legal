@@ -43,54 +43,7 @@ export class HomeHeaderComponent implements OnInit {
     });
   }
 
-
-
-  debouncedSearch = debounce((term) => {
-    this.searchedResults = exercises;
-    this.exerciseService.getExercises({
-      search: term,
-      count: 5,
-      page: 0,
-    }).subscribe(data => {
-      this.searchedResults = data.data;
-    })
-  }, this.searchDelay);
-
-  loadExercisesResults(term: string) {
-    this.searchedResults = exercises;
-      this.exerciseService.getExercises({
-        search: term,
-        count: 5,
-        page: 0,
-      }).subscribe({
-        next: (data) => {
-          this.searchedResults = data.data;
-        }
-      })
-  }
-
-  onSearchInput(event: Event) {
-    const term = (event.target as HTMLInputElement).value;
-    this.debouncedSearch(term);
-  }
-
-  clearResults() {
-    this.searchedResults = [];
-  }
-
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
-      this.clearResults();
-    }
-  }
-
-  submitSearch() {
-    this.clearResults();
-    this.router.navigate(['/search'], {queryParams: {keyword: this.searchTerm, page: 0}})
-  }
-
-  logout() {
-    this.userService.logoutUser();
+  navigateToLogin(routeName: string) {
+    this.router.navigate([{outlets: {modal: [routeName]}}]);
   }
 }

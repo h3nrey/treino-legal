@@ -11,7 +11,6 @@ interface LoginResponse {
   user: {
     username: string;
     email: string;
-    // Add other user properties you expect here
   };
 }
 @Injectable({

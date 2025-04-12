@@ -6,13 +6,8 @@
     <div>
         @if(!user) {
             <div class="flex items-center gap-4">
-                <a 
-                    [routerLink]="'/login'" 
-                    class="p-2 bg-brightBlack font-bol text-lightGray rounded-lg px-4"
-                >
-                    Login
-                </a>
-                <a [routerLink]="'/login'" class="p-2 bg-lightRed font-semibold text-lightGray rounded-lg px-4">Criar Conta</a>
+                <button (click)="navigateToLogin('login')" class="p-2 bg-brightBlack font-bol text-lightGray rounded-lg px-4">Login</button>
+                <button (click)="navigateToLogin('register')" class="p-2 bg-lightRed font-bol text-lightGray rounded-lg px-4">Criar Conta</button>
     
             </div>
         } @else {

@@ -1,36 +1,45 @@
-<div class="max-w-96">
-    <div class="bg-lightRed p-5 rounded-lg">
-        <h1 
-        class="text-2xl font-bold text-lightGray w-full text-center">
-            Login
-        </h1>
-        <form class="mt-8" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="flex flex-col gap-4 mb-6">
-                <div class="input-container">
-                    <label for="username">Apelido</label>
-                    <input type="text" id="username" formControlName="username" placeholder="apelido" required>
-                </div>
-        
-                <div class="input-container">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" formControlName="password" placeholder="Senha" required>
-                </div>
+<div class="flex items-center justify-center w-full h-screen fixed bg-[rgba(39,39,39,0.3)] top-0 left-0">
+    <div class="flex flex-col">
+        <div class="bg-lightRed p-5 rounded-lg min-w-96">
+            <div class="flex items-end">
+                <h1 
+                class="text-2xl font-bold text-lightGray w-full text-center">
+                    Login
+                </h1>
+                <button class="bg-lightGray rounded-full p-1" (click)="closeModal()">
+                    <img src="assets/icons/close.svg" alt="fechar" class="w-6 h-6">
+                </button>
+
             </div>
-            <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed">Login</button>
-        </form>
-    
+            <form class="mt-8" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="flex flex-col gap-4 mb-6">
+                    <div class="input-container">
+                        <label for="username">Apelido</label>
+                        <input type="text" id="username" formControlName="username" placeholder="apelido" required>
+                    </div>
+            
+                    <div class="input-container">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" formControlName="password" placeholder="Senha" required>
+                    </div>
+                </div>
+                <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed">Login</button>
+            </form>
         
-        <div class="text-gray mt-4">
-            <span>Ainda não tem uma conta?</span>
-            <a [routerLink]="'/register'" class="text-white font-bold">Cadastrar</a>
+            
+            <div class="text-gray mt-4">
+                <span>Ainda não tem uma conta?</span>
+                <button (click)="navigateToSignup()" class="text-white font-bold">Cadastrar</button>
+            </div>
         </div>
-    </div>
-    <div class="mt-4">
-        @if(2==2) {
-            <div class="bg-lightBlack p-4 rounded-md text-lightGray">Login bem succedido.</div>
-        } @else {
-            <div class="bg-lightBlack p-4 rounded-md text-lightGray">Erro ao cadastrar o usuário</div>
-        }
+        <div class="mt-4">
+            @if(2==2) {
+                <div class="bg-lightBlack p-4 rounded-md text-lightGray">Login bem succedido.</div>
+            } @else {
+                <div class="bg-lightBlack p-4 rounded-md text-lightGray">Erro ao cadastrar o usuário</div>
+            }
+        </div>
+
     </div>
 
 </div>

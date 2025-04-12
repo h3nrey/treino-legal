@@ -8,6 +8,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
+import { unAuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     // { path: "exercises/:musclegroup", component: ListExercisesComponent },
@@ -17,7 +18,7 @@ export const routes: Routes = [
     { path: "exercises/section/:sectionType", component: ExerciseSectionComponent },
     { path: "search", component: SearchComponent},
     {path: "users/:id", component: UserProfileComponent},
-    {path: "register", component: SignupComponent},
-    {path: "login", component: LoginComponent}
+    {path: "register", component: SignupComponent, outlet: "modal", canActivate: [unAuthGuard]},
+    {path: "login", component: LoginComponent, outlet: "modal", canActivate: [unAuthGuard]},
 
 ];

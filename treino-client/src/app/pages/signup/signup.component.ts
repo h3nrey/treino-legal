@@ -23,6 +23,14 @@ export class SignupComponent {
     });
   }
 
+  closeModal () {
+    this.router.navigate([{outlets: {modal: null}}]);
+  }
+
+  navigateToLogin() {
+    this.router.navigate([{outlets: {modal: ['login']}}]);
+  }
+
   onSubmit() {
     if(this.signupForm.valid) {
       this.loading = true;

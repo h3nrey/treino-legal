@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -14,11 +14,24 @@ export class LoginComponent {
   loginForm: FormGroup;
   loading: boolean = false;
 
-  constructor(private readonly fb: FormBuilder, private readonly userService: UserService, private readonly router: Router) {
+  constructor(
+    private readonly fb: FormBuilder, 
+    private readonly userService: UserService, 
+    private readonly router: Router,
+    private readonly _location: Location
+  ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  closeModal () {
+    this.router.navigate([{outlets: {modal: null}}]);
+  }
+
+  navigateToSignup() {
+    this.router.navigate([{outlets: {modal: ['register']}}]);
   }
 
   onSubmit() {
