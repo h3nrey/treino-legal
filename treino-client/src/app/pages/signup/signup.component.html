@@ -27,25 +27,26 @@
                         <input type="password" id="password" formControlName="password" placeholder="Senha" required>
                     </div>
                 </div>
-                <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed">Sign Up</button>
+                <button type="submit" class="cursor-pointer rounded-full p-2 bg-lightGray w-full text-lightRed"
+                [disabled]="loading || signupForm.invalid"
+                [ngClass]="{ 'opacity-75': loading || signupForm.invalid }"
+                >
+                    {{ loading ? '...' : 'Cadastrar' }}
+                </button>
             </form>
         
             
             <div class="text-gray mt-4">
                 <span>Já tem uma conta?</span>
-                <button (click)="navigateToLogin()" class="text-white font-bold">acesse</button>
+                <button (click)="navigateToLogin()" class="text-white font-bold ml-2">acesse</button>
             </div>
         </div>
         <div class="mt-4">
-            @if(2==2) {
+            @if(loggedSucessfully) {
                 <div class="bg-lightBlack p-4 rounded-md text-lightGray">Cadastro do usuário bem succedido.</div>
-            } @else {
+            } @else if(loggedSucessfully === false) {
                 <div class="bg-lightBlack p-4 rounded-md text-lightGray">Erro ao cadastrar o usuário</div>
             }
         </div>
     </div>
 </div>
-
-@if(loading) {
-    <div class="bg-lightBlack p-4 rounded-md text-lightGray">loading...</div>
-}

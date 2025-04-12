@@ -14,6 +14,7 @@ export class SignupComponent {
   signupForm: FormGroup;
   loading: boolean = false;
   response: any = null;
+  loggedSucessfully: boolean | null = null;
   
   constructor(private readonly fb: FormBuilder, private readonly userService: UserService, private readonly router: Router) {
     this.signupForm = this.fb.group({
@@ -36,18 +37,20 @@ export class SignupComponent {
       this.loading = true;
       this.signupForm.disable(); 
 
-      setTimeout(() => {
-        this.userService.createUser(this.signupForm.value).subscribe({
-          next: (res) => {
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('user', JSON.stringify(res.user));
-            this.router.navigate(['/']);
-          },
-          error: (err) => {
-            console.error('Error creating user', err);
-          }
-        });
-      }, 500)
+      this.userService.createUser(this.signupForm.value).subscribe({
+        next: (res) => {
+          this.loggedSucessfully = true;
+          this.loading = false;
+          this.response = res;
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          this.response = err.error.message;
+          this.loading = false;
+          this.signupForm.enable(); 
+          this.loggedSucessfully = false;
+        }
+      });
     }
   }
 }

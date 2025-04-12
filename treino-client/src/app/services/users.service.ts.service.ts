@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { User } from '../utils/interfaces';
 import { environment } from '../../enviroments/enviroment';
 
@@ -36,7 +36,16 @@ export class UserService {
     email: string;
     password: string;
   }): Observable<{token: string, user: {username: string}}> {
-    return this.http.post(`${environment.apiUrl}/users/signup`, user) as Observable<{token: string, user: {username: string}}>;
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/users/signup`, user).pipe(
+      tap((response) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        this.currentUserSubject.next(response.user);
+      }),
+      catchError((error) => {
+        return throwError(() => new Error('Error logging in'));
+      })
+    );
   }
 
   loginUser(user: {username: string, password: string}): Observable<LoginResponse> {
@@ -45,6 +54,9 @@ export class UserService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
         this.currentUserSubject.next(response.user);
+      }),
+      catchError((error) => {
+        return throwError(() => new Error('Error logging in'));
       })
     );
   }
@@ -62,7 +74,8 @@ export class UserService {
         const userData = localStorage.getItem('user');
         observer.next(userData ? JSON.parse(userData) : null);
         observer.complete();
-      } catch (error) {
+      } catch (error: any) {
+        console.log(error);
         observer.error('Error reading user data');
       }
     });

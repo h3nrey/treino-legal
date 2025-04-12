@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -12,6 +12,7 @@ import { UserService } from '../../services/users.service.ts.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loggedSucessfully: boolean | null = null;
   loading: boolean = false;
 
   constructor(
@@ -37,12 +38,17 @@ export class LoginComponent {
   onSubmit() {
     if(!this.loginForm.valid) return;
 
+    this.loading = true;
+
     this.userService.loginUser(this.loginForm.value).subscribe({
       next: (res) => {
         this.router.navigate(["/"])
+        this.loggedSucessfully = true;
+        this.loading = false;
       }, 
       error: (err) => {
-        console.error('Error logging in', err);
+        this.loading = false;
+        this.loggedSucessfully = false;
       }
     });
   }
