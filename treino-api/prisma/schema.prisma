@@ -63,11 +63,37 @@ model ExerciseTips {
 }
 
 model Muscle {
-  id          Int                @id @default(autoincrement())
-  name        String             @unique
-  description String?
-  imageUrl    String?
-  exercises   MusclesExercises[]
+  id                 Int                @id @default(autoincrement())
+  name               String             @unique
+  technicalName      String
+  description        String?
+  motorAction        String
+  insertion          String
+  synergists         String
+  antagonists        String
+  relationsAsMain    MuscleRelation[]   @relation("mainMuscleRelations")
+  relationsAsRelated MuscleRelation[]   @relation("relatedMuscleRelations")
+  imageUrl           String?
+  exercises          MusclesExercises[]
+
+  @@index([name, technicalName])
+}
+
+model MuscleRelation {
+  id              Int          @id @default(autoincrement())
+  muscleId        Int
+  relatedMuscleId Int
+  relationType    RelationType
+  muscle          Muscle       @relation("mainMuscleRelations", fields: [muscleId], references: [id])
+  relatedMuscle   Muscle       @relation("relatedMuscleRelations", fields: [relatedMuscleId], references: [id])
+
+  @@unique([muscleId, relatedMuscleId, relationType])
+}
+
+enum RelationType {
+  SYNERGIST
+  ANTAGONIST
+  STABILIZER
 }
 
 model ExperienceLevel {
