@@ -19,7 +19,6 @@ export class LoginComponent {
     private readonly fb: FormBuilder, 
     private readonly userService: UserService, 
     private readonly router: Router,
-    private readonly _location: Location
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
@@ -42,9 +41,11 @@ export class LoginComponent {
 
     this.userService.loginUser(this.loginForm.value).subscribe({
       next: (res) => {
-        this.router.navigate(["/"])
         this.loggedSucessfully = true;
         this.loading = false;
+        this.router.navigate(["/"]).then(() => {
+          window.location.reload();
+        })
       }, 
       error: (err) => {
         this.loading = false;

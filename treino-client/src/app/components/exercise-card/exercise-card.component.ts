@@ -1,17 +1,27 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, input, OnInit, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Exercise } from '../../utils/interfaces';
+import { ExercisesService } from '../../services/exercises.service';
+import { UserService } from '../../services/users.service.ts.service';
 
+interface CardExercise extends Exercise {
+  favorited? : boolean;
+}
 @Component({
   selector: 'exercise-card',
   imports: [RouterLink],
   templateUrl: './exercise-card.component.html',
   styleUrl: './exercise-card.component.scss'
 })
+
 export class ExerciseCardComponent implements OnInit {
-  @Input() exercise?: Exercise;
+  @Input() exercise?: CardExercise;
+  @Output() unfavoriteEv: EventEmitter<void> = new EventEmitter<void>();
   tags: string[] = [];
   PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
+  showLoginPopup = false;
+
+  constructor(private readonly elRef: ElementRef, private readonly exerciseService: ExercisesService, private userService: UserService) {}
   ngOnInit() {
     this.extractTags();
   }
@@ -19,6 +29,42 @@ export class ExerciseCardComponent implements OnInit {
   extractTags() {
     if (!this.exercise) return;
     this.tags.push(this.exercise?.level)
-
   }
+
+  toggleFavorite(e: MouseEvent) {
+    if (!this.exercise) return;
+    e.stopPropagation();
+    e.preventDefault();
+
+
+    if(this.exercise.favorited) {
+      this.exerciseService.unFavoriteExercise(this.exercise.id).subscribe({
+        next: (res) => {
+          if(!this.exercise) return;
+          this.exercise.favorited = false;
+          this.unfavoriteEv.emit();
+        }
+      })
+    } else { 
+      this.exerciseService.favoriteExercise(this.exercise.id).subscribe({
+        next: (res) => {
+          if(!res) {
+            this.showLoginPopup = true;
+            return;
+          };
+          if (!this.exercise) return;
+          this.exercise.favorited = true;
+        }
+      })    
+    }
+  }
+  
+  @HostListener('document:click', ['$event'])
+    closeSelect(event: Event) {
+      if (!this.elRef.nativeElement.contains(event.target)) {
+        this.showLoginPopup = false;
+      }
+    }
+    
 }
+

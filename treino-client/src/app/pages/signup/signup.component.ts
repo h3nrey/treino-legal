@@ -42,7 +42,7 @@ export class SignupComponent {
           this.loggedSucessfully = true;
           this.loading = false;
           this.response = res;
-          this.router.navigate(['/']);
+          this.router.navigate(['/']).then(() => window.location.reload());
         },
         error: (err) => {
           this.response = err.error.message;

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
 import { Equipament, Exercise, Muscle, ReqParams } from '../utils/interfaces';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { UserService } from './users.service.ts.service';
 
 
 
@@ -28,7 +29,7 @@ export interface ExerciseReponse extends DefaultRes {
 export class ExercisesService {
 
   readonly apiUrl = 'http://localhost:3000'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
     const exercisesList = exercises.filter(exercise => exercise.type == muscleGroup)
@@ -53,6 +54,36 @@ export class ExercisesService {
     });
 
     return this.http.get<ExerciseReponse>(`${this.apiUrl}/exercises`, { params: httpParams })
+  }
+
+  getFavoritedExercises() {
+    const token = this.userService.getToken()
+    if (!token) return of([])
+    return this.http.get<Exercise[]>(`${this.apiUrl}/users/me/favorites`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
+
+  favoriteExercise(exerciseId: number) {
+    const token = this.userService.getToken()
+    if (!token) return of(false);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  
+    return this.http.post(`${this.apiUrl}/users/me/favorites/${exerciseId}`, null, { headers });
+  }
+
+  unFavoriteExercise(exerciseId: number) {
+    const token = this.userService.getToken();
+    if (!token) return of([])
+    return this.http.delete(`${this.apiUrl}/users/me/favorites/${exerciseId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 
   getExerciseById(id: string): Observable<any> {

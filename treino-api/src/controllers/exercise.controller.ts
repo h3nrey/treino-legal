@@ -13,7 +13,7 @@ export const getExercises = async (_req: Request, res: Response) => {
     typeof _req.query.search === "string" ? _req.query.search : undefined;
   const page = _req.query.page ?? 0;
   const count = _req.query.count ?? 10;
-  console.log(_req.query);
+  const userId = _req.query.userId as string;
 
   const whereCondition: any = {};
 
@@ -34,7 +34,15 @@ export const getExercises = async (_req: Request, res: Response) => {
       where: whereCondition,
       skip: Number(page) * Number(count),
       take: Number(count),
-      include: { usedMuscles: { include: { muscle: true } } },
+      include: {
+        usedMuscles: { include: { muscle: true } },
+        UserExercises: userId
+          ? {
+              where: { userId: userId },
+              select: { id: true },
+            }
+          : false,
+      },
     }),
     prisma.exercise.count({
       where: whereCondition,
@@ -42,13 +50,19 @@ export const getExercises = async (_req: Request, res: Response) => {
   ]);
 
   res.json({
-    data: exercises,
+    data: exercises.map((exercise) => ({
+      ...exercise,
+      favorited: userId ? exercise.UserExercises.length > 0 : false,
+    })),
     currentPage: page,
     totalCount: totalCount,
   });
 };
 
 export const getExercise = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  console.log(userId);
   const exercise = await prisma.exercise.findUnique({
     where: { id: Number(req.params.id) },
     include: {

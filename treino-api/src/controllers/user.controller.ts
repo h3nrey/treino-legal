@@ -29,7 +29,7 @@ export async function createUser(req: Request, res: Response) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const createUser = await prisma.user.create({
+    const createdUser = await prisma.user.create({
       data: {
         username: username,
         email: email,
@@ -37,14 +37,19 @@ export async function createUser(req: Request, res: Response) {
       },
     });
 
-    if (!createUser) {
+    if (!createdUser) {
       res.status(500).json({ message: "User not created" });
       return;
     }
 
     const userToken = generateToken(username);
 
-    res.status(201).json({ token: userToken, user: { username, email } });
+    res
+      .status(201)
+      .json({
+        token: userToken,
+        user: { username, email, id: createdUser.id },
+      });
   } catch (error) {
     console.error("Error creating user:", error);
   }
@@ -76,9 +81,10 @@ export async function loginUser(req: Request, res: Response) {
 
   const userToken = generateToken(username);
 
-  res
-    .status(200)
-    .json({ token: userToken, user: { username, email: user.email } });
+  res.status(200).json({
+    token: userToken,
+    user: { username, email: user.email, id: user.id },
+  });
 }
 
 export function getMe(req: AuthRequest, res: Response) {
@@ -107,7 +113,11 @@ export function getFavoritedExercises(req: AuthRequest, res: Response) {
         return;
       }
 
-      res.json(user.UserExercises);
+      const exercisesWithFavorited = user.UserExercises.map((userExercise) => ({
+        ...userExercise.exercise,
+        favorited: true,
+      }));
+      res.json(exercisesWithFavorited);
     })
     .catch((error) => {
       console.error("Error fetching user:", error);

@@ -1,6 +1,22 @@
 
 <a [routerLink]="'/exercises/'+exercise?.id" class="block hover:p-2 hover:bg-lightBlack hover:text-white transition rounded-md h-full">
-    <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="" class="object-cover w-full min-h-full h-fit max-h-[10.25rem] rounded-md">
+    <div class="relative">
+        <div class="absolute p-3 right-0 flex flex-col items-end">
+            <button class="p-2 text-lightBlack" (click)="toggleFavorite($event)">
+                <img [src]="exercise?.favorited ? 'assets/icons/favorited.svg' : 'assets/icons/favorite.svg'" alt="" class="w-8 h-8">
+            </button>
+
+            @if(showLoginPopup) {
+                <div class="bg-lightGray text-lightBlack p-2 rounded-md flex flex-col items-end text-end gap-2">
+                    <h3 class="font-semibold text-sm">Quer favoritar essse exercicios?</h3>
+                    <p class="text-sm">Você precisa ter um conta para conseguir favoritar</p>
+                    <button class="bg-lightRed text-lightGray p-2 py-1 rounded-sm text-sm">logar</button>
+                </div>
+            }
+        </div>
+        <img [src]="exercise?.thumbnailUrl ?? PLACEHOLDERIMAGE " alt="" class="object-cover w-full min-h-full h-fit max-h-[10.25rem] rounded-md">
+
+    </div>
     <span>
         {{exercise?.name}}
     </span>

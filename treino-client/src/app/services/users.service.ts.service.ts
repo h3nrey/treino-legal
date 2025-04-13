@@ -11,6 +11,7 @@ interface LoginResponse {
   user: {
     username: string;
     email: string;
+    id: string;
   };
 }
 @Injectable({
@@ -65,7 +66,7 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/']);
+    window.location.assign("/")
   }
 
   getUser(): Observable<User | null> {
@@ -79,6 +80,19 @@ export class UserService {
         observer.error('Error reading user data');
       }
     });
+  }
+
+  getUserProfile(username: string) {
+    return this.http.get<User>(`${environment.apiUrl}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    }).pipe(
+      catchError((error) => {
+        console.error('Error fetching user profile:', error);
+        return throwError(() => new Error('Error fetching user profile'));
+      })
+    );
   }
 
   getToken() {
