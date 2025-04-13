@@ -24,9 +24,13 @@ export class ExerciseSectionComponent implements OnInit {
   sectionType: string = '';
   headerData: {
     title: string,
+    techinicalName: string,
     description: string,
+    motorAction: string,
+    synergistsMuscles: string,
+    antagonistsMuscles: string
     imgUrl?: string
-  } = { title: '', description: '' }
+  } = { title: '', techinicalName: '', description: '', motorAction: '',synergistsMuscles: '',antagonistsMuscles: '',  }
   defaultImgUrl = 'https://moyerwellness.com/wp-content/uploads/2024/01/BH-Biceps-1-1024x576.jpg'
   itemsPerPage = 16;
   page = 0;
@@ -48,16 +52,21 @@ export class ExerciseSectionComponent implements OnInit {
 
   loadHeaderData() {
     if (this.sectionType == 'equipament') {
-      this.exerciseService.getEquipaments(this.sectionParams.equipament).subscribe(equipament => {
-        this.headerData = {
-          title: equipament[0].name,
-          description: equipament[0].description ?? '',
-        }
-      })
+      // this.exerciseService.getEquipaments(this.sectionParams.equipament).subscribe(equipament => {
+      //   this.headerData = {
+      //     title: equipament[0].name,
+      //     description: equipament[0].description ?? '',
+      //   }
+      // })
     } else if (this.sectionType == 'muscle-group') {
       this.exerciseService.getMuscle(this.sectionParams.muscle).subscribe(muscle => {
+        console.log(muscle);
         this.headerData = {
           title: muscle.name,
+          techinicalName: muscle.technicalName,
+          motorAction:muscle.motorAction,
+          synergistsMuscles: muscle.antagonists,
+          antagonistsMuscles: muscle.synergists,
           description: muscle.description ?? '',
         }
       })

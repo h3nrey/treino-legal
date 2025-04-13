@@ -7,24 +7,6 @@ async function seedMuscles() {
 
   await prisma.$executeRaw`ALTER SEQUENCE "Muscle_id_seq" RESTART WITH 1`;
 
-  // const muscles = [
-  //   "Bíceps",
-  //   "Tríceps",
-  //   "Peito",
-  //   "Costas",
-  //   "Ombros",
-  //   "Quadríceps",
-  //   "Isquiotibiais",
-  //   "Panturrilhas",
-  //   "Abdômen",
-  //   "Trapézio",
-  //   "Glúteos",
-  //   "Lombar",
-  //   "Adutores",
-  //   "Abdutores",
-  //   "Antebraço",
-  // ];
-
   const muscleData = [
     {
       name: "Bíceps",

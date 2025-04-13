@@ -11,7 +11,11 @@ export interface Exercise {
 export interface Muscle {
     id: number,
     name: string
+    technicalName: string,
+    motorAction:string,
     description?: string
+    synergists: string,
+    antagonists: string
     imageUrl?: string
 }
 

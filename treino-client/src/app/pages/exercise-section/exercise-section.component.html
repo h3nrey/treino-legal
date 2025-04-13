@@ -1,9 +1,30 @@
 <div class="flex flex-col gap-4 mb-8">
-    <div class="flex gap-2 bg-red text-white p-4 rounded-lg">
+    <div class="flex gap-4 bg-red text-white p-4 rounded-lg">
         <img [src]="headerData.imgUrl ?? defaultImgUrl" alt="" class="max-w-64 h-[9.5rem] object-cover rounded-md">
         <div class="flex flex-col gap-2">
-            <h3 class="font-semibold">{{headerData.title}}</h3>
-            <p>{{headerData.description}}</p>
+            <div class="flex flex-col gap-1">
+                <div class="flex gap-2 items-center">
+                    <h3 class="font-semibold text-2xl">{{headerData.title}}</h3>
+                    <span class="text-base">{{headerData.techinicalName}}</span>
+                </div>
+                <p class="text-xl">{{headerData.description}}</p>
+
+            </div>
+
+            <div class="grid grid-cols-5 gap-4">
+                <div class="flex flex-col">
+                    <h4 class="font-semibold text-xl">Ação motora</h4>
+                    <span>{{headerData.motorAction}}</span>
+                </div>
+                <div class="flex flex-col">
+                    <h4 class="font-semibold text-xl">Músculos sinergistas</h4>
+                    <span>{{headerData.synergistsMuscles}}</span>
+                </div>
+                <div class="flex flex-col">
+                    <h4 class="font-semibold text-xl">Músculos antagônicos</h4>
+                    <span>{{headerData.antagonistsMuscles}}</span>
+                </div>
+            </div>
         </div>
     </div>
 
