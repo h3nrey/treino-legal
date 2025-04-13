@@ -3,7 +3,7 @@
 
     <div class="mt-4">
         <h2 class="font-semibold text-2xl">Meus Exercicios favoritos</h2>
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-4">
             @for(exercise of favoritedExercises; track $index) {
                 <exercise-card [exercise]="exercise" (unfavoriteEv)="loadFavoritedExercises()"></exercise-card>
             } @empty {
