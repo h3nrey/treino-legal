@@ -8,10 +8,12 @@
         <filter-select 
             placeholderText="Grupo Muscular" 
             [options]="muscles" 
+            [currentOption]="filters.muscle"
             (changeOptionEvent)="updateFilters($event, 'muscle')"/>
         <filter-select 
             placeholderText="Equipamentos" 
             [options]="equipaments" 
+            [currentOption]="filters.equipament"
         (changeOptionEvent)="updateFilters($event, 'equipament')"/>
         <button 
         (click)="clearFilters()" 

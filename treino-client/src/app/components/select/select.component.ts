@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'filter-select',
@@ -7,21 +8,29 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss'
 })
-export class SelectComponent {
-  constructor(private elRef: ElementRef){}
+export class SelectComponent implements OnInit{
+  constructor(private elRef: ElementRef, private searchService: SearchService){}
   @Input() placeholderText: string = 'Grupo muscular';
   @Input() options: string[] = []
   @Output() changeOptionEvent = new EventEmitter();
 
-  currentOption = -1;
+  @Input() currentOption!: string;
+  currentOptionIndex =0;
   arrowIcon = 'assets/icons/arrowDown.svg'
   checkIcon = 'assets/icons/check.svg'
 
   optionsOpened = false;
 
+  ngOnInit() {
+  }
+
   selectOption(option: number) {
-    this.currentOption = option;
     this.changeOptionEvent.emit(this.options[option]);
+  }
+
+  displaySelectText() {
+    const index = this.options.findIndex((el) => el == this.currentOption)
+    return this.currentOption == '' ? this.placeholderText : this.currentOption;
   }
 
   toggleSelect() {

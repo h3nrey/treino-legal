@@ -1,12 +1,8 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { debounce } from '../../../utils/utils';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { exercises } from '../../../../data';
 import { Router, RouterLink } from '@angular/router';
-import { ExercisesService } from '../../../services/exercises.service';
 import { Exercise, User } from '../../../utils/interfaces';
 import { UserService } from '../../../services/users.service.ts.service';
-import { Observable } from 'rxjs';
 import { UserTooltipComponent } from "../../user-tooltip/user-tooltip.component";
 import { HeaderSearchbarComponent } from "../../header-searchbar/header-searchbar.component";
 
@@ -18,15 +14,12 @@ import { HeaderSearchbarComponent } from "../../header-searchbar/header-searchba
 })
 export class HomeHeaderComponent implements OnInit {
   constructor(
-    private exerciseService: ExercisesService, 
-    private eRef: ElementRef, 
     private router: Router, 
     private readonly userService: UserService
   ) {}
   user: any = null;
   searchTerm: string = '';
   searchedResults: Exercise[] = [];
-  private readonly searchDelay = 500;
   showResults = false;
   searchIcon = "assets/icons/search.svg"
  

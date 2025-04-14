@@ -60,9 +60,8 @@ export const getExercises = async (_req: Request, res: Response) => {
 };
 
 export const getExercise = async (req: Request, res: Response) => {
-  const { userId } = req.params;
+  const userId = req.query.userId as string;
 
-  console.log(userId);
   const exercise = await prisma.exercise.findUnique({
     where: { id: Number(req.params.id) },
     include: {
@@ -72,6 +71,12 @@ export const getExercise = async (req: Request, res: Response) => {
       experienceLevel: true,
       equipament: true,
       grip: true,
+      UserExercises: userId
+        ? {
+            where: { userId: userId },
+            select: { id: true },
+          }
+        : false,
     },
   });
 
@@ -79,6 +84,7 @@ export const getExercise = async (req: Request, res: Response) => {
 
   const formattedExercise = {
     ...exercise,
+    favorited: userId ? exercise.UserExercises.length > 0 : false,
     usedMuscles: exercise.usedMuscles.map((um) => ({
       ...um.muscle,
       isPrimary: um.isPrimary,

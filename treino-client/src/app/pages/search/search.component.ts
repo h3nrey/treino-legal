@@ -7,6 +7,7 @@ import { SidebarService } from '../../services/sidebar.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { PaginatorComponent } from "../../components/paginator/paginator.component";
 import { SelectComponent } from "../../components/select/select.component";
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,8 @@ export class SearchComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute, 
     private exerciseService: ExercisesService, 
-    protected sidebarService: SidebarService
+    protected sidebarService: SidebarService,
+    private searchService: SearchService
   ){}
   searchTerm: string = ''
   exercises: Exercise[] = [];
@@ -46,7 +48,9 @@ export class SearchComponent implements OnInit{
       }
 
       if(params.get('muscle')) this.params['muscle'] = params.get('muscle') ?? ''
+      this.filters.muscle = this.params['muscle'] ?? ''
       if(params.get('equipament')) this.params['equipament'] = params.get('equipament') ?? ''
+      this.filters.equipament = this.params['equipament'] ?? ''
 
       this.loadExercises();
     })
@@ -72,6 +76,7 @@ export class SearchComponent implements OnInit{
 
   clearFilters() {
     const {muscle, equipament, ...clearedParams} = this.params
+    this.searchService.emitClearFilters()
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: clearedParams,
@@ -81,12 +86,12 @@ export class SearchComponent implements OnInit{
   }
 
   loadExercises() {
+    console.log(this.params);
+    this.params['search'] = this.searchTerm;
     this.exerciseService.getExercises(this.params).subscribe(exercises => {
       console.log(exercises)
       this.exercises = exercises.data;
       this.totalCount = exercises.totalCount;
     })
   }
-
-  
 }

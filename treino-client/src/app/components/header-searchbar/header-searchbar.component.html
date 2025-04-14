@@ -9,7 +9,7 @@
             [(ngModel)]="searchTerm" (input)="onSearchInput($event)" (keydown.enter)="submitSearch()">
     </div>
 
-    @if (searchedResults.length > 0 || showResults) {
+    @if (searchTerm != '' && (searchedResults.length > 0 || showResults)) {
         <SearchResultsContainer [results]="searchedResults" (clearResultsEv)="clearResults()"></SearchResultsContainer>
     }
 </div>

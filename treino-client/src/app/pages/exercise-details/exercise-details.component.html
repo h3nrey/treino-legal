@@ -1,8 +1,19 @@
 <div class="flex justify-between mb-8">
     <div class="w-full max-w-[40rem]">
-        <h2 class="text-[2rem] font-bold">
-            {{exerciseData?.name}}
-        </h2>
+        <div class="flex gap-3 items-center">
+            <h2 class="text-[2rem] font-bold">
+                {{exerciseData?.name}}
+            </h2>
+            <button class="rounded-sm h-fit px-2 outline relative" (click)="toggleFavorited()">
+                {{exerciseData?.favorited ? 'Favoritado' : 'Favoritar'}}
+
+                @if(showLoginPopup) {
+                    <div class="absolute min-w-full right-0">
+                        <LoginPopup class="flex items-end"></LoginPopup>
+                    </div>
+                }
+            </button>
+        </div>
         <p>{{exerciseData?.description}}</p>
         <img [src]="exerciseData?.thumbnailUrl" alt="" class="max-h-[19rem] object-cover">
 
