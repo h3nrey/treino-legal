@@ -1,5 +1,6 @@
 import { PrismaClient, TrainingType } from "@prisma/client";
 import { Request, Response } from "express";
+import { AuthRequest } from "../middleware/auth";
 
 const prisma = new PrismaClient();
 
@@ -123,4 +124,54 @@ export async function createTraining(req: Request, res: Response) {
   } catch (error) {
     res.status(400).json({ error: "Error creating training" });
   }
+}
+
+export async function favoriteTraining(req: AuthRequest, res: Response) {
+  const { username } = req.user as { username: string };
+  const trainingId = req.params.id;
+
+  if (!trainingId) {
+    res.status(400).json({ message: "Training ID is required" });
+    return;
+  }
+
+  prisma.userTranings
+    .create({
+      data: {
+        user: { connect: { username } },
+        training: { connect: { id: parseInt(trainingId) } },
+      },
+    })
+    .then(() => {
+      res.status(201).json({ message: "Training favorited" });
+    })
+    .catch((error) => {
+      console.error("Error favoriting training: ", error);
+      res.status(500).json({ message: "Internal server error" });
+    });
+}
+
+export async function unfavoriteTraining(req: AuthRequest, res: Response) {
+  const { username } = req.user as { username: string };
+  const trainingId = req.params.id;
+
+  if (!trainingId) {
+    res.status(400).json({ message: "Training ID is required" });
+    return;
+  }
+
+  await prisma.userTranings
+    .deleteMany({
+      where: {
+        user: { username },
+        trainingId: parseInt(trainingId),
+      },
+    })
+    .then(() => {
+      res.status(200).json({ message: "Training unfavorited" });
+    })
+    .catch((error) => {
+      console.error("Error unfavoriting training:", error);
+      res.status(500).json({ message: "Internal server error" });
+    });
 }
