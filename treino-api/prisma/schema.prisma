@@ -15,6 +15,7 @@ model User {
   createadAt    DateTime        @default(now())
   UserExercises UserExercises[]
   Training      Training[]
+  userTranings  UserTranings[]
 }
 
 model UserExercises {
@@ -103,6 +104,7 @@ model Training {
   experienceLevel  ExperienceLevelEnum
   TraningExercises TraningExercises[]
   userId           String
+  userTranings     UserTranings[]
 }
 
 model TraningExercises {
@@ -132,6 +134,15 @@ enum ExperienceLevelEnum {
   INTERMEDIARY
   ADVANCED
   ATHLETE
+}
+
+model UserTranings {
+  user       User     @relation(fields: [userId], references: [id])
+  training   Training @relation(fields: [trainingId], references: [id])
+  userId     String
+  trainingId Int
+
+  @@id([userId, trainingId])
 }
 
 model ExperienceLevel {
