@@ -14,6 +14,7 @@ model User {
   password      String
   createadAt    DateTime        @default(now())
   UserExercises UserExercises[]
+  Training      Training[]
 }
 
 model UserExercises {
@@ -43,6 +44,7 @@ model Exercise {
   ExerciseInstruction ExerciseInstruction[]
   ExerciseTips        ExerciseTips[]
   UserExercises       UserExercises[]
+  TraningExercises    TraningExercises[]
 }
 
 model ExerciseInstruction {
@@ -90,10 +92,46 @@ model MuscleRelation {
   @@unique([muscleId, relatedMuscleId, relationType])
 }
 
+model Training {
+  id               Int                 @id @default(autoincrement())
+  user             User                @relation(fields: [userId], references: [id])
+  title            String
+  description      String
+  isPublic         Boolean
+  type             TrainingType
+  duration         Int                 @default(0)
+  experienceLevel  ExperienceLevelEnum
+  TraningExercises TraningExercises[]
+  userId           String
+}
+
+model TraningExercises {
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  training   Training @relation(fields: [trainingId], references: [id])
+  exerciseId Int
+  trainingId Int
+
+  @@id([exerciseId, trainingId])
+}
+
+enum TrainingType {
+  HIPERTROPHY
+  RESITANCE
+  CARDIO
+  STREGTH
+}
+
 enum RelationType {
   SYNERGIST
   ANTAGONIST
   STABILIZER
+}
+
+enum ExperienceLevelEnum {
+  BEGGINER
+  INTERMEDIARY
+  ADVANCED
+  ATHLETE
 }
 
 model ExperienceLevel {
