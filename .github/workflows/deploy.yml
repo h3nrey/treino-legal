@@ -1,9 +1,17 @@
-name: Deploy to EC2
+name: Deploy Docker Compose to EC2
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: "us-east-1c" # Change to your region
+  EC2_INSTANCE_IP: "44.212.44.146"
+  SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+  REMOTE_DIR: "/home/ubuntu/api" # Deployment directory
+  API_PORT: "3000" # Default port, adjust as needed
+  DB_PORT: "5432"
 
 jobs:
   deploy:
@@ -13,32 +21,54 @@ jobs:
         working-directory: ./treino-api
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH
+      # Create .env file from GitHub secrets
+      - name: Create environment file
+        run: |
+          cat << EOF > .env
+          DB_HOST=db
+          DB_PORT=${{ secrets.DB_PORT }}
+          DB_USER=${{ secrets.DB_USER }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          DB_NAME=${{ secrets.DB_NAME }}
+          API_PORT=${{ env.API_PORT }}
+          EOF
+
+      # Setup SSH
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
-        env:
-          SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          EC2_HOST: ${{ secrets.EC2_HOST }}
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          cat >>~/.ssh/config <<END
+          Host ec2
+            HostName $EC2_INSTANCE_IP
+            User ubuntu
+            IdentityFile ~/.ssh/deploy_key
+            StrictHostKeyChecking no
+          END
 
-      - name: Verify SSH Key
+      # Copy files to EC2
+      - name: Copy files to EC2
         run: |
-          ls -la ~/.ssh
-          [ -s ~/.ssh/id_rsa ] || exit 1
-          echo "SSH key exists and is not empty"
+          rsync -avz -e "ssh -i ~/.ssh/deploy_key" \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            ./ ubuntu@$EC2_INSTANCE_IP:$REMOTE_DIR
 
-      - name: Deploy via SSH
+      # Deploy with Docker Compose
+      - name: Deploy containers
         run: |
-          ssh -v -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
-            cd /api
-            git pull origin main
+          ssh -i ~/.ssh/deploy_key ubuntu@$EC2_INSTANCE_IP << 'ENDSSH'
+            cd $REMOTE_DIR
+            # Stop and remove existing containers
+            docker-compose down || true
+            # Pull latest images (if using remote images)
+            docker-compose pull || true
+            # Build and start containers
             docker-compose up -d --build
-          EOF
-        env:
-          EC2_USER: ${{ secrets.EC2_USER }}
-          EC2_HOST: ${{ secrets.EC2_HOST }}
+            # Clean up unused images
+            docker image prune -f
+          ENDSSH
