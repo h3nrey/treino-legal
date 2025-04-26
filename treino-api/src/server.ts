@@ -12,7 +12,8 @@ dotenv.config();
 const app = express();
 
 let corsOptions = {
-  origin: ["http://localhost:4200"],
+  // origin: ["http://localhost:4200"],
+  origin: "*",
 };
 app.use(cors(corsOptions));
 app.use(express.json());
