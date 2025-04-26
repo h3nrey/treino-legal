@@ -45,9 +45,16 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           echo -e "Host ec2\n  HostName ${{ env.EC2_IP }}\n  User ${{ env.SSH_USER }}\n  IdentityFile ~/.ssh/deploy_key\n  StrictHostKeyChecking no" >> ~/.ssh/config
 
+      - name: Test SSH Connection
+        run: |
+          ssh -i ~/.ssh/deploy_key -v ${{ env.SSH_USER }}@${{ env.EC2_IP }} "echo 'SSH successful!'"
+
       # Copy files to EC2
       - name: Copy Files via SSH
         run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
           rsync -avz -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
             --exclude='.git' \
             --exclude='node_modules' \
