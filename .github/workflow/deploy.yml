@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      runs:
+        - working-directory: ./treino-api
 
     steps:
       - name: Checkout repo
@@ -23,7 +26,7 @@ jobs:
       - name: SSH and deploy
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            cd /home/ec2-user/your-repo
+            cd /api
             git pull origin main
             docker-compose up -d --build
           EOF
