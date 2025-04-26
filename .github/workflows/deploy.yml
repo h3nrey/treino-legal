@@ -46,9 +46,9 @@ jobs:
           echo -e "Host ec2\n  HostName ${{ env.EC2_IP }}\n  User ${{ env.SSH_USER }}\n  IdentityFile ~/.ssh/deploy_key\n  StrictHostKeyChecking no" >> ~/.ssh/config
 
       # Copy files to EC2
-      - name: Copy files via ssh
+      - name: Copy Files via SSH
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key" \
+          rsync -avz -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
             --exclude='.git' \
             --exclude='node_modules' \
             ./ ${{ env.SSH_USER }}@${{ env.EC2_IP }}:${{ env.REMOTE_DIR }}
