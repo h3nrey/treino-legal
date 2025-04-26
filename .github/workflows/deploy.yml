@@ -9,8 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     defaults:
-      runs:
-        - working-directory: ./treino-api
+      run:
+        working-directory: ./treino-api
 
     steps:
       - name: Checkout repo
