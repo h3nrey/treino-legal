@@ -26,7 +26,7 @@ jobs:
       - name: test-thing
         run: |
           echo "Running tests..."
-          mkdir -p ./monkey-test
+          mkdir cringe
 
   # deploy:
   #   runs-on: ubuntu-latest
