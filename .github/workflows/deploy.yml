@@ -14,13 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate SSH Key Format
+      - name: Create .env file if it doesn't exist
         run: |
-          if echo "${{ secrets.EC2_SSH_KEY }}" | grep -q "BEGIN RSA PRIVATE KEY"; then
-            echo "SSH Key format looks good."
+          cd /home/ec2-user/api/treino-legal/treino-api
+          if [ ! -f .env ]; then
+            echo "Creating .env file..."
+            echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+            echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+            echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+            echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+            echo "API_PORT=${{ secrets.API_PORT }}" >> .env
           else
-            echo "SSH Key format looks wrong!"
-            exit 1
+            echo ".env file already exists, skipping creation."
           fi
 
       - name: Connect to EC2 and deploy
@@ -30,9 +36,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ec2-user/api
+            cd /home/ec2-user/api/treino-legal/treino-api
             git pull origin main
-            cd /treino-api
-            # docker-compose down
-            # docker-compose build
-            # docker-compose up -d
+            npm i
+            docker-compose down
+            docker-compose up -d
