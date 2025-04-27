@@ -14,6 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate SSH Key Format
+        run: |
+          if echo "${{ secrets.EC2_SSH_KEY }}" | grep -q "BEGIN OPENSSH PRIVATE KEY"; then
+            echo "SSH Key format looks good."
+          else
+            echo "SSH Key format looks wrong!"
+            exit 1
+          fi
+
       - name: Connect to EC2 and deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
