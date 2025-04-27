@@ -14,28 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create .env file if it doesn't exist
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd /home/ec2-user/api/treino-legal/treino-api
-            if [ ! -f .env ]; then
-              echo "Creating .env file..."
-              echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-              echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
-              echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-              echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-              echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
-              echo "API_PORT=${{ secrets.API_PORT }}" >> .env
-            else
-              echo ".env file already exists, skipping creation."
-            fi
-
       - name: Connect to EC2 and deploy
         uses: appleboy/ssh-action@v0.1.7
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          API_PORT: ${{ secrets.API_PORT }}
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
