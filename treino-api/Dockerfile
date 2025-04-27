@@ -13,6 +13,8 @@ RUN npm install --production
 # Copy the rest of the app
 COPY . .
 
+RUN npm run build
+
 # Expose the port your app runs on (change if needed)
 EXPOSE 3000
 
