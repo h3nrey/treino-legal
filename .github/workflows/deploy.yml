@@ -16,7 +16,7 @@ jobs:
 
       - name: Validate SSH Key Format
         run: |
-          if echo "${{ secrets.EC2_SSH_KEY }}" | grep -q "BEGIN OPENSSH PRIVATE KEY"; then
+          if echo "${{ secrets.EC2_SSH_KEY }}" | grep -q "BEGIN RSA PRIVATE KEY"; then
             echo "SSH Key format looks good."
           else
             echo "SSH Key format looks wrong!"
