@@ -1,16 +1,16 @@
 import { Router } from "express";
 import {
   getExercises,
-  getExercise,
   createExercise,
   updateExercise,
   deleteExercise,
+  getExerciseById,
 } from "../controllers/exercise.controller";
 
 const router = Router();
 
 router.get("/", getExercises);
-router.get("/:id", getExercise);
+router.get("/:id", getExerciseById);
 router.post("/", createExercise);
 router.put("/:id", updateExercise);
 router.delete("/:id", deleteExercise);

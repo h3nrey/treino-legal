@@ -59,7 +59,7 @@ export const getExercises = async (_req: Request, res: Response) => {
   });
 };
 
-export const getExercise = async (req: Request, res: Response) => {
+export const getExerciseById = async (req: Request, res: Response) => {
   const userId = req.query.userId as string;
 
   const exercise = await prisma.exercise.findUnique({
@@ -80,7 +80,10 @@ export const getExercise = async (req: Request, res: Response) => {
     },
   });
 
-  if (!exercise) return res.status(404).json({ error: "Exercise not found" });
+  if (!exercise) {
+    res.status(404).json({ error: "Exercise not found" });
+    return;
+  }
 
   const formattedExercise = {
     ...exercise,
@@ -90,7 +93,6 @@ export const getExercise = async (req: Request, res: Response) => {
       isPrimary: um.isPrimary,
     })),
   };
-
   res.json(formattedExercise);
 };
 
