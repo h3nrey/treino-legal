@@ -13,6 +13,9 @@ RUN npm install --production
 # Copy the rest of the app
 COPY . .
 
+# Generate prisma client
+RUN npx prisma generate
+
 RUN npm run build
 
 # Expose the port your app runs on (change if needed)

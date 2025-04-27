@@ -28,6 +28,7 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    command: npx prisma migrate deploy
 
 volumes:
   postgres_data:
