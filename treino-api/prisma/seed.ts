@@ -318,17 +318,17 @@ async function seedExercises() {
 }
 
 async function main() {
-  seedMuscles();
-  // seedGrips();
-  // seedEquipaments();
-  // seedExperienceLevels();
-  seedExercises();
+  await seedMuscles();
+  await seedGrips();
+  await seedEquipaments();
+  await seedExperienceLevels();
+  await seedExercises();
 }
 
 main()
   .catch((e) => {
     console.error("Error seeding database:", e);
-    process.exit(1);
+    // process.exit(1);
   })
   .finally(async () => {
     await prisma.$disconnect();
