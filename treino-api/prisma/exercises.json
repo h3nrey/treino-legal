@@ -1,0 +1,2246 @@
+[
+  {
+    "name": "Supino Reto com Barra",
+    "description": "O supino reto é um exercício clássico para o peito, trabalhando principalmente os peitorais maiores, com auxílio dos tríceps e deltoides anteriores.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/supino.jpg",
+    "muscles": [
+      {
+        "muscleId": 3,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 2,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 5,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se no banco com os pés apoiados no chão"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra com as mãos ligeiramente mais afastadas que a largura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Desça a barra controladamente até tocar levemente o peito"
+      },
+      {
+        "step": 4,
+        "description": "Empurre a barra de volta à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha as escápulas retraídas durante todo o movimento"
+      },
+      {
+        "description": "Não levante os quadris do banco"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Direta com Barra",
+    "description": "Exercício fundamental para desenvolvimento dos bíceps, utilizando barra reta para trabalho simétrico dos braços.",
+    "experienceLevelId": 1,
+    "equipamentId": 1,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/rosca.jpg",
+    "muscles": [
+      {
+        "muscleId": 1,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 15,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fique em pé com os pés na largura dos ombros"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra com as palmas das mãos voltadas para frente"
+      },
+      {
+        "step": 3,
+        "description": "Flexione os cotovelos elevando a barra até a altura dos ombros"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos próximos ao corpo"
+      },
+      {
+        "description": "Evite balançar o corpo para ajudar no movimento"
+      }
+    ]
+  },
+  {
+    "name": "Tríceps Testa com Halteres",
+    "description": "Exercício eficaz para isolamento do tríceps, realizado com halteres para maior amplitude de movimento.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/triceps.jpg",
+    "muscles": [
+      {
+        "muscleId": 2,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se no banco com os halteres estendidos acima do peito"
+      },
+      {
+        "step": 2,
+        "description": "Flexione os cotovelos levando os halteres em direção à testa"
+      },
+      {
+        "step": 3,
+        "description": "Estenda os braços novamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos apontando para frente"
+      },
+      {
+        "description": "Controle o movimento na fase excêntrica"
+      }
+    ]
+  },
+  {
+    "name": "Remada Curvada com Barra",
+    "description": "Exercício completo para as costas, trabalhando principalmente os dorsais, trapézio e bíceps.",
+    "experienceLevelId": 3,
+    "equipamentId": 1,
+    "riskLevel": "hard",
+    "thumbnailUrl": "https://example.com/remada.jpg",
+    "muscles": [
+      {
+        "muscleId": 4,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 10,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Incline o tronco para frente mantendo as costas retas"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra com as mãos afastadas"
+      },
+      {
+        "step": 3,
+        "description": "Puxe a barra em direção ao abdômen"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o core tensionado para proteger a lombar"
+      },
+      {
+        "description": "Evite arredondar as costas durante o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Desenvolvimento Militar",
+    "description": "Exercício para ombros que trabalha principalmente o deltoide anterior, com participação do tríceps e trapézio.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/desenvolvimento.jpg",
+    "muscles": [
+      {
+        "muscleId": 5,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 2,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 10,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fique em pé com os pés na largura dos ombros"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra na altura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Empurre a barra para cima até estender completamente os braços"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o core tensionado para estabilidade"
+      },
+      {
+        "description": "Não arqueie excessivamente as costas durante o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Agachamento Livre",
+    "description": "Exercício composto fundamental para membros inferiores, trabalhando quadríceps, glúteos e isquiotibiais.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "hard",
+    "thumbnailUrl": "https://example.com/agachamento.jpg",
+    "muscles": [
+      {
+        "muscleId": 6,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 7,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione a barra sobre os trapézios"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha os pés na largura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Desça flexionando joelhos e quadris"
+      },
+      {
+        "step": 4,
+        "description": "Volte à posição inicial estendendo as pernas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o peito erguido e as costas retas"
+      },
+      {
+        "description": "Não deixe os joelhos caírem para dentro"
+      }
+    ]
+  },
+  {
+    "name": "Stiff",
+    "description": "Exercício para posterior de coxas e glúteos, com ênfase na cadeia posterior.",
+    "experienceLevelId": 3,
+    "equipamentId": 1,
+    "riskLevel": "hard",
+    "thumbnailUrl": "https://example.com/stiff.jpg",
+    "muscles": [
+      {
+        "muscleId": 7,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 12,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a barra com as mãos afastadas"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha as pernas semi-flexionadas"
+      },
+      {
+        "step": 3,
+        "description": "Incline o tronco para frente mantendo as costas retas"
+      },
+      {
+        "step": 4,
+        "description": "Retorne à posição inicial contraindo os glúteos"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha a coluna neutra durante todo o movimento"
+      },
+      {
+        "description": "O movimento deve vir do quadril, não da coluna"
+      }
+    ]
+  },
+  {
+    "name": "Elevação de Gêmeos em Pé",
+    "description": "Exercício isolado para panturrilhas, realizado em máquina específica ou step.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/panturrilha.jpg",
+    "muscles": [
+      {
+        "muscleId": 8,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione os ombros no aparelho"
+      },
+      {
+        "step": 2,
+        "description": "Desça os calcanhares o máximo possível"
+      },
+      {
+        "step": 3,
+        "description": "Eleve os calcanhares contraindo as panturrilhas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça uma pausa no topo do movimento"
+      },
+      {
+        "description": "Controle a fase excêntrica"
+      }
+    ]
+  },
+  {
+    "name": "Prancha Abdominal",
+    "description": "Exercício isométrico para core, trabalhando principalmente o reto abdominal e oblíquos.",
+    "experienceLevelId": 1,
+    "equipamentId": 6,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/prancha.jpg",
+    "muscles": [
+      {
+        "muscleId": 9,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 12,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Apoie os antebraços no chão"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha o corpo reto como uma tábua"
+      },
+      {
+        "step": 3,
+        "description": "Contraia o abdômen e mantenha a posição"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não deixe o quadril cair ou subir muito"
+      },
+      {
+        "description": "Mantenha a respiração controlada"
+      }
+    ]
+  },
+  {
+    "name": "Encolhimento com Halteres",
+    "description": "Exercício para desenvolvimento dos trapézios, utilizando halteres para maior amplitude.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/encolhimento.jpg",
+    "muscles": [
+      {
+        "muscleId": 10,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres com os braços estendidos ao lado do corpo"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os ombros em direção às orelhas"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não use impulso do corpo"
+      },
+      {
+        "description": "Mantenha o movimento controlado"
+      }
+    ]
+  },
+  {
+    "name": "Afundo com Halteres",
+    "description": "Exercício unilateral para membros inferiores, trabalhando quadríceps, glúteos e isquiotibiais.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/afundo.jpg",
+    "muscles": [
+      {
+        "muscleId": 6,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres ao lado do corpo"
+      },
+      {
+        "step": 2,
+        "description": "Dê um passo à frente e desça o joelho traseiro"
+      },
+      {
+        "step": 3,
+        "description": "Volte à posição inicial empurrando com a perna da frente"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Não deixe o joelho da frente passar a linha dos dedos do pé"
+      }
+    ]
+  },
+  {
+    "name": "Extensão Lombar",
+    "description": "Exercício para fortalecimento da região lombar, importante para equilíbrio muscular.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/lombar.jpg",
+    "muscles": [
+      {
+        "muscleId": 12,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione-se no aparelho com os calcanhares apoiados"
+      },
+      {
+        "step": 2,
+        "description": "Desça o tronco controladamente"
+      },
+      {
+        "step": 3,
+        "description": "Suba até alinhar o tronco com as pernas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não hiperestenda a coluna no topo do movimento"
+      },
+      {
+        "description": "Mantenha o movimento controlado"
+      }
+    ]
+  },
+  {
+    "name": "Adutora na Máquina",
+    "description": "Exercício isolado para músculos adutores da coxa, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/adutora.jpg",
+    "muscles": [
+      {
+        "muscleId": 13,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com as coxas apoiadas"
+      },
+      {
+        "step": 2,
+        "description": "Una as pernas contra a resistência"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento em ambas as fases"
+      },
+      {
+        "description": "Não use peso excessivo"
+      }
+    ]
+  },
+  {
+    "name": "Abdutora na Máquina",
+    "description": "Exercício isolado para músculos abdutores da coxa, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abdutora.jpg",
+    "muscles": [
+      {
+        "muscleId": 14,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com as coxas apoiadas"
+      },
+      {
+        "step": 2,
+        "description": "Afaste as pernas contra a resistência"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento em ambas as fases"
+      },
+      {
+        "description": "Não use peso excessivo"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Inversa com Barra",
+    "description": "Exercício para antebraços e porção externa do bíceps, realizado com pegada pronada.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/roscainversa.jpg",
+    "muscles": [
+      {
+        "muscleId": 15,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a barra com as palmas voltadas para baixo"
+      },
+      {
+        "step": 2,
+        "description": "Flexione os cotovelos elevando a barra"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos próximos ao corpo"
+      },
+      {
+        "description": "Faça o movimento completo"
+      }
+    ]
+  },
+  {
+    "name": "Crucifixo com Halteres",
+    "description": "Exercício de isolamento para peitorais, com ênfase na porção esternal.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/crucifixo.jpg",
+    "muscles": [
+      {
+        "muscleId": 3,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se no banco com halteres estendidos acima do peito"
+      },
+      {
+        "step": 2,
+        "description": "Abra os braços em arco até sentir alongamento no peito"
+      },
+      {
+        "step": 3,
+        "description": "Retorne à posição inicial como se estivesse abraçando uma árvore"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha leve flexão nos cotovelos"
+      },
+      {
+        "description": "Controle o movimento na fase excêntrica"
+      }
+    ]
+  },
+  {
+    "name": "Puxada Alta com Barra W",
+    "description": "Exercício para costas com ênfase no latíssimo do dorso, utilizando barra W para melhor ativação.",
+    "experienceLevelId": 2,
+    "equipamentId": 2,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/puxada.jpg",
+    "muscles": [
+      {
+        "muscleId": 4,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 10,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a barra W com as mãos afastadas"
+      },
+      {
+        "step": 2,
+        "description": "Puxe a barra em direção ao peito"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o peito aberto durante o movimento"
+      },
+      {
+        "description": "Evite balançar o corpo"
+      }
+    ]
+  },
+  {
+    "name": "Elevação Lateral com Halteres",
+    "description": "Exercício isolado para deltoides laterais, importante para desenvolvimento da largura dos ombros.",
+    "experienceLevelId": 1,
+    "equipamentId": 3,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/elevacao.jpg",
+    "muscles": [
+      {
+        "muscleId": 5,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres ao lado do corpo"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os braços lateralmente até a altura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha leve flexão nos cotovelos"
+      },
+      {
+        "description": "Não eleve acima da linha dos ombros"
+      }
+    ]
+  },
+  {
+    "name": "Leg Press 45°",
+    "description": "Exercício fundamental para membros inferiores, permitindo cargas elevadas com menor risco para coluna.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/legpress.jpg",
+    "muscles": [
+      {
+        "muscleId": 6,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 7,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione os pés na plataforma na largura dos ombros"
+      },
+      {
+        "step": 2,
+        "description": "Desça a plataforma flexionando os joelhos"
+      },
+      {
+        "step": 3,
+        "description": "Empurre a plataforma estendendo as pernas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não trave os joelhos no final do movimento"
+      },
+      {
+        "description": "Mantenha os pés alinhados com os joelhos"
+      }
+    ]
+  },
+  {
+    "name": "Mesa Flexora",
+    "description": "Exercício isolado para isquiotibiais, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/mesaflexora.jpg",
+    "muscles": [
+      {
+        "muscleId": 7,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se na máquina com os calcanhares apoiados"
+      },
+      {
+        "step": 2,
+        "description": "Flexione os joelhos trazendo o aparelho em direção aos glúteos"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento na fase excêntrica"
+      },
+      {
+        "description": "Não use impulso"
+      }
+    ]
+  },
+  {
+    "name": "Gêmeos Sentado",
+    "description": "Exercício para panturrilhas com ênfase no sóleo, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/gemeos.jpg",
+    "muscles": [
+      {
+        "muscleId": 8,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com os joelhos flexionados"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os calcanhares o máximo possível"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça uma pausa no topo do movimento"
+      },
+      {
+        "description": "Amplitude total é essencial"
+      }
+    ]
+  },
+  {
+    "name": "Abdominal Supra",
+    "description": "Exercício clássico para reto abdominal, com foco na porção superior.",
+    "experienceLevelId": 1,
+    "equipamentId": 6,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abdominal.jpg",
+    "muscles": [
+      {
+        "muscleId": 9,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se com os joelhos flexionados e pés apoiados"
+      },
+      {
+        "step": 2,
+        "description": "Coloque as mãos atrás da cabeça"
+      },
+      {
+        "step": 3,
+        "description": "Eleve o tronco contraindo o abdômen"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não puxe o pescoço com as mãos"
+      },
+      {
+        "description": "Expire ao subir, inspire ao descer"
+      }
+    ]
+  },
+  {
+    "name": "Remada Alta com Barra",
+    "description": "Exercício para trapézio e deltoides, com participação dos bíceps.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/remadaalta.jpg",
+    "muscles": [
+      {
+        "muscleId": 10,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 5,
+        "isPrimary": false
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a barra com as mãos próximas"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os cotovelos até a altura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Os cotovelos devem subir mais que as mãos"
+      }
+    ]
+  },
+  {
+    "name": "Glúteos no Smith",
+    "description": "Exercício para glúteos com apoio da máquina Smith, permitindo maior estabilidade.",
+    "experienceLevelId": 2,
+    "equipamentId": 5,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/gluteos.jpg",
+    "muscles": [
+      {
+        "muscleId": 11,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 6,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione a barra sobre os quadris"
+      },
+      {
+        "step": 2,
+        "description": "Flexione os quadris mantendo as pernas semi-estendidas"
+      },
+      {
+        "step": 3,
+        "description": "Estenda os quadris contraindo os glúteos"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha as costas retas"
+      },
+      {
+        "description": "Contraia os glúteos no topo do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Extensão de Quadril no Solo",
+    "description": "Exercício para lombar e glúteos, realizado sem equipamento.",
+    "experienceLevelId": 1,
+    "equipamentId": 6,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/extensao.jpg",
+    "muscles": [
+      {
+        "muscleId": 12,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se de bruços com os braços estendidos"
+      },
+      {
+        "step": 2,
+        "description": "Eleve simultaneamente braços e pernas"
+      },
+      {
+        "step": 3,
+        "description": "Mantenha a posição por alguns segundos"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Contraia glúteos e lombar durante o movimento"
+      },
+      {
+        "description": "Mantenha o pescoço alinhado com a coluna"
+      }
+    ]
+  },
+  {
+    "name": "Cadeira Adutora",
+    "description": "Exercício isolado para músculos adutores da coxa, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/adutora.jpg",
+    "muscles": [
+      {
+        "muscleId": 13,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com as coxas apoiadas"
+      },
+      {
+        "step": 2,
+        "description": "Una as pernas contra a resistência"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento em ambas as fases"
+      },
+      {
+        "description": "Não use peso excessivo"
+      }
+    ]
+  },
+  {
+    "name": "Cadeira Abdutora",
+    "description": "Exercício isolado para músculos abdutores da coxa, realizado em máquina específica.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abdutora.jpg",
+    "muscles": [
+      {
+        "muscleId": 14,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com as coxas apoiadas"
+      },
+      {
+        "step": 2,
+        "description": "Afaste as pernas contra a resistência"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento em ambas as fases"
+      },
+      {
+        "description": "Não use peso excessivo"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Martelo",
+    "description": "Exercício para bíceps e antebraços, com pegada neutra que enfatiza o braquiorradial.",
+    "experienceLevelId": 1,
+    "equipamentId": 3,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/martelo.jpg",
+    "muscles": [
+      {
+        "muscleId": 1,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 15,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres com as palmas voltadas uma para a outra"
+      },
+      {
+        "step": 2,
+        "description": "Flexione os cotovelos elevando os halteres"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos próximos ao corpo"
+      },
+      {
+        "description": "Evite balançar os halteres"
+      }
+    ]
+  },
+  {
+    "name": "Supino Inclinado com Halteres",
+    "description": "Variante do supino que enfatiza a porção superior do peitoral, realizado com halteres para maior amplitude de movimento.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/supinoinclinado.jpg",
+    "muscles": [
+      {
+        "muscleId": 3,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 5,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Ajuste o banco em um ângulo de 30-45 graus"
+      },
+      {
+        "step": 2,
+        "description": "Segure os halteres na altura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Empurre os halteres para cima até estender os braços"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os pulsos firmes"
+      },
+      {
+        "description": "Não bata os halteres no topo do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Scott com Barra W",
+    "description": "Exercício isolado para bíceps que reduz a participação do ombro, utilizando barra W para maior conforto articular.",
+    "experienceLevelId": 2,
+    "equipamentId": 2,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/roscascott.jpg",
+    "muscles": [
+      {
+        "muscleId": 1,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Apoie os braços no banco Scott"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra W com as palmas para cima"
+      },
+      {
+        "step": 3,
+        "description": "Flexione os cotovelos elevando a barra"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos apoiados no banco"
+      },
+      {
+        "description": "Não estenda completamente os braços na fase negativa"
+      }
+    ]
+  },
+  {
+    "name": "Tríceps Corda na Polia",
+    "description": "Exercício para tríceps que permite boa amplitude e contração no topo, utilizando corda para maior ativação das fibras.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/tricepscorda.jpg",
+    "muscles": [
+      {
+        "muscleId": 2,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a corda com as mãos próximas"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha os cotovelos junto ao corpo"
+      },
+      {
+        "step": 3,
+        "description": "Estenda os braços para baixo"
+      },
+      {
+        "step": 4,
+        "description": "Separe as mãos no final do movimento para maior contração"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ligeiramente inclinado para frente"
+      },
+      {
+        "description": "Contraia o tríceps no ponto máximo de extensão"
+      }
+    ]
+  },
+  {
+    "name": "Puxada Frontal com Triângulo",
+    "description": "Exercício para costas que enfatiza o latíssimo do dorso, utilizando pegada fechada para maior amplitude.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/puxadatriangulo.jpg",
+    "muscles": [
+      {
+        "muscleId": 4,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure o triângulo com as palmas voltadas uma para a outra"
+      },
+      {
+        "step": 2,
+        "description": "Puxe o triângulo em direção ao peito"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o peito aberto durante o movimento"
+      },
+      {
+        "description": "Evite balançar o corpo"
+      }
+    ]
+  },
+  {
+    "name": "Desenvolvimento Arnold",
+    "description": "Variante do desenvolvimento que trabalha todas as porções do deltoide, criada por Arnold Schwarzenegger.",
+    "experienceLevelId": 3,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/arnold.jpg",
+    "muscles": [
+      {
+        "muscleId": 5,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 10,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres na frente do corpo com as palmas voltadas para você"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os halteres enquanto gira os pulsos"
+      },
+      {
+        "step": 3,
+        "description": "No topo, as palmas devem estar voltadas para frente"
+      },
+      {
+        "step": 4,
+        "description": "Retorne à posição inicial invertendo o movimento"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Controle o movimento em todas as fases"
+      },
+      {
+        "description": "Mantenha o core tensionado"
+      }
+    ]
+  },
+  {
+    "name": "Agachamento Hack",
+    "description": "Variante de agachamento que reduz a carga na coluna, enfatizando o quadríceps.",
+    "experienceLevelId": 2,
+    "equipamentId": 4,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/hack.jpg",
+    "muscles": [
+      {
+        "muscleId": 6,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione-se na máquina com os ombros apoiados"
+      },
+      {
+        "step": 2,
+        "description": "Desça flexionando os joelhos até 90 graus"
+      },
+      {
+        "step": 3,
+        "description": "Empurre a plataforma para retornar à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha as costas retas contra o encosto"
+      },
+      {
+        "description": "Controle a descida"
+      }
+    ]
+  },
+  {
+    "name": "Flexão Nórdica",
+    "description": "Exercício avançado para isquiotibiais que trabalha a musculatura em alongamento dinâmico.",
+    "experienceLevelId": 3,
+    "equipamentId": 6,
+    "riskLevel": "hard",
+    "thumbnailUrl": "https://example.com/nordica.jpg",
+    "muscles": [
+      {
+        "muscleId": 7,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 12,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Ajoelhe-se com os pés fixos (ou com ajuda de parceiro)"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha o corpo reto da cabeça aos joelhos"
+      },
+      {
+        "step": 3,
+        "description": "Incline-se para frente controladamente"
+      },
+      {
+        "step": 4,
+        "description": "Use as mãos para amortecer a queda se necessário"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Comece com amplitude reduzida"
+      },
+      {
+        "description": "Mantenha o core tensionado"
+      }
+    ]
+  },
+  {
+    "name": "Panturrilha no Leg Press",
+    "description": "Exercício para panturrilhas que permite uso de carga elevada com segurança.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/panturrilhaleg.jpg",
+    "muscles": [
+      {
+        "muscleId": 8,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione apenas as pontas dos pés na plataforma"
+      },
+      {
+        "step": 2,
+        "description": "Empurre a plataforma com os pés"
+      },
+      {
+        "step": 3,
+        "description": "Desça os calcanhares o máximo possível"
+      },
+      {
+        "step": 4,
+        "description": "Eleve os calcanhares contraindo as panturrilhas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça uma pausa no topo do movimento"
+      },
+      {
+        "description": "Amplitude total é essencial"
+      }
+    ]
+  },
+  {
+    "name": "Abdominal Prancha Lateral",
+    "description": "Exercício isométrico para oblíquos e core, realizado na posição lateral.",
+    "experienceLevelId": 2,
+    "equipamentId": 6,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/pranchalateral.jpg",
+    "muscles": [
+      {
+        "muscleId": 9,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Apoie o antebraço no chão com o corpo de lado"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha o corpo reto da cabeça aos pés"
+      },
+      {
+        "step": 3,
+        "description": "Segure a posição pelo tempo determinado"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não deixe o quadril cair"
+      },
+      {
+        "description": "Contraia o core durante todo o exercício"
+      }
+    ]
+  },
+  {
+    "name": "Encolhimento na Smith",
+    "description": "Exercício para trapézio que permite maior estabilidade utilizando a máquina Smith.",
+    "experienceLevelId": 2,
+    "equipamentId": 5,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/encolhimentosmith.jpg",
+    "muscles": [
+      {
+        "muscleId": 10,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione a barra na frente do corpo"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os ombros em direção às orelhas"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os braços estendidos"
+      },
+      {
+        "description": "Contraia o trapézio no topo do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Coice na Polia",
+    "description": "Exercício isolado para glúteos que permite boa contração muscular.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/coice.jpg",
+    "muscles": [
+      {
+        "muscleId": 11,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fique de frente para a máquina com o cabo preso no tornozelo"
+      },
+      {
+        "step": 2,
+        "description": "Estenda a perna para trás contraindo o glúteo"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco estável"
+      },
+      {
+        "description": "Foque na qualidade do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Hiperextensão Lombar",
+    "description": "Exercício para fortalecimento da região lombar, importante para equilíbrio muscular posterior.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/hiperextensao.jpg",
+    "muscles": [
+      {
+        "muscleId": 12,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione-se no aparelho com os calcanhares apoiados"
+      },
+      {
+        "step": 2,
+        "description": "Desça o tronco controladamente"
+      },
+      {
+        "step": 3,
+        "description": "Suba até alinhar o tronco com as pernas"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Não hiperestenda a coluna"
+      },
+      {
+        "description": "Mantenha o movimento controlado"
+      }
+    ]
+  },
+  {
+    "name": "Adutora em Pé na Polia",
+    "description": "Exercício para adutores realizado na polia baixa, permitindo maior amplitude.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/adutorapolia.jpg",
+    "muscles": [
+      {
+        "muscleId": 13,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fique de lado para a polia com o cabo preso no tornozelo"
+      },
+      {
+        "step": 2,
+        "description": "Cruze a perna com o cabo na frente da perna de apoio"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Controle o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Abdutora em Pé na Polia",
+    "description": "Exercício para abdutores realizado na polia baixa, permitindo maior amplitude.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abdutorapolia.jpg",
+    "muscles": [
+      {
+        "muscleId": 14,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fique de lado para a polia com o cabo preso no tornozelo"
+      },
+      {
+        "step": 2,
+        "description": "Afaste a perna com o cabo para o lado"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Controle o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Punho Inversa",
+    "description": "Exercício específico para antebraços, realizado com pegada pronada.",
+    "experienceLevelId": 2,
+    "equipamentId": 1,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/punhoinverso.jpg",
+    "muscles": [
+      {
+        "muscleId": 15,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Apoie os antebraços em um banco com as palmas para baixo"
+      },
+      {
+        "step": 2,
+        "description": "Segure a barra com as mãos afastadas na largura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Flexione os punhos elevando a barra"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça o movimento completo"
+      },
+      {
+        "description": "Mantenha os antebraços apoiados"
+      }
+    ]
+  },
+  {
+    "name": "Crossover",
+    "description": "Exercício para peitorais que permite boa contração muscular, realizado na polia alta.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/crossover.jpg",
+    "muscles": [
+      {
+        "muscleId": 3,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione-se no centro das polias altas"
+      },
+      {
+        "step": 2,
+        "description": "Segure as alças com os braços ligeiramente flexionados"
+      },
+      {
+        "step": 3,
+        "description": "Traga as mãos para frente e para baixo em um movimento de abraço"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha leve flexão nos cotovelos"
+      },
+      {
+        "description": "Contraia o peito no final do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Barra Fixa",
+    "description": "Exercício fundamental para costas que trabalha principalmente o latíssimo do dorso.",
+    "experienceLevelId": 2,
+    "equipamentId": 6,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/barrafixa.jpg",
+    "muscles": [
+      {
+        "muscleId": 4,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 1,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure a barra com as mãos afastadas"
+      },
+      {
+        "step": 2,
+        "description": "Puxe o corpo para cima até o queixo passar a barra"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o peito aberto"
+      },
+      {
+        "description": "Evite balançar o corpo"
+      }
+    ]
+  },
+  {
+    "name": "Elevação Frontal com Halteres",
+    "description": "Exercício para deltoide anterior, realizado com halteres para maior amplitude.",
+    "experienceLevelId": 1,
+    "equipamentId": 3,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/elevacaofrontal.jpg",
+    "muscles": [
+      {
+        "muscleId": 5,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure os halteres na frente das coxas"
+      },
+      {
+        "step": 2,
+        "description": "Eleve os braços à frente até a altura dos ombros"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha leve flexão nos cotovelos"
+      },
+      {
+        "description": "Não eleve acima da linha dos ombros"
+      }
+    ]
+  },
+  {
+    "name": "Agachamento Búlgaro",
+    "description": "Exercício unilateral avançado para membros inferiores, com ênfase em quadríceps e glúteos.",
+    "experienceLevelId": 3,
+    "equipamentId": 3,
+    "riskLevel": "hard",
+    "thumbnailUrl": "https://example.com/bulgaro.jpg",
+    "muscles": [
+      {
+        "muscleId": 6,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione um pé atrás apoiado em um banco"
+      },
+      {
+        "step": 2,
+        "description": "Segure halteres ao lado do corpo"
+      },
+      {
+        "step": 3,
+        "description": "Desça flexionando o joelho da frente"
+      },
+      {
+        "step": 4,
+        "description": "Empurre com a perna da frente para retornar à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Controle a descida"
+      }
+    ]
+  },
+  {
+    "name": "Stiff com Halteres",
+    "description": "Exercício para posterior de coxas e glúteos, realizado com halteres para maior amplitude.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/stiffhalteres.jpg",
+    "muscles": [
+      {
+        "muscleId": 7,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Segure halteres com as palmas voltadas para o corpo"
+      },
+      {
+        "step": 2,
+        "description": "Mantenha as pernas semi-flexionadas"
+      },
+      {
+        "step": 3,
+        "description": "Incline o tronco para frente mantendo as costas retas"
+      },
+      {
+        "step": 4,
+        "description": "Retorne à posição inicial contraindo os glúteos"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha a coluna neutra"
+      },
+      {
+        "description": "O movimento deve vir do quadril"
+      }
+    ]
+  },
+  {
+    "name": "Panturrilha no Smith",
+    "description": "Exercício para panturrilhas utilizando a máquina Smith para maior estabilidade.",
+    "experienceLevelId": 1,
+    "equipamentId": 5,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/panturrilhasmith.jpg",
+    "muscles": [
+      {
+        "muscleId": 8,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Posicione um step ou plataforma sob a barra Smith"
+      },
+      {
+        "step": 2,
+        "description": "Apoie apenas as pontas dos pés no step"
+      },
+      {
+        "step": 3,
+        "description": "Eleve os calcanhares o máximo possível"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça uma pausa no topo do movimento"
+      },
+      {
+        "description": "Amplitude total é essencial"
+      }
+    ]
+  },
+  {
+    "name": "Abdominal Infra",
+    "description": "Exercício para porção inferior do reto abdominal, realizado em banco ou paralelas.",
+    "experienceLevelId": 2,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abdominalinfra.jpg",
+    "muscles": [
+      {
+        "muscleId": 9,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se no banco com as mãos segurando atrás da cabeça"
+      },
+      {
+        "step": 2,
+        "description": "Eleve as pernas flexionadas em direção ao peito"
+      },
+      {
+        "step": 3,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o movimento controlado"
+      },
+      {
+        "description": "Expire ao subir, inspire ao descer"
+      }
+    ]
+  },
+  {
+    "name": "Face Pull",
+    "description": "Exercício para deltoide posterior e trapézio, importante para equilíbrio muscular dos ombros.",
+    "experienceLevelId": 2,
+    "equipamentId": 7,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/facepull.jpg",
+    "muscles": [
+      {
+        "muscleId": 5,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 10,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Ajuste a polia na altura dos olhos"
+      },
+      {
+        "step": 2,
+        "description": "Segure a corda com as palmas voltadas uma para a outra"
+      },
+      {
+        "step": 3,
+        "description": "Puxe a corda em direção à testa separando as mãos"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha os cotovelos altos"
+      },
+      {
+        "description": "Contraia as escapulas no final do movimento"
+      }
+    ]
+  },
+  {
+    "name": "Glúteos no Cadeira Extensora",
+    "description": "Exercício para glúteos que utiliza a cadeira extensora para isolamento muscular.",
+    "experienceLevelId": 1,
+    "equipamentId": 4,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/gluteosextensora.jpg",
+    "muscles": [
+      {
+        "muscleId": 11,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se na máquina com as costas retas"
+      },
+      {
+        "step": 2,
+        "description": "Empurre o peso para trás usando apenas os glúteos"
+      },
+      {
+        "step": 3,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Foque na contração dos glúteos"
+      },
+      {
+        "description": "Mantenha o movimento controlado"
+      }
+    ]
+  },
+  {
+    "name": "Extensão de Quadril no Solo com Peso",
+    "description": "Exercício avançado para lombar e glúteos, realizado com peso adicional para maior resistência.",
+    "experienceLevelId": 2,
+    "equipamentId": 3,
+    "riskLevel": "medium",
+    "thumbnailUrl": "https://example.com/extensaoquadril.jpg",
+    "muscles": [
+      {
+        "muscleId": 12,
+        "isPrimary": true
+      },
+      {
+        "muscleId": 11,
+        "isPrimary": false
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Deite-se de bruços com um halter sobre as costas"
+      },
+      {
+        "step": 2,
+        "description": "Eleve simultaneamente braços e pernas"
+      },
+      {
+        "step": 3,
+        "description": "Mantenha a posição por alguns segundos"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Contraia glúteos e lombar durante o movimento"
+      },
+      {
+        "description": "Comece sem peso para dominar a técnica"
+      }
+    ]
+  },
+  {
+    "name": "Adutora em Pé com Elástico",
+    "description": "Exercício para adutores realizado com elástico, permitindo maior liberdade de movimento.",
+    "experienceLevelId": 1,
+    "equipamentId": 6,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/adutoraelastico.jpg",
+    "muscles": [
+      {
+        "muscleId": 13,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fixe o elástico em um ponto baixo"
+      },
+      {
+        "step": 2,
+        "description": "Passe o elástico pelo tornozelo"
+      },
+      {
+        "step": 3,
+        "description": "Cruze a perna com o elástico na frente da perna de apoio"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Controle o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Abdutora em Pé com Elástico",
+    "description": "Exercício para abdutores realizado com elástico, permitindo maior liberdade de movimento.",
+    "experienceLevelId": 1,
+    "equipamentId": 6,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/abduoraelastico.jpg",
+    "muscles": [
+      {
+        "muscleId": 14,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Fixe o elástico em um ponto baixo"
+      },
+      {
+        "step": 2,
+        "description": "Passe o elástico pelo tornozelo"
+      },
+      {
+        "step": 3,
+        "description": "Afaste a perna com o elástico para o lado"
+      },
+      {
+        "step": 4,
+        "description": "Retorne controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Mantenha o tronco ereto"
+      },
+      {
+        "description": "Controle o movimento"
+      }
+    ]
+  },
+  {
+    "name": "Rosca Punho com Halteres",
+    "description": "Exercício específico para antebraços, realizado com halteres para maior amplitude.",
+    "experienceLevelId": 1,
+    "equipamentId": 3,
+    "riskLevel": "easy",
+    "thumbnailUrl": "https://example.com/punhohalteres.jpg",
+    "muscles": [
+      {
+        "muscleId": 15,
+        "isPrimary": true
+      }
+    ],
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Sente-se com os antebraços apoiados nas coxas"
+      },
+      {
+        "step": 2,
+        "description": "Segure os halteres com as palmas para cima"
+      },
+      {
+        "step": 3,
+        "description": "Flexione os punhos elevando os halteres"
+      },
+      {
+        "step": 4,
+        "description": "Desça controladamente à posição inicial"
+      }
+    ],
+    "tips": [
+      {
+        "description": "Faça o movimento completo"
+      },
+      {
+        "description": "Mantenha os antebraços apoiados"
+      }
+    ]
+  }
+]
