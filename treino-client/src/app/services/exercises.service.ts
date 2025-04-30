@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Equipament, Exercise, Muscle, ReqParams } from '../utils/interfaces';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from './users.service.ts.service';
+import { environment } from '../../enviroments/enviroment';
 
 
 
@@ -28,7 +29,7 @@ export interface ExerciseReponse extends DefaultRes {
 })
 export class ExercisesService {
 
-  readonly apiUrl = 'http://localhost:3000'
+  readonly apiUrl = environment.apiUrl
   constructor(private http: HttpClient, private userService: UserService) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
