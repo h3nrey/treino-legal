@@ -13,11 +13,11 @@ import { RenderMode} from "@angular/ssr"
  
 export const routes: Routes = [
     { path: "", component: HomeComponent },
-    // { path: "exercises/:exercise", component: ExerciseDetailsComponent },
+    { path: "exercises/:exercise", component: ExerciseDetailsComponent },
     { path: "exercises", component: ExercisesHomeComponent},
-    // { path: "exercises/section/:sectionType", component: ExerciseSectionComponent, data: { renderMode: RenderMode.Server}},
+    { path: "exercises/section/:sectionType", component: ExerciseSectionComponent},
     { path: "search", component: SearchComponent},
-    // {path: "users/:id", component: UserProfileComponent, data: { renderMode: RenderMode.Server}},
+    {path: "users/:id", component: UserProfileComponent},
     {path: "register", component: SignupComponent, outlet: "modal", canActivate: [unAuthGuard]},
     {path: "login", component: LoginComponent, outlet: "modal", canActivate: [unAuthGuard]},
 
