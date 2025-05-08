@@ -3,13 +3,14 @@ import { RouterLink } from '@angular/router';
 import { Exercise } from '../../utils/interfaces';
 import { ExercisesService } from '../../services/exercises.service';
 import { UserService } from '../../services/users.service.ts.service';
+import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
 
 interface CardExercise extends Exercise {
   favorited? : boolean;
 }
 @Component({
   selector: 'exercise-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ImageFallbackDirective],
   templateUrl: './exercise-card.component.html',
   styleUrl: './exercise-card.component.scss'
 })
@@ -24,6 +25,14 @@ export class ExerciseCardComponent implements OnInit {
   constructor(private readonly elRef: ElementRef, private readonly exerciseService: ExercisesService, private userService: UserService) {}
   ngOnInit() {
     this.extractTags();
+  }
+
+  handleImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = this.PLACEHOLDERIMAGE;
+    
+    // Optional: prevent infinite loop if placeholder also fails to load
+    imgElement.onerror = null;
   }
 
   extractTags() {
