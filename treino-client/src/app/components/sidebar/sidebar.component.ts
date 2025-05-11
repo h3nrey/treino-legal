@@ -28,11 +28,11 @@ export class SidebarComponent implements OnInit{
       text: 'Exercicios',
       url: 'exercises'
     },
-    // {
-    //   text: "Treinos",
-    //   url: 'trainings',
-    //   sublinks: []
-    // },
+    {
+      text: "Treinos",
+      url: 'trainings',
+      sublinks: []
+    },
     // {
     //   text: "Rotinas",
     //   url: 'routines',

@@ -1,3 +1,20 @@
+export interface Training {
+    id: number,
+    title: string,
+    description: string,
+    type: string,
+    duration: number,
+    experienceLevel: string,
+    exercises: TrainingExercise[],
+    thumbnailUrl: string,
+
+}
+
+export interface TrainingExercise extends Exercise {
+    reps: number,
+    sets: number,
+}
+
 export interface Exercise {
     id: number,
     name: string,
