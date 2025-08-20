@@ -1,9 +1,10 @@
 <div class="flex flex-col gap-4 mb-4">
-    <div class="text-2xl">
-        Mostrando resultados para: 
-        <span class="font-bold">{{searchTerm}}</span>
-        
-    </div>
+    @if(searchTerm) {
+        <div class="text-2xl">
+            Mostrando resultados para: 
+            <span class="font-bold">{{searchTerm}}</span>
+        </div>
+    }
     <div class="flex gap-4 items-center">
         <filter-select 
             placeholderText="Grupo Muscular" 
