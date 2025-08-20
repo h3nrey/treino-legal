@@ -67,6 +67,6 @@ export class HeaderSearchbarComponent {
 
   submitSearch() {
     this.clearResults();
-    this.router.navigate(['/search'], {queryParams: {keyword: this.searchTerm, page: 0}})
+    this.router.navigate(['/search'], {queryParams: {keyword: this.searchTerm}})
   }
 }
