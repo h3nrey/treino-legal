@@ -14,7 +14,7 @@
                     (click)="selectOption($index)"
                 >
                     <span class="">{{option}}</span>
-                    <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOptionIndex==$index ? 'visible' : 'invisible'">
+                    <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOption==option? 'visible' : 'invisible'">
                 </div>
             }
         </div>

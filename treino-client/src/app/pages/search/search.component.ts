@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit{
   totalCount = 0;
   muscleGroup = '';
   filters: {muscle: string, equipament: string} = {muscle: '', equipament: ''}
-  params: ExerciseParams = {page: 0, count: 16, muscle: '', equipament: ''}
+  params: ExerciseParams = {page: 0, muscle: '', equipament: ''}
   closeIcon = 'assets/icons/close.svg'
   muscles: string[] = []
   equipaments: string[] = []
@@ -75,21 +75,18 @@ export class SearchComponent implements OnInit{
   }
 
   clearFilters() {
-    const {muscle, equipament, ...clearedParams} = this.params
     this.searchService.emitClearFilters()
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: clearedParams,
+      queryParams: {keyword: ""},
       queryParamsHandling: 'replace',
       replaceUrl: true
     })
   }
 
   loadExercises() {
-    console.log(this.params);
     this.params['search'] = this.searchTerm;
     this.exerciseService.getExercises(this.params).subscribe(exercises => {
-      console.log(exercises)
       this.exercises = exercises.data;
       this.totalCount = exercises.totalCount;
     })
