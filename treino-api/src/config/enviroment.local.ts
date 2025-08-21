@@ -3,7 +3,7 @@ export const localEnviroment = {
   jwtSecret: process.env.JWT_SECRET,
   port: 3000,
   db: {
-    host: "db",
+    host: "host.docker.internal",
     port: 4200,
     user: "ramondino",
     password: "chrisBumbstead",

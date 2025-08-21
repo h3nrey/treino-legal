@@ -4,7 +4,7 @@ import { SidebarService } from '../../services/sidebar.service';
 import { CommonModule, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-home-section',
+  selector: 'HomeSection',
   imports: [RouterLink, NgClass, CommonModule],
   templateUrl: './home-section.component.html',
   styleUrl: './home-section.component.scss'

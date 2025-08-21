@@ -105,11 +105,14 @@ model Training {
   TraningExercises TraningExercises[]
   userId           String
   userTranings     UserTranings[]
+  thumbnailUrl     String?
 }
 
 model TraningExercises {
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   training   Training @relation(fields: [trainingId], references: [id])
+  sets       Int      @default(0)
+  reps       Int      @default(0)
   exerciseId Int
   trainingId Int
 

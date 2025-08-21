@@ -1,0 +1,36 @@
+<div>
+    <div class="bg-lightRed rounded-sm p-2 flex flex-col gap-4">
+        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laboriosam totam autem aliquid. Maiores exercitationem facere nobis ex velit nesciunt, ut provident alias tempora earum, quos ratione, veritatis autem saepe?</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias tempora, autem fugit quasi ipsa reiciendis repudiandae dignissimos nesciunt totam, iusto ad temporibus vero molestias! Quos voluptates dolores eligendi? Perspiciatis.</p>
+    </div>
+
+    <div class="bg-white rounded-sm p-2">
+        <div>
+            <h2>Treinos mais populares</h2>
+            <p>Treinos mais populares entre os usuários da plataforma.</p>
+        </div>
+
+        <div class="flex justify-between">
+            <button (click)="scrollRight()">PREV</button>
+            <div class="relative  w-full overflow-hidden max-w-5xl" #carouselContainer>
+                <div class="flex animate-infinite-scroll" #carouselTrack [style.transform]="'translateX(' + scrollPosition + 'px)'">
+                    <div class="flex shrink-0 items-center justify-around">
+                        @for (training of trainings; track $index) {
+                            <!-- <CarrousselCard [data]="training"></CarrousselCard> -->
+                        }
+                    </div>
+    
+                    <div class="flex shrink-0 items-center justify-around">
+                        @for (training of trainings; track $index) {
+                            <!-- <CarrousselCard [data]="training"></CarrousselCard> -->
+                        }
+                    </div>
+                </div>
+    
+                
+            </div>
+            <button (click)="scrollLeft()">NEXT</button>
+
+        </div>
+    </div>
+</div>

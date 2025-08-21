@@ -38,8 +38,8 @@ export async function getTrainings(req: TrainingRequest, res: Response) {
   if (query.type) whereQuery.type = query.type ?? undefined;
 
   const trainings = await prisma.training.findMany({
-    skip: Number(page) * Number(count),
-    take: Number(count),
+    skip: Number(page ?? 0) * Number(count ?? 5),
+    take: Number(count ?? 5),
     include: selectQuery,
     where: whereQuery,
   });
@@ -63,8 +63,11 @@ export async function getTraining(req: Request, res: Response) {
     include: {
       TraningExercises: {
         select: {
+          sets: true,
+          reps: true,
           exercise: {
             select: {
+              id: true,
               name: true,
               description: true,
               thumbnailUrl: true,

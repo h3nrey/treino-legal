@@ -12,6 +12,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - API_PORT=${API_PORT}
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - .:/api
     restart: always

@@ -17,9 +17,9 @@
         
                 <nav class="flex flex-col w-full mt-4 overflow-hidden">
                     @for (link of siteLinks; track $index) {
-                    <sidebar-link [isOpen]="isOpen" [link]="link">
-                        {{link.text}}
-                    </sidebar-link>
+                        <sidebar-link [isOpen]="isOpen" [link]="link">
+                            {{link.text}}
+                        </sidebar-link>
                     }
         
                 </nav>

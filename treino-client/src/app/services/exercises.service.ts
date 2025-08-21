@@ -23,7 +23,6 @@ interface DefaultRes {
 export interface ExerciseReponse extends DefaultRes {
   data: Exercise[]
 }
-
 @Injectable({
   providedIn: 'root'
 })

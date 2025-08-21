@@ -6,11 +6,19 @@
   <div class="flex flex-col gap-8">
 
 
-    <app-home-section [sectionLink]="'/exercises'" [sectionTitle]="'Exercicios Recentes'">
+    <HomeSection [sectionLink]="'/exercises'" [sectionTitle]="'Exercicios Populares'">
       @for(exercise of popularExercises; track $index) {
         <exercise-card [exercise]=" exercise" />
       }
-    </app-home-section>
+    </HomeSection>
+
+    <HomeSection [sectionLink]="'/trainings'" [sectionTitle]="'Treinos Populares'">
+      @for(exercise of popularExercises; track $index) {
+        <exercise-card [exercise]=" exercise" />
+      }
+    </HomeSection>
+
+    
   </div>
 </div>
 

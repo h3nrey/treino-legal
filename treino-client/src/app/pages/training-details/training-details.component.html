@@ -1,0 +1,68 @@
+<div class="flex justify-between gap-4">
+    <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+            <h1 class="font-bold text-2xl">
+                {{training?.title}}
+            </h1>
+            <p>
+                {{training?.description}}
+            </p>
+        </div>
+        
+
+        <div>
+            <div class="flex flex-col bg-lightRed rounded-md p-2 text-white">
+                <div class="flex gap-2">
+                    <span class="min-w-80 font-semibold">Exercicios</span>
+                    <div class="flex gap-2">
+                        <span>Séries</span>
+                        <span>Repetições</span>
+                    </div>
+                    
+                </div>
+                @for(exercise of training?.exercises; track $index) {
+                    <div class="flex">
+                        <a [routerLink]="'/exercises/'+exercise.id" class="min-w-80">
+                            {{exercise.name}}
+                        </a>
+                        <div class="flex justify-center w-full">
+                            <span class="w-6">
+                                {{exercise.reps}}
+                            </span>
+                            <span class="w-10">
+                                
+                                {{exercise.sets}}
+                            </span>
+                        </div>
+                        
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <aside class="flex flex-col gap-4">
+        <div class="flex flex-col">
+            <span class="font-semibold text-xl">Detalhes</span>
+            <div class="bg-lightRed text-white rounded-md flex flex-col gap-2 p-2 text-nowrap">
+                <DetailsRow [caption]="'Tipo'" [value]="training.type"></DetailsRow>
+                <DetailsRow [caption]="'Duração'" [value]="training?.duration+'min'"></DetailsRow>
+                <DetailsRow [caption]="'Nível de experiência'" [value]="training.experienceLevel"></DetailsRow>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+            <span class="font-semibold text-xl">Treinos Relacionados</span>
+            @for (relatedTraining of relatedTrainings; track $index) {
+                <a [routerLink]="'/trainings/'+relatedTraining.id" class="cursor-pointer">
+                    <img 
+                        [src]="relatedTraining.thumbnailUrl" alt="" 
+                        class="h-28 w-full object-cover rounded-sm"
+                    >
+                    <div>
+                        {{relatedTraining.title}}
+                    </div>
+                </a>
+            }
+        </div>
+    </aside>
+</div>

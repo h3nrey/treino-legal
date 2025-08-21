@@ -10,7 +10,7 @@ interface CardExercise extends Exercise {
 }
 @Component({
   selector: 'exercise-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ImageFallbackDirective],
   templateUrl: './exercise-card.component.html',
   styleUrl: './exercise-card.component.scss'
 })
@@ -31,6 +31,14 @@ export class ExerciseCardComponent implements OnInit {
   ngOnInit() {
 
     this.extractTags();
+  }
+
+  handleImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = this.PLACEHOLDERIMAGE;
+    
+    // Optional: prevent infinite loop if placeholder also fails to load
+    imgElement.onerror = null;
   }
 
   extractTags() {
