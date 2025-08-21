@@ -16,8 +16,8 @@ export interface ExerciseParams extends ReqParams {
 
 interface DefaultRes {
   currentPage: number,
-  totalCount: number,
   data: any,
+  totalCount: number,
 }
 
 export interface ExerciseReponse extends DefaultRes {

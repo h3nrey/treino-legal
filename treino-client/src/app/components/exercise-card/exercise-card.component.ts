@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Exercise } from '../../utils/interfaces';
 import { ExercisesService } from '../../services/exercises.service';
 import { UserService } from '../../services/users.service.ts.service';
+import { SnackService } from '../../services/snack.service';
 
 interface CardExercise extends Exercise {
   favorited? : boolean;
@@ -21,8 +22,14 @@ export class ExerciseCardComponent implements OnInit {
   PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
   showLoginPopup = false;
 
-  constructor(private readonly elRef: ElementRef, private readonly exerciseService: ExercisesService, private userService: UserService) {}
+  constructor(
+    private readonly elRef: ElementRef, 
+    private readonly exerciseService: ExercisesService,
+     private userService: UserService,
+     private snackService: SnackService
+  ) {}
   ngOnInit() {
+
     this.extractTags();
   }
 
@@ -36,7 +43,7 @@ export class ExerciseCardComponent implements OnInit {
     e.stopPropagation();
     e.preventDefault();
 
-
+    this.snackService.show(this.exercise.favorited ? 'Removed from favorites' : 'Added to favorites');
     if(this.exercise.favorited) {
       this.exerciseService.unFavoriteExercise(this.exercise.id).subscribe({
         next: (res) => {

@@ -6,10 +6,11 @@ import { HomeHeaderComponent } from "./components/home/header/header.component";
 import { Exercise } from './utils/interfaces';
 import { ExerciseCardComponent } from './components/exercise-card/exercise-card.component';
 import { ExercisesService } from './services/exercises.service';
+import { SnackComponent } from "./components/snack/snack.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, BannerComponent, HomeHeaderComponent, ExerciseCardComponent, RouterLink],
+  imports: [RouterOutlet, SidebarComponent, BannerComponent, HomeHeaderComponent, ExerciseCardComponent, RouterLink, SnackComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

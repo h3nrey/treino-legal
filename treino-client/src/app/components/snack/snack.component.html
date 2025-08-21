@@ -1,0 +1,13 @@
+@if(snack) {
+    <div
+          class="fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow-lg text-white transition-opacity duration-300"
+          [ngClass]="{
+            'bg-green-500': snack.type === 'success',
+            'bg-yellow-500': snack.type === 'warning',
+            'bg-red-500': snack.type === 'error'
+          }"
+        >
+          {{ snack.message }}
+        </div>
+    
+}

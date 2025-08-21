@@ -76,7 +76,7 @@ export class ExerciseSectionComponent implements OnInit {
   loadExercises() {
     this.exerciseService.getExercises(this.sectionParams).subscribe((exercises: ExerciseReponse) => {
       this.exercises = exercises.data;
-      this.totalCount = exercises.totalCount;
+      // this.totalCount = exercises.totalCount;
     })
   }
 
