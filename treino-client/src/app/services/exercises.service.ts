@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
 import { Equipament, Exercise, ExerciseResponse, Muscle, ReqParams } from '../utils/interfaces';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './users.service.ts.service';
 import { environment } from '../../enviroments/enviroment';
 import { buildHttpParams } from '../utils/utils';
-
-
 
 export interface ExerciseParams extends ReqParams {
   equipament?: string,
@@ -30,7 +28,7 @@ export interface ExerciseReponse extends DefaultRes {
 export class ExercisesService {
 
   readonly apiUrl = environment.apiUrl
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private readonly http: HttpClient, private readonly userService: UserService) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
     const exercisesList = exercises.filter(exercise => exercise.type == muscleGroup)
@@ -85,8 +83,4 @@ export class ExercisesService {
   getEquipaments(equipament: string = ''): Observable<Equipament[]> {
     return this.http.get<Equipament[]>(`${this.apiUrl}/equipaments?name=${equipament}`)
   }
-
-  // searchExercises(searchTerm): Observable<any> {
-  //   // const data =
-  // }
 }

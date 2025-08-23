@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.popularExercises = []
 
     const params = {
-      sortBy: 'popularity',
+      sort_by: 'popularity',
       page: 0,
       count: 6,
       userId: this.user?.id,

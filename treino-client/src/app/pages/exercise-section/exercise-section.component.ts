@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ExerciseReponse, ExercisesService } from '../../services/exercises.service';
-import { Exercise } from '../../utils/interfaces';
+import { ExercisesService } from '../../services/exercises.service';
+import { Exercise, ExerciseResponse } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgStyle } from '@angular/common';
@@ -74,8 +74,8 @@ export class ExerciseSectionComponent implements OnInit {
   }
 
   loadExercises() {
-    this.exerciseService.getExercises(this.sectionParams).subscribe((exercises: ExerciseReponse) => {
-      this.exercises = exercises.data;
+    this.exerciseService.getExercises(this.sectionParams).subscribe((res: ExerciseResponse) => {
+      this.exercises = res.data;
       // this.totalCount = exercises.totalCount;
     })
   }
