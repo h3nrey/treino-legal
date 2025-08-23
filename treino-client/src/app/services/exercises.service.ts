@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
-import { Equipament, Exercise, Muscle, ReqParams } from '../utils/interfaces';
+import { Equipament, Exercise, ExerciseResponse, Muscle, ReqParams } from '../utils/interfaces';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from './users.service.ts.service';
 import { environment } from '../../enviroments/enviroment';
+import { buildHttpParams } from '../utils/utils';
 
 
 
@@ -40,30 +41,13 @@ export class ExercisesService {
     return this.http.get<Exercise[]>(`${this.apiUrl}/exercises?sort_by=popularity&page=0&count=3`)
   }
 
-  getExercises(params: ExerciseParams): Observable<ExerciseReponse> {
-    let httpParams = new HttpParams();
-
-    Object.entries(params).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach(val => {
-          httpParams = httpParams.append(key, val);
-        });
-      } else {
-        httpParams = httpParams.set(key, value);
-      }
-    });
-
-    return this.http.get<ExerciseReponse>(`${this.apiUrl}/exercises`, { params: httpParams })
+  getExercises(params: ExerciseParams): Observable<ExerciseResponse> {
+    const httpParams = buildHttpParams({ ...params});
+    return this.http.get<ExerciseResponse>(`${this.apiUrl}/exercises`, { params: httpParams })
   }
 
   getFavoritedExercises() {
-    const token = this.userService.getToken()
-    if (!token) return of([])
-    return this.http.get<Exercise[]>(`${this.apiUrl}/users/me/favorites`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    return this.http.get<Exercise[]>(`${this.apiUrl}/users/me/favorites`)
   }
 
   favoriteExercise(exerciseId: number) {

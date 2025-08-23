@@ -1,3 +1,19 @@
+export interface PaginatedResponse<T> {
+    data: T[];
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+    totalCount: number;
+    totalPages: number;
+  };
+  sort?: {
+    sortBy: string;
+    order: 'asc' | 'desc';
+  };
+}
+
+export interface ExerciseResponse extends PaginatedResponse<Exercise> {}
+
 export interface Training {
     id: number,
     title: string,
