@@ -1,62 +1,22 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { GetExercisesSchema } from "../dtos/exercise.dto";
+import { getExercisesService } from "../services/exercise.service";
 
 const prisma = new PrismaClient();
 
-export const getExercises = async (_req: Request, res: Response) => {
-  const equipament =
-    typeof _req.query.equipament === "string"
-      ? _req.query.equipament
-      : undefined;
-  const muscle = _req.query.muscle;
-  const search =
-    typeof _req.query.search === "string" ? _req.query.search : undefined;
-  const page = _req.query.page ?? 0;
-  const count = _req.query.count ?? 10;
-  const userId = _req.query.userId as string;
-
-  const whereCondition: any = {};
-
-  if (equipament) {
-    whereCondition.equipament = { is: { name: equipament } };
+export const getExercises = async (req: Request, res: Response) => {
+  try {
+    const params = GetExercisesSchema.parse(req.query);
+    const result = await getExercisesService(params);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: "Invalid request" });
+    }
   }
-
-  if (muscle) {
-    whereCondition.usedMuscles = { some: { muscle: { name: muscle } } };
-  }
-
-  if (search) {
-    whereCondition.name = { contains: search, mode: "insensitive" };
-  }
-
-  const [exercises, totalCount] = await Promise.all([
-    prisma.exercise.findMany({
-      where: whereCondition,
-      skip: Number(page) * Number(count),
-      take: Number(count),
-      include: {
-        usedMuscles: { include: { muscle: true } },
-        UserExercises: userId
-          ? {
-              where: { userId: userId },
-              select: { id: true },
-            }
-          : false,
-      },
-    }),
-    prisma.exercise.count({
-      where: whereCondition,
-    }),
-  ]);
-
-  res.json({
-    data: exercises.map((exercise) => ({
-      ...exercise,
-      favorited: userId ? exercise.UserExercises.length > 0 : false,
-    })),
-    currentPage: page,
-    totalCount: totalCount,
-  });
 };
 
 export const getExerciseById = async (req: Request, res: Response) => {
