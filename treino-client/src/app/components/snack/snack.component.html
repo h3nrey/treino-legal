@@ -1,13 +1,19 @@
-@if(snack) {
+@if (snack) {
+  <div
+    [@snackAnimation]
+    class="fixed bottom-5 left-5 flex w-80 max-w-[90%] items-stretch gap-3 rounded-lg bg-brightBlack p-4 text-white shadow-lg"
+  >
     <div
-          class="fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow-lg text-white transition-opacity duration-300"
-          [ngClass]="{
-            'bg-green-500': snack.type === 'success',
-            'bg-yellow-500': snack.type === 'warning',
-            'bg-red-500': snack.type === 'error'
-          }"
-        >
-          {{ snack.message }}
-        </div>
-    
+      class="w-1.5 flex-shrink-0 rounded-full"
+      [ngClass]="{
+        'bg-successful': snack.type === 'success',
+        'bg-yellow-500': snack.type === 'warning',
+        'bg-lightRed': snack.type === 'error'
+      }"
+    ></div>
+
+    <span>
+      {{ snack.message }}
+    </span>
+  </div>
 }
