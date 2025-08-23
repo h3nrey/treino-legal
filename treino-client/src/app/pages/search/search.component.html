@@ -10,12 +10,12 @@
             placeholderText="Grupo Muscular" 
             [options]="muscles" 
             [currentOption]="filters.muscle"
-            (changeOptionEvent)="updateFilters($event, 'muscle')"/>
+            (changeOptionEvent)="updateFilters({muscle: $event})"/>
         <filter-select 
             placeholderText="Equipamentos" 
             [options]="equipaments" 
             [currentOption]="filters.equipament"
-        (changeOptionEvent)="updateFilters($event, 'equipament')"/>
+        (changeOptionEvent)="updateFilters({equipament: $event})"/>
         <button 
         (click)="clearFilters()" 
         class="flex items-center rounded-full outline gap-1  px-1  h-min outline-2 outline-lightBlack cursor-pointer"
@@ -36,5 +36,5 @@
 </div>
 
 @if(exercises.length > 0) {
-    <app-paginator [page]="page" [cardsCount]="itemsPerPage" [totalCount]="totalCount"/>
+    <app-paginator [page]="params.page" [cardsCount]="params.count" [totalCount]="totalCount"/>
 }
