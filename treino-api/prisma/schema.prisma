@@ -20,8 +20,8 @@ model User {
 
 model UserExercises {
   id         Int      @id @default(autoincrement())
-  exercise   Exercise @relation(fields: [exerciseId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   exerciseId Int
   userId     String
 }
@@ -53,7 +53,7 @@ model ExerciseInstruction {
   step        Int
   description String
   imageUrl    String?
-  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  exercise    Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
 
   @@id([exerciseId, step])
 }
@@ -62,7 +62,7 @@ model ExerciseTips {
   id          Int      @id @default(autoincrement())
   exerciseId  Int
   description String
-  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  exercise    Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
 }
 
 model Muscle {
@@ -109,8 +109,8 @@ model Training {
 }
 
 model TraningExercises {
-  exercise   Exercise @relation(fields: [exerciseId], references: [id])
-  training   Training @relation(fields: [trainingId], references: [id])
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
   sets       Int      @default(0)
   reps       Int      @default(0)
   exerciseId Int
@@ -174,6 +174,6 @@ model MusclesExercises {
   exerciseId Int
   isPrimary  Boolean @default(false)
 
-  muscle   Muscle   @relation(fields: [muscleId], references: [id])
-  exercise Exercise @relation(fields: [exerciseId], references: [id])
+  muscle   Muscle   @relation(fields: [muscleId], references: [id], onDelete: Cascade)
+  exercise Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
 }
