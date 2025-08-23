@@ -1,25 +1,19 @@
-# Use an official Node image
+# Development Dockerfile
 FROM node:20
 
-# Create app directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install app dependencies
 RUN npm install
 
-# Copy the rest of the app
-COPY . .
+# Install nodemon globally (optional)
+RUN npm install -g nodemon
 
-# Generate prisma client
+
+COPY . .
 RUN npx prisma generate
 
-RUN npm run build
-
-# Expose the port your app runs on (change if needed)
+# Expose API port
 EXPOSE 3000
 
-# Start the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
