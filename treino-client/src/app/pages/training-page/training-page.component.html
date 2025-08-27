@@ -10,27 +10,10 @@
             <p>Treinos mais populares entre os usuários da plataforma.</p>
         </div>
 
-        <div class="flex justify-between">
-            <button (click)="scrollRight()">PREV</button>
-            <div class="relative  w-full overflow-hidden max-w-5xl" #carouselContainer>
-                <div class="flex animate-infinite-scroll" #carouselTrack [style.transform]="'translateX(' + scrollPosition + 'px)'">
-                    <div class="flex shrink-0 items-center justify-around">
-                        @for (training of trainings; track $index) {
-                            <!-- <CarrousselCard [data]="training"></CarrousselCard> -->
-                        }
-                    </div>
-    
-                    <div class="flex shrink-0 items-center justify-around">
-                        @for (training of trainings; track $index) {
-                            <!-- <CarrousselCard [data]="training"></CarrousselCard> -->
-                        }
-                    </div>
-                </div>
-    
-                
-            </div>
-            <button (click)="scrollLeft()">NEXT</button>
+        <div class="flex">
+            @for(exercise of popularTrainings; track $index) {
 
+            }
         </div>
     </div>
 </div>

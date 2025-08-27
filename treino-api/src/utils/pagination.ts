@@ -1,3 +1,9 @@
+export interface paginatedRequest {
+  page: number;
+  count: number;
+  sortBy?: string;
+  order?: "asc" | "desc";
+}
 export interface PaginatedResponse<T> {
   data: T[];
   pagination: {

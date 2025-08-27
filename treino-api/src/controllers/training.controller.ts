@@ -1,6 +1,8 @@
 import { PrismaClient, TrainingType } from "@prisma/client";
 import { Request, Response } from "express";
 import { AuthRequest } from "../middleware/auth";
+import { listTrainings } from "../services/training.service";
+import { GetTrainingsSchema } from "../dtos/training.dto";
 
 const prisma = new PrismaClient();
 
@@ -11,44 +13,58 @@ interface TrainingRequest extends Request {
     type?: TrainingType;
   };
 }
-export async function getTrainings(req: TrainingRequest, res: Response) {
-  const query = req.query;
-  const { page, count } = query;
-  const selectQuery = {
-    TraningExercises: {
-      select: {
-        exercise: {
-          select: {
-            name: true,
-            description: true,
-            usedMuscles: {
-              select: { muscle: { select: { id: true, name: true } } },
-            },
-            thumbnailUrl: true,
-          },
-        },
-      },
-    },
-  };
+// export async function getTrainings(req: TrainingRequest, res: Response) {
+//   const query = req.query;
+//   const { page, count } = query;
+//   const selectQuery = {
+//     TraningExercises: {
+//       select: {
+//         exercise: {
+//           select: {
+//             name: true,
+//             description: true,
+//             usedMuscles: {
+//               select: { muscle: { select: { id: true, name: true } } },
+//             },
+//             thumbnailUrl: true,
+//           },
+//         },
+//       },
+//     },
+//   };
 
-  const whereQuery: any = {
-    isPublic: true,
-  };
+//   const whereQuery: any = {
+//     isPublic: true,
+//   };
 
-  if (query.type) whereQuery.type = query.type ?? undefined;
+//   if (query.type) whereQuery.type = query.type ?? undefined;
 
-  const trainings = await prisma.training.findMany({
-    skip: Number(page ?? 0) * Number(count ?? 5),
-    take: Number(count ?? 5),
-    include: selectQuery,
-    where: whereQuery,
-  });
+//   const trainings = await prisma.training.findMany({
+//     skip: Number(page ?? 0) * Number(count ?? 5),
+//     take: Number(count ?? 5),
+//     include: selectQuery,
+//     where: whereQuery,
+//   });
 
-  res.json({
-    data: trainings,
-    currentPage: Number(page),
-    totalCount: Number(count),
-  });
+//   res.json({
+//     data: trainings,
+//     currentPage: Number(page),
+//     totalCount: Number(count),
+//   });
+// }
+
+export async function getTrainings(req: Request, res: Response) {
+  try {
+    const params = GetTrainingsSchema.parse(req.query);
+    const result = await listTrainings(params);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: "Invalid request" });
+    }
+  }
 }
 
 export async function getTraining(req: Request, res: Response) {

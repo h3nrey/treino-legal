@@ -14,6 +14,8 @@ export interface PaginatedResponse<T> {
 
 export interface ExerciseResponse extends PaginatedResponse<Exercise> {}
 
+export interface TrainingResponse extends PaginatedResponse<Training>{}
+
 export interface Training {
     id: number,
     title: string,
@@ -60,7 +62,7 @@ export interface Equipament {
 }
 
 export interface ReqParams {
-    page: number,
+    page?: number,
     count?: number,
     search?: string,
     sortBy?: string

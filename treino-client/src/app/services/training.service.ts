@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Exercise, ReqParams, Training } from '../utils/interfaces';
+import { Exercise, ReqParams, Training, TrainingResponse } from '../utils/interfaces';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../enviroments/enviroment';
 import { map, Observable } from 'rxjs';
+import { buildHttpParams } from '../utils/utils';
 
 interface TrainingRes {
 
@@ -16,20 +17,10 @@ export class TrainingService {
   constructor(private http: HttpClient) { }
 
 
-  getPopularTrainings(params: ReqParams): Observable<{data: Training[]}>{
-    let httpParams: HttpParams =  new HttpParams();
+  getPopularTrainings(params: ReqParams): Observable<TrainingResponse>{
+    const httpParams = buildHttpParams({...params});
 
-    Object.entries(params).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach(val => {
-          httpParams = httpParams.append(key, val);
-        });
-      } else {
-        httpParams = httpParams.set(key, value);
-      }
-    });
-
-    return this.http.get<{data: Training[]}>(`${this.apiUrl}/trainings`, { params: httpParams})
+    return this.http.get<TrainingResponse>(`${this.apiUrl}/trainings`, { params: httpParams})
   }
 
   getTraining(id: string): Observable<Training> {
