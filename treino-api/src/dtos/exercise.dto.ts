@@ -10,12 +10,12 @@ export const GetExercisesSchema = z.object({
   page: z
     .string()
     .transform((val) => Number(val))
-    .default("0")
+    .default(0)
     .pipe(z.number().min(0)),
   count: z
     .string()
     .transform((val) => Number(val))
-    .default("10")
+    .default(10)
     .pipe(z.number().min(1).max(100)),
 
   // Sorting

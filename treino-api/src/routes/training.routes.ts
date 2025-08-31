@@ -1,19 +1,13 @@
 import { Router } from "express";
-import {
-  createTraining,
-  favoriteTraining,
-  getTraining,
-  getTrainings,
-  unfavoriteTraining,
-} from "../controllers/training.controller";
+import * as controller from "../controllers/training.controller";
 import { authMiddleware } from "../middleware/auth";
 
 const router = Router();
 
-router.get("/", getTrainings);
-router.get("/:id", getTraining);
-router.post("/", createTraining);
-router.post("/favorites/:id", authMiddleware, favoriteTraining);
-router.delete("/favorites/:id", authMiddleware, unfavoriteTraining);
+router.get("/", controller.list);
+router.get("/:id", controller.findOne);
+router.post("/", authMiddleware, controller.create);
+router.post("/favorites/:id", authMiddleware, controller.favorite);
+router.delete("/favorites/:id", authMiddleware, controller.unfavoriteTraining);
 
 export default router;

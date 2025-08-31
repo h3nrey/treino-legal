@@ -3,24 +3,45 @@ import { z } from "zod";
 export const GetTrainingsSchema = z.object({
   equipament: z.string().optional(),
   muscle: z.string().optional(),
+  type: z.string().optional(),
   search: z.string().optional(),
 
   page: z
     .string()
     .transform((val) => Number(val))
-    .default("0")
+    .default(0)
     .pipe(z.number().min(0)),
   count: z
     .string()
     .transform((val) => Number(val))
-    .default("10")
+    .default(10)
     .pipe(z.number().min(1).max(100)),
 
-  // Sorting
   sortBy: z.enum(["createdAt", "popularity"]).default("createdAt"),
   order: z.enum(["asc", "desc"]).default("asc"),
 
   userId: z.string().optional(),
 });
 
+
+export const CreateTrainingsSchema = z.object({
+  title: z.string().min(2).max(100),
+  description: z.string().min(10).max(1000),
+  duration: z.number().min(1),
+  isPublic: z.boolean().default(true),
+  thumbnailUrl: z.url().optional(),
+  type: z.enum(["STREGTH", "CARDIO", "HIPERTROPHY", "RESITANCE"]),
+  experienceLevel: z.enum(["BEGGINER", "INTERMEDIARY", "ADVANCED", "ATHLETE"]),
+  userId: z.uuid(),
+  exercises: z.array(
+    z.object({
+      exerciseId: z.number().min(1),
+      sets: z.number().default(1),
+      reps: z.number().default(1),
+    })
+  ),
+});
+
+
 export type GetTrainingsDto = z.infer<typeof GetTrainingsSchema>;
+export type CreateTrainingsDto = z.infer<typeof CreateTrainingsSchema>;

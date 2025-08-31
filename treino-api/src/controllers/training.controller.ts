@@ -1,62 +1,16 @@
 import { PrismaClient, TrainingType } from "@prisma/client";
 import { Request, Response } from "express";
 import { AuthRequest } from "../middleware/auth";
-import { listTrainings } from "../services/training.service";
-import { GetTrainingsSchema } from "../dtos/training.dto";
+import  * as service from "../services/training.service";
+import { CreateTrainingsSchema, GetTrainingsSchema } from "../dtos/training.dto";
 
 const prisma = new PrismaClient();
 
-interface TrainingRequest extends Request {
-  query: {
-    page?: string;
-    count?: string;
-    type?: TrainingType;
-  };
-}
-// export async function getTrainings(req: TrainingRequest, res: Response) {
-//   const query = req.query;
-//   const { page, count } = query;
-//   const selectQuery = {
-//     TraningExercises: {
-//       select: {
-//         exercise: {
-//           select: {
-//             name: true,
-//             description: true,
-//             usedMuscles: {
-//               select: { muscle: { select: { id: true, name: true } } },
-//             },
-//             thumbnailUrl: true,
-//           },
-//         },
-//       },
-//     },
-//   };
 
-//   const whereQuery: any = {
-//     isPublic: true,
-//   };
-
-//   if (query.type) whereQuery.type = query.type ?? undefined;
-
-//   const trainings = await prisma.training.findMany({
-//     skip: Number(page ?? 0) * Number(count ?? 5),
-//     take: Number(count ?? 5),
-//     include: selectQuery,
-//     where: whereQuery,
-//   });
-
-//   res.json({
-//     data: trainings,
-//     currentPage: Number(page),
-//     totalCount: Number(count),
-//   });
-// }
-
-export async function getTrainings(req: Request, res: Response) {
+export async function list(req: Request, res: Response) {
   try {
     const params = GetTrainingsSchema.parse(req.query);
-    const result = await listTrainings(params);
+    const result = await service.listTrainings(params);
     res.json(result);
   } catch (error) {
     if (error instanceof Error) {
@@ -67,86 +21,36 @@ export async function getTrainings(req: Request, res: Response) {
   }
 }
 
-export async function getTraining(req: Request, res: Response) {
-  const id = req.params.id;
+export async function findOne(req: Request, res: Response) {
+  const id = Number(req.params.id);
+  const userId = req.query.userId as string | undefined;
 
-  const selectQuery = {};
+  const training = await service.findOne(id, userId);
+  
+  if (!training) {
+    return res.status(404).json({ error: "Training not found" });
+  }
 
-  const training = await prisma.training.findUnique({
-    where: {
-      id: Number(id),
-    },
-    include: {
-      TraningExercises: {
-        select: {
-          sets: true,
-          reps: true,
-          exercise: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-              thumbnailUrl: true,
-              usedMuscles: {
-                select: {
-                  muscle: {
-                    select: {
-                      name: true,
-                      id: true,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-
-  res.json({
-    data: training,
-  });
+  return res.json(training);
 }
 
-export async function createTraining(req: Request, res: Response) {
-  const {
-    title,
-    description,
-    duration,
-    isPublic,
-    thumbnailUrl,
-    type,
-    experienceLevel,
-    userId,
-    exercises,
-  } = req.body;
-
+export async function create(req: Request, res: Response) {
   try {
-    const newExercise = await prisma.training.create({
-      data: {
-        title,
-        description,
-        duration,
-        isPublic,
-        userId: userId,
-        experienceLevel,
-        type,
-        TraningExercises: {
-          create: exercises.map((e: { exerciseId: number }) => ({
-            exercise: { connect: { id: e.exerciseId } },
-          })),
-        },
-      },
-    });
-    res.status(201).json(newExercise.title);
+    console.log("Creating new training:", req.body);
+    const dto = CreateTrainingsSchema.parse(req.body);
+    const newTraining = await service.createTrainings(dto);
+    return res.status(201).json(newTraining);
   } catch (error) {
-    res.status(400).json({ error: "Error creating training" });
+    if (error instanceof Error) {
+      return res.status(400).json({ error: error.message });
+    } else {
+      return res.status(400).json({ error: "Invalid request" });
+    }
   }
 }
 
-export async function favoriteTraining(req: AuthRequest, res: Response) {
-  const { username } = req.user as { username: string };
+export async function favorite(req: AuthRequest, res: Response) {
+  const { id } = req.user as { id: string };
   const trainingId = req.params.id;
 
   if (!trainingId) {
@@ -154,13 +58,7 @@ export async function favoriteTraining(req: AuthRequest, res: Response) {
     return;
   }
 
-  prisma.userTranings
-    .create({
-      data: {
-        user: { connect: { username } },
-        training: { connect: { id: parseInt(trainingId) } },
-      },
-    })
+  await service.favorite(id, parseInt(trainingId))
     .then(() => {
       res.status(201).json({ message: "Training favorited" });
     })
@@ -171,21 +69,15 @@ export async function favoriteTraining(req: AuthRequest, res: Response) {
 }
 
 export async function unfavoriteTraining(req: AuthRequest, res: Response) {
-  const { username } = req.user as { username: string };
-  const trainingId = req.params.id;
+  const { id } = req.user as { id: string };
+  const trainingId = parseInt(req.params.id);
 
   if (!trainingId) {
     res.status(400).json({ message: "Training ID is required" });
     return;
   }
 
-  await prisma.userTranings
-    .deleteMany({
-      where: {
-        user: { username },
-        trainingId: parseInt(trainingId),
-      },
-    })
+  await service.unfavorite(id, trainingId)
     .then(() => {
       res.status(200).json({ message: "Training unfavorited" });
     })

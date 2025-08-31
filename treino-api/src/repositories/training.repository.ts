@@ -1,26 +1,104 @@
 import { PrismaClient } from "@prisma/client";
+import { CreateTrainingsDto } from "../dtos/training.dto";
 
 const prisma = new PrismaClient();
 
-export const find = async ({
+export const list = async ({
   where,
   page,
   count,
-  sortBy,
-  order,
+  orderBy,
   userId,
 }: {
   where: any;
   page: number;
   count: number;
   userId?: string;
-  sortBy: string;
-  order: "asc" | "desc";
+  orderBy: any;
 }) => {
   return await prisma.training.findMany({
+    where,
+    include: {
+      TraningExercises: {
+        include:{
+          exercise: true
+        }
+      },
+      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false
+    },
     take: count,
     skip: page * count,
-    orderBy: { [sortBy]: order },
+    orderBy
+  });
+};
+
+export const findOne = async(id: number, userId: string | null = null) => {
+  return await prisma.training.findUnique({
+    where: {
+      id
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      duration: true,
+      isPublic: true,
+      thumbnailUrl: true,
+      type: true,
+      experienceLevel: true,
+      TraningExercises: {
+        select: {
+          sets: true,
+          reps: true,
+          exercise: {
+            select: {
+              id: true,
+              name: true,
+              thumbnailUrl: true,
+            }
+          }
+        },
+      },
+      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false
+    },
+  });
+};
+
+export const create = async (data: CreateTrainingsDto) => {
+  return await prisma.training.create({
+    data: {
+      title: data.title,
+      description: data.description,
+      duration: data.duration,
+      isPublic: data.isPublic,
+      thumbnailUrl: data.thumbnailUrl,
+      type: data.type,
+      experienceLevel: data.experienceLevel,
+      userId: data.userId,
+      TraningExercises: {
+        create: data.exercises.map((exercise) => ({
+          exercise: { connect: { id: exercise.exerciseId } },
+        })),
+      },
+    },
+  });
+};
+
+export const favorite = async (userId: string, trainingId: number) => {
+  return await prisma.favoritedTrainings.create({
+    data: {
+      user: { connect: { id: userId } },
+      training: { connect: { id: trainingId } },
+    },
+  });
+};
+
+export const unfavorite = async (userId: string, trainingId: number) => {
+  return await prisma.favoritedTrainings.deleteMany({
+    where: {
+      userId,
+      trainingId,
+    },
   });
 };
 
