@@ -72,7 +72,7 @@ export const create = async (data: CreateTrainingsDto) => {
       duration: data.duration,
       isPublic: data.isPublic,
       thumbnailUrl: data.thumbnailUrl,
-      type: data.type,
+      goal: data.goal,
       experienceLevel: data.experienceLevel,
       userId: data.userId,
       TraningExercises: {

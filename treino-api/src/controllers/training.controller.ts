@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { AuthRequest } from "../middleware/auth";
 import  * as service from "../services/training.service";
 import { CreateTrainingsSchema, GetTrainingsSchema } from "../dtos/training.dto";
+import { ZodError } from "zod";
 
 const prisma = new PrismaClient();
 
@@ -41,8 +42,8 @@ export async function create(req: Request, res: Response) {
     const newTraining = await service.createTrainings(dto);
     return res.status(201).json(newTraining);
   } catch (error) {
-    if (error instanceof Error) {
-      return res.status(400).json({ error: error.message });
+    if (error instanceof ZodError) {
+      return res.status(400).json({ error: error.format() });
     } else {
       return res.status(400).json({ error: "Invalid request" });
     }

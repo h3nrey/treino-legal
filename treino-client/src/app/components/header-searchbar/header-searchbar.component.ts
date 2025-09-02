@@ -2,7 +2,6 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { HeaderSearchresultsComponent } from "../header-searchresults/header-searchresults.component";
 import { debounce } from '../../utils/utils';
 import { Exercise } from '../../utils/interfaces';
-import { exercises } from '../../../data';
 import { ExercisesService } from '../../services/exercises.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -24,9 +23,10 @@ export class HeaderSearchbarComponent {
   private readonly searchDelay = 500;
   showResults = false;
   searchIcon = "assets/icons/search.svg"
+  exercises = []
   
   debouncedSearch = debounce((term) => {
-    this.searchedResults = exercises;
+    this.searchedResults = this.exercises;
     this.exerciseService.getExercises({
       search: term,
       count: 5,
@@ -37,7 +37,7 @@ export class HeaderSearchbarComponent {
   }, this.searchDelay);
 
   loadExercisesResults(term: string) {
-    this.searchedResults = exercises;
+    this.searchedResults = this.exercises;
       this.exerciseService.getExercises({
         search: term,
         count: 5,

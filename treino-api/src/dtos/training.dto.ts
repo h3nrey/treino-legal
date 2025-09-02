@@ -3,7 +3,7 @@ import { z } from "zod";
 export const GetTrainingsSchema = z.object({
   equipament: z.string().optional(),
   muscle: z.string().optional(),
-  type: z.string().optional(),
+  goal: z.string().optional(),
   search: z.string().optional(),
 
   page: z
@@ -30,7 +30,7 @@ export const CreateTrainingsSchema = z.object({
   duration: z.number().min(1),
   isPublic: z.boolean().default(true),
   thumbnailUrl: z.url().optional(),
-  type: z.enum(["STREGTH", "CARDIO", "HIPERTROPHY", "RESITANCE"]),
+  goal: z.enum(["STRENGTH_GAIN", "CARDIO", "MUSCLE_GAIN", "WEIGHT_LOSS"]),
   experienceLevel: z.enum(["BEGGINER", "INTERMEDIARY", "ADVANCED", "ATHLETE"]),
   userId: z.uuid(),
   exercises: z.array(

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { exercises } from '../../data';
 import { Observable, of } from 'rxjs';
 import { Equipament, Exercise, ExerciseResponse, Muscle, ReqParams } from '../utils/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +10,12 @@ export interface ExerciseParams extends ReqParams {
   equipament?: string,
   muscle?: string,
   experienceLevel?: string
+}
+
+export interface TrainingParams extends ReqParams {
+  muscle?: string,
+  equipament?: string,
+  type?: string
 }
 
 interface DefaultRes {
@@ -26,12 +31,12 @@ export interface ExerciseReponse extends DefaultRes {
   providedIn: 'root'
 })
 export class ExercisesService {
-
+  exercises: Exercise[] = [];
   readonly apiUrl = environment.apiUrl
   constructor(private readonly http: HttpClient, private readonly userService: UserService) { }
 
   async listMusclesByMuscleGroup(muscleGroup: string) {
-    const exercisesList = exercises.filter(exercise => exercise.type == muscleGroup)
+    const exercisesList = this.exercises.filter(exercise => exercise.type == muscleGroup)
     return exercisesList;
   }
 

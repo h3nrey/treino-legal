@@ -8,14 +8,14 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(uuid())
-  username      String          @unique
-  email         String          @unique
-  password      String
-  createadAt    DateTime        @default(now())
-  UserExercises UserExercises[]
-  Training      Training[]
-  userTranings  UserTranings[]
+  id                 String               @id @default(uuid())
+  username           String               @unique
+  email              String               @unique
+  password           String
+  createadAt         DateTime             @default(now())
+  UserExercises      UserExercises[]
+  Training           Training[]
+  userTranings       UserTranings[]
   favoritedTrainings FavoritedTrainings[]
 }
 
@@ -95,32 +95,33 @@ model MuscleRelation {
 }
 
 model Training {
-  id               Int                 @id @default(autoincrement())
-  user             User                @relation(fields: [userId], references: [id])
+  id               Int                  @id @default(autoincrement())
+  user             User                 @relation(fields: [userId], references: [id])
   title            String
   description      String
   isPublic         Boolean
-  type             TrainingType
-  duration         Int                 @default(0)
+  goal             TrainingGoals
+  duration         Int                  @default(0)
   experienceLevel  ExperienceLevelEnum
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
   TraningExercises TraningExercises[]
-  favoritedByUsers   FavoritedTrainings[]
+  favoritedByUsers FavoritedTrainings[]
   userId           String
   userTranings     UserTranings[]
   thumbnailUrl     String?
 }
 
 model FavoritedTrainings {
-  user User    @relation(fields: [userId], references: [id])
-  training Training @relation(fields: [trainingId], references: [id])
-  userId  String
+  user       User     @relation(fields: [userId], references: [id])
+  training   Training @relation(fields: [trainingId], references: [id])
+  userId     String
   trainingId Int
-  createdAt DateTime @default(now())
+  createdAt  DateTime @default(now())
 
   @@id([userId, trainingId])
 }
+
 model TraningExercises {
   exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
   training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
@@ -132,11 +133,11 @@ model TraningExercises {
   @@id([exerciseId, trainingId])
 }
 
-enum TrainingType {
-  HIPERTROPHY
-  RESITANCE
-  CARDIO
-  STREGTH
+enum TrainingGoals {
+  WEIGHT_LOSS   @map("perder gordura")
+  MUSCLE_GAIN   @map("ganhar massa muscular")
+  STRENGTH_GAIN @map("ganhar força")
+  CARDIO        @map("cardio")
 }
 
 enum RelationType {

@@ -1,19 +1,38 @@
 <div>
-    <div class="bg-lightRed rounded-sm p-2 flex flex-col gap-4">
-        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laboriosam totam autem aliquid. Maiores exercitationem facere nobis ex velit nesciunt, ut provident alias tempora earum, quos ratione, veritatis autem saepe?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias tempora, autem fugit quasi ipsa reiciendis repudiandae dignissimos nesciunt totam, iusto ad temporibus vero molestias! Quos voluptates dolores eligendi? Perspiciatis.</p>
+    <div class="bg-lightRed text-white rounded-md p-2 flex flex-col">
+        <h2 class="font-bold text-2xl">Treinos</h2>
+        <p>The most comprehensive database of free workout routines anywhere! Download workout plans any goal or experience level.</p>
     </div>
 
-    <div class="bg-white rounded-sm p-2">
-        <div>
-            <h2>Treinos mais populares</h2>
-            <p>Treinos mais populares entre os usuários da plataforma.</p>
-        </div>
+    <div class="flex gap-4 items-center">
+        <filter-select 
+            placeholderText="Objetivo" 
+            [options]="goals" 
+            [currentOption]="filters.type"
+            (changeOptionEvent)="updateFilters({type: $event})"/>
+        <!-- <filter-select 
+            placeholderText="Equipamentos" 
+            [options]="equipaments" 
+            [currentOption]="filters.equipament"
+        (changeOptionEvent)="updateFilters({equipament: $event})"/> -->
+        <!-- <button 
+        (click)="clearFilters()" 
+        class="flex items-center rounded-full outline gap-1  px-1  h-min outline-2 outline-lightBlack cursor-pointer"
+        >
+            <span class="leading-none">Clear Filters</span>
+            <img [src]="closeIcon" alt="" class="h-5">
+        </button> -->
+    </div>
 
-        <div class="flex">
-            @for(exercise of popularTrainings; track $index) {
-
+    <div class="grid gap-6 mt-4" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-3' : 'grid-cols-4'">
+            @for(training of popularTrainings; track $index) {
+                <a class="rounded overflow-hidden">
+                    <img src="{{training.thumbnailUrl || PLACEHOLDERIMAGE}}" class="w-full object-cover h-40" alt="">
+                    <div class="bg-lightRed p-2 text-white">
+                        <h3 class="font-semibold whitespace-nowrap text-ellipsis">{{ training.title }}</h3>
+                        <span class="rounded-full bg-white text-lightRed px-2 leading-tight">30 minutos</span>
+                    </div>
+                </a>
             }
         </div>
-    </div>
 </div>
