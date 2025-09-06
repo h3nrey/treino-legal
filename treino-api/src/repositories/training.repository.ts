@@ -16,6 +16,7 @@ export const list = async ({
   userId?: string;
   orderBy: any;
 }) => {
+  console.log(where);
   return await prisma.training.findMany({
     where,
     include: {
@@ -44,7 +45,7 @@ export const findOne = async(id: number, userId: string | null = null) => {
       duration: true,
       isPublic: true,
       thumbnailUrl: true,
-      type: true,
+      goal: true,
       experienceLevel: true,
       TraningExercises: {
         select: {

@@ -3,7 +3,7 @@ import { z } from "zod";
 export const GetTrainingsSchema = z.object({
   equipament: z.string().optional(),
   muscle: z.string().optional(),
-  goal: z.string().optional(),
+  goal: z.enum(["STRENGTH_GAIN", "CARDIO", "MUSCLE_GAIN", "WEIGHT_LOSS"]).optional(),
   search: z.string().optional(),
 
   page: z

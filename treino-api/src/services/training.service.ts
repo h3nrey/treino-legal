@@ -9,6 +9,7 @@ export const listTrainings = async (params: any) => {
   const where = buildTrainingWhere(params);
   const orderBy = buildTrainingOrderBy(params);
 
+  console.log(where);
   const [trainings, totalCount] = await Promise.all([
     repository.list({
       where,

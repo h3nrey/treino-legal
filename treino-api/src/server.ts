@@ -6,6 +6,7 @@ import muscleRoutes from "./routes/muscle.routes";
 import equipamentRoutes from "./routes/equipament.routes";
 import userRoutes from "./routes/user.routes";
 import trainingRoutes from "./routes/training.routes";
+import { errorHandler } from "./middleware/errorHandler";
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.use("/muscles", muscleRoutes);
 app.use("/equipaments", equipamentRoutes);
 app.use("/users", userRoutes);
 app.use("/trainings", trainingRoutes);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

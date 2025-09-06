@@ -1,26 +1,19 @@
-import { PrismaClient, TrainingType } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import { AuthRequest } from "../middleware/auth";
 import  * as service from "../services/training.service";
+import asyncHandler from "express-async-handler";
 import { CreateTrainingsSchema, GetTrainingsSchema } from "../dtos/training.dto";
 import { ZodError } from "zod";
 
 const prisma = new PrismaClient();
 
 
-export async function list(req: Request, res: Response) {
-  try {
-    const params = GetTrainingsSchema.parse(req.query);
-    const result = await service.listTrainings(params);
-    res.json(result);
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
-    } else {
-      res.status(400).json({ error: "Invalid request" });
-    }
-  }
-}
+export const list = asyncHandler(async (req: Request, res: Response) => {
+  const params = GetTrainingsSchema.parse(req.query);
+  const result = await service.listTrainings(params);
+  res.json(result);
+});
 
 export async function findOne(req: Request, res: Response) {
   const id = Number(req.params.id);
