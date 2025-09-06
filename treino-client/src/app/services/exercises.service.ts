@@ -15,7 +15,7 @@ export interface ExerciseParams extends ReqParams {
 export interface TrainingParams extends ReqParams {
   muscle?: string,
   equipament?: string,
-  type?: string
+  goal?: string
 }
 
 interface DefaultRes {

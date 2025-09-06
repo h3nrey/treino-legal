@@ -8,12 +8,12 @@
     <div class="flex gap-4 items-center">
         <filter-select 
             placeholderText="Grupo Muscular" 
-            [options]="muscles" 
+            [options]="musclesOptions" 
             [currentOption]="filters.muscle"
             (changeOptionEvent)="updateFilters({muscle: $event})"/>
         <filter-select 
             placeholderText="Equipamentos" 
-            [options]="equipaments" 
+            [options]="equipamentsOptions" 
             [currentOption]="filters.equipament"
         (changeOptionEvent)="updateFilters({equipament: $event})"/>
         <button 

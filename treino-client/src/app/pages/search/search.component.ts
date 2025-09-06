@@ -8,6 +8,7 @@ import { CommonModule, NgClass } from '@angular/common';
 import { PaginatorComponent } from "../../components/paginator/paginator.component";
 import { SelectComponent } from "../../components/select/select.component";
 import { SearchService } from '../../services/search.service';
+import { equipaments, muscles } from '../../../data';
 
 interface ExerciseSearchParams {
   page: number;
@@ -37,11 +38,11 @@ export class SearchComponent implements OnInit{
   defaultParams: ExerciseSearchParams = { page: 0, count: 16, muscle: '', equipament: '', search: '' };
   params: ExerciseSearchParams = this.defaultParams;
   closeIcon = 'assets/icons/close.svg'
-  muscles: string[] = []
-  equipaments: string[] = []
+  musclesOptions = muscles;
+  equipamentsOptions = equipaments;
 
   ngOnInit() {
-    this.getFilters();
+    // this.getFilters();
 
     this.route.queryParamMap.subscribe(params => {
       this.params = {
@@ -57,14 +58,14 @@ export class SearchComponent implements OnInit{
     })
   }
 
-  getFilters() {
-    this.exerciseService.getMuscles().subscribe(muscles => {
-      this.muscles = muscles.map(muscle => muscle.name);
-    })
-    this.exerciseService.getEquipaments().subscribe(equipaments => {
-      this.equipaments = equipaments.map(equipament => equipament.name)
-    })
-  }
+  // getFilters() {
+  //   this.exerciseService.getMuscles().subscribe(muscles => {
+  //     this.muscles = muscles.map(muscle => muscle.name);
+  //   })
+  //   this.exerciseService.getEquipaments().subscribe(equipaments => {
+  //     this.equipaments = equipaments.map(equipament => equipament.name)
+  //   })
+  // }
 
   updateFilters(updated: Partial<ExerciseParams>) {
     this.router.navigate([], {

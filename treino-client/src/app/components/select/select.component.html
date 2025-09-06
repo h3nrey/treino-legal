@@ -11,10 +11,10 @@
             @for (option of options; track $index) {
                 <div 
                     class="flex justify-between items-center p-1 hover:bg-red rounded-md transition" 
-                    (click)="selectOption($index)"
+                    (click)="selectOption(option.value)"
                 >
-                    <span class="">{{option}}</span>
-                    <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOption==option? 'visible' : 'invisible'">
+                    <span class="">{{option.label}}</span>
+                    <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOption == option.value ? 'visible' : 'invisible'">
                 </div>
             }
         </div>

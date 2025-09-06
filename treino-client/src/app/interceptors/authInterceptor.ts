@@ -2,8 +2,6 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('🚦 Interceptor chamado para', req.url);
-
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('user');
 

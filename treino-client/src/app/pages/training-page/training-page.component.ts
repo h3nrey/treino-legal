@@ -21,45 +21,47 @@ export class TrainingPageComponent implements OnInit{
   PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
   goals = goals;
   filters = {
-    type: '',
+    goal: '',
     muscle: '',
     equipament:''
   }
-  defaultParams: TrainingParams = { page: 0, count: 16, muscle: '', equipament: '', type: ''};
+  defaultParams: TrainingParams = { page: 0, count: 16, muscle: '', equipament: '', goal: ''};
   params: TrainingParams = this.defaultParams;
 
   ngOnInit(): void {
-    console.log(this.params);
-
-     this.route.queryParamMap.subscribe(params => {
-      this.params = {
-      ...this.defaultParams,
-      page: +(params.get("page") ?? 0),
-      muscle: params.get("muscle") ?? '',
-      equipament: params.get("equipament") ?? '',
-      type: params.get("type") ?? ''
-      }
-    });
-
+    this.getFiltersFromRouteParams();
     this.loadTrainings();
-    
   }
 
-  updateFilters(updated: Partial<TrainingParams>) {
-    console.log(updated);
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: updated,
-        queryParamsHandling: 'merge',
-        replaceUrl: true
-      })
-      this.loadTrainings();
-    }
-  
-    loadTrainings() {
-      this.trainingService.getPopularTrainings(this.params).subscribe((res) => {
-        this.popularTrainings = res.data;
-      });
-    }
+  onFiltersChange(updated: Partial<TrainingParams>) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: updated,
+      queryParamsHandling: 'merge',
+      replaceUrl: true
+    });
+
+    this.getFiltersFromRouteParams();
+    this.loadTrainings();
+  }
+
+  getFiltersFromRouteParams() {
+    this.route.queryParamMap.subscribe(params => {
+      this.params = {
+        ...this.defaultParams,
+        page: +(params.get("page") ?? 0),
+        muscle: params.get("muscle") ?? '',
+        equipament: params.get("equipament") ?? '',
+        goal: params.get("goal") ?? ''
+      }
+    });
+  }
+
+    
+  loadTrainings() {
+    this.trainingService.getPopularTrainings(this.params).subscribe((res) => {
+      this.popularTrainings = res.data;
+    });
+  }
 
 }
