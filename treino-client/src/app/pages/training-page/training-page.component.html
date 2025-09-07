@@ -4,23 +4,28 @@
         <p>The most comprehensive database of free workout routines anywhere! Download workout plans any goal or experience level.</p>
     </div>
 
-    <div class="flex gap-4 items-center mt-4">
-        <filter-select 
-            placeholderText="Objetivo" 
-            [options]="goals" 
-            [currentOption]="filters.goal"
-            (changeOptionEvent)="onFiltersChange({goal: $event})"/>
-        <!-- <filter-select 
-            placeholderText="Equipamentos" 
-            [options]="equipaments" 
-            [currentOption]="filters.equipament"
-        (changeOptionEvent)="onFiltersChange({equipament: $event})"/> -->
-        <!-- <button (click)="clearFilters()" 
-        class="flex items-center rounded-full outline gap-1  px-1  h-min outline-2 outline-lightBlack cursor-pointer"
-        >
-            <span class="leading-none">Clear Filters</span>
-            <img [src]="closeIcon" alt="" class="h-5">
-        </button> -->
+    <div class="flex justify-between items-center">
+        <div class="flex gap-4 items-center mt-4">
+            <filter-select 
+                placeholderText="Objetivo" 
+                [options]="goalsOptions" 
+                [currentOption]="filters.goal"
+                (changeOptionEvent)="onFiltersChange({goal: $event})"/>
+            <filter-select 
+                placeholderText="Equipamento" 
+                [options]="equipamentsOptions" 
+                [currentOption]="filters.equipament"
+                (changeOptionEvent)="onFiltersChange({equipament: $event})"/>
+            <filter-select 
+                placeholderText="Grupo Muscular" 
+                [options]="musclesOptions" 
+                [currentOption]="filters.muscle"
+                (changeOptionEvent)="onFiltersChange({muscle: $event})"/>
+            <CleanFiltersButton [hasFilters]="true" (emitClearFilters)="clearFilters()"/>
+    
+        </div>
+        <OrderBySelector (changeOptionEvent)="onFiltersChange({sortBy: $event})"/>
+
     </div>
 
     <div class="grid gap-6 mt-4" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-3' : 'grid-cols-4'">

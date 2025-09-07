@@ -1,0 +1,9 @@
+@if(hasFilters) {
+    <button 
+            (click)="emitClearFilters.emit()" 
+            class="flex items-center rounded-full outline gap-1  px-1  h-min outline-2 outline-lightBlack cursor-pointer"
+            >
+                <span class="leading-none">Clear Filters</span>
+                <img [src]="closeIcon" alt="" class="h-5">
+            </button>
+}

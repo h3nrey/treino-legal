@@ -1,0 +1,9 @@
+<div class="flex gap-1">
+            <span class="font-thin">Ordernar por</span>
+
+            <div class="flex gap-2">
+                @for (item of options; track $index) {
+                    <button class=" rounded-full text-white px-2 leading-tight" (click)="selectOption(item.value)" [ngClass]="currOption == item.value ? 'bg-lightRed' : 'bg-black'">{{item.label}}</button>
+                }
+            </div>
+        </div>

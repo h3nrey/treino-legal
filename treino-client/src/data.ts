@@ -8,17 +8,27 @@ const types = {
 }
 
 export const equipaments = [
-    { value: 1, label: "Halteres" },
-    { value: 2, label: "Supino" },
-    { value: 3, label: "Máquina" },
-    { value: 4, label: "Smith" }
+    { value: "halteres", label: "Halteres" },
+    { value: "barra", label: "Barra" },
+    { value: "barra w", label: "Barra W" },
+    { value: "polia", label: "Polia" },
+    { value: "peso corporal", label: "Peso Corporal" },
+    { value: "máquina", label: "Máquina" },
+    { value: "smith", label: "Smith" }
 ]
 
 export const muscles = [
-    { value: 1, label: "BÍCEPS" },
-    { value: 2, label: "TRÍCEPS" },
-    { value: 3, label: "PEITORAL" },
-    { value: 4, label: "QUADRÍCEPS" }
+    { value: 'triceps', label: "Tríceps" },
+    { value: 'bíceps', label: "Bíceps" },
+    { value: 'peito', label: "Peitoral" },
+    { value: 'costas', label: "Costas" },
+    { value: 'ombros', label: "Ombros" },
+    { value: 'quadriceps', label: "Quadríceps" },
+    { value: 'panturrilha', label: "Panturrilha" },
+    { value: 'abdômen', label: "Abdômen" },
+    { value: 'trapézio', label: "Trapézio" },
+    { value: 'glúteos', label: "Glúteos" },
+    { value: 'antebraço', label: "Antebraço" }
 ]
 
 
@@ -30,8 +40,8 @@ const difficulty = {
 }
 
 export const goals = [
-    { value: "STRENGTH_GAIN", label: "FORÇA" },
-    { value: "CARDIO", label: "CARDIO" },
-    { value: "MUSCLE_GAIN", label: "HIPERTROFIA" },
-    { value: "WEIGHT_LOSS", label: "PERDA DE PESO" }
+    { value: "STRENGTH_GAIN", label: "Ganho de Força" },
+    { value: "CARDIO", label: "Cardio" },
+    { value: "MUSCLE_GAIN", label: "Ganho de Massa" },
+    { value: "WEIGHT_LOSS", label: "Perda de Gordura" }
 ]
