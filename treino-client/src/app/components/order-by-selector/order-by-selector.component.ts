@@ -1,9 +1,10 @@
 import { CommonModule} from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIcon, NgIconComponent } from "@ng-icons/core";
 
 @Component({
   selector: 'OrderBySelector',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIconComponent],
   templateUrl: './order-by-selector.component.html',
   styleUrl: './order-by-selector.component.scss'
 })
