@@ -18,7 +18,7 @@ export const GetTrainingsSchema = z.object({
     .pipe(z.number().min(1).max(100)),
 
   sortBy: z.enum(["createdAt", "popularity"]).default("createdAt"),
-  order: z.enum(["asc", "desc"]).default("asc"),
+  order: z.enum(["asc", "desc"]).default("desc"),
 
   userId: z.string().optional(),
 });

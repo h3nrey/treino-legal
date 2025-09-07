@@ -4,7 +4,7 @@
         <p>The most comprehensive database of free workout routines anywhere! Download workout plans any goal or experience level.</p>
     </div>
 
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center flex-wrap">
         <div class="flex gap-4 items-center mt-4">
             <filter-select 
                 placeholderText="Objetivo" 
@@ -25,7 +25,6 @@
     
         </div>
         <OrderBySelector (changeOptionEvent)="onFiltersChange({sortBy: $event})"/>
-
     </div>
 
     <div class="grid gap-6 mt-4" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-3' : 'grid-cols-4'">

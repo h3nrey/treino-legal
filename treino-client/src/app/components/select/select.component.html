@@ -1,6 +1,6 @@
 <div class="relative cursor-pointer" (click)="toggleSelect()">
     <div class="flex gap-4 bg-lightBlack rounded-full p-2 px-4 text-white">
-        <span class="min-w-28">
+        <span class="min-w-28 text-nowrap">
             {{displaySelectText()}}
         </span>
         <img [src]="arrowIcon" alt="" class="h-6 w-6">
@@ -13,7 +13,7 @@
                     class="flex justify-between items-center p-1 hover:bg-red rounded-md transition" 
                     (click)="selectOption(option.value)"
                 >
-                    <span class="">{{option.label}}</span>
+                    <span class="text-nowrap">{{option.label}}</span>
                     <img [src]="checkIcon" alt="" class="h-3" [ngClass]="currentOption == option.value ? 'visible' : 'invisible'">
                 </div>
             }
