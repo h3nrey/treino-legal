@@ -38,30 +38,18 @@ export const findOne = async(id: number, userId: string | null = null) => {
     where: {
       id
     },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      duration: true,
-      isPublic: true,
-      thumbnailUrl: true,
-      goal: true,
-      experienceLevel: true,
+    include: {
+      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false,
       TraningExercises: {
-        select: {
-          sets: true,
-          reps: true,
+        include: {
           exercise: {
             select: {
-              id: true,
               name: true,
-              thumbnailUrl: true,
             }
           }
-        },
-      },
-      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false
-    },
+        }
+      }
+    }
   });
 };
 

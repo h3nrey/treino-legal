@@ -3,16 +3,20 @@ import { Training } from '../../utils/interfaces';
 import { TrainingService } from '../../services/training.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DetailsRowComponent } from "../../components/details-row/details-row.component";
+import { CommonModule, NgClass } from '@angular/common';
+import { ExericiseDetails } from '../exercise-details/exercise-details.component';
 
 @Component({
   selector: 'app-training-details',
-  imports: [RouterLink, DetailsRowComponent],
+  imports: [RouterLink, DetailsRowComponent, CommonModule, NgClass],
   templateUrl: './training-details.component.html',
   styleUrl: './training-details.component.scss'
 })
 export class TrainingDetailsComponent implements OnInit{
   training!: Training;
   relatedTrainings: Training[] = [];
+  currentExercise = 0;
+  PLACEHOLDERIMAGE = "assets/DefaultBGCard.svg";
 
   constructor(
     private trainingService: TrainingService,
@@ -29,8 +33,13 @@ export class TrainingDetailsComponent implements OnInit{
     this.loadRelatedTrainings();
   }
 
+  selectExercise(index: number) {
+    this.currentExercise = index;
+  }
+
   loadTrainingData(id: string) {
     this.trainingService.getTraining(id).subscribe(res => {
+      console.log(res);
       this.training = res;
     }) 
   }

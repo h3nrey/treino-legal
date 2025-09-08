@@ -20,7 +20,7 @@ export interface Training {
     id: number,
     title: string,
     description: string,
-    type: string,
+    goal: string,
     duration: number,
     experienceLevel: string,
     exercises: TrainingExercise[],

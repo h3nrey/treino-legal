@@ -5,7 +5,7 @@ import { ExercisesService } from '../../services/exercises.service';
 import { InfoWrapperComponent } from '../../components/execise-details/info-wrapper/info-wrapper.component';
 import { LoginPopupComponent } from "../../components/login-popup/login-popup.component";
 
-interface ExericiseDetails extends Exercise {
+export interface ExericiseDetails extends Exercise {
   favorited: boolean,
   primaryMuscle: string,
   otherMuscles: string[],

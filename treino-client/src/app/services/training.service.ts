@@ -29,7 +29,6 @@ export class TrainingService {
     return this.http.get<any>(url).pipe(
       map(res => {
         const data = res.data;
-        console.log(data);
         return {
           ...data,
           exercises: data.TraningExercises.map((exercise: {exercise: Exercise, reps: number, sets: number}) => ({

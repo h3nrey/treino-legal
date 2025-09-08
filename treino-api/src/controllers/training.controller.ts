@@ -25,7 +25,7 @@ export async function findOne(req: Request, res: Response) {
     return res.status(404).json({ error: "Training not found" });
   }
 
-  return res.json(training);
+  return res.json({data: training});
 }
 
 export async function create(req: Request, res: Response) {
