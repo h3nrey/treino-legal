@@ -30,7 +30,7 @@ export class TrainingPageComponent implements OnInit{
     muscle: '',
     equipament:''
   }
-  defaultParams: TrainingParams = { page: 0, count: 16, muscle: '', equipament: '', goal: '', sortBy: 'recentes'};
+  defaultParams: TrainingParams = { page: 0, count: 16, muscle: '', equipament: '', goal: '', sortBy: 'createdAt'};
   params: TrainingParams = this.defaultParams;
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class TrainingPageComponent implements OnInit{
       this.params = {
         page: +(params.get("page") ?? 0),
         count: this.params.count,
-        sortBy: params.get("sortBy") ?? 'recentes',
+        sortBy: params.get("sortBy") ?? 'createdAt',
         muscle: params.get("muscle") ?? '',
         equipament: params.get("equipament") ?? '',
         goal: params.get("goal") ?? ''
