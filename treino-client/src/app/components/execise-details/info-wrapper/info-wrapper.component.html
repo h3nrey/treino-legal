@@ -1,13 +1,12 @@
 <div class="flex flex-col gap-2">
     <h3 class="text-2xl font-semibold">Detalhes</h3>
-    <img [src]="info?.usedMusclesImageUrl ?? imagePlaceholder" alt="" class="max-h-[22rem]">
     
     <div class="flex flex-col gap-2 bg-red p-2 rounded-md text-white">
         <div class="flex justify-between">
             <span>Músculo primário</span>
             <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.primaryMuscle}}</span>
         </div>
-        @if(info && info.otherMuscles.length > 0) {
+    @if(info && info.otherMuscles.length > 0) {
             <div class="flex justify-between">
                 <span>Outros músculos</span>
                 <span class="flex gap-1">
