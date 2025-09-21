@@ -13,8 +13,8 @@
     </HomeSection>
 
     <HomeSection [sectionLink]="'/trainings'" [sectionTitle]="'Treinos Populares'">
-      @for(exercise of popularExercises; track $index) {
-        <exercise-card [exercise]=" exercise" />
+      @for(training of popularTrainings; track $index) {
+        <TrainingCard [training]="training" />
       }
     </HomeSection>
 

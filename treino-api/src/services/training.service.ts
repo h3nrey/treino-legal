@@ -4,6 +4,7 @@ import { paginate } from "../utils/pagination";
 import { buildTrainingOrderBy } from "../utils/trainingOrderByBuilder";
 import { buildTrainingWhere } from "../utils/trainingWhereBuilder";
 import { CreateTrainingsDto } from "../dtos/training.dto";
+import { toTrainingResponse } from "../mappers/training.mapper";
 
 export const listTrainings = async (params: any) => {
   const where = buildTrainingWhere(params);
@@ -37,10 +38,10 @@ export const listTrainings = async (params: any) => {
 export const findOne = async (id: number, userId: string | undefined) => {
   const foundExercise = await repository.findOne(id, userId);
 
-  return {
-    ...foundExercise,
-    favorited: userId ? foundExercise?.favoritedByUsers.length! > 0 : false,
-  };
+  if(!foundExercise) return null;
+
+
+  return toTrainingResponse(foundExercise, userId);
 };
 
 export const createTrainings = async (data: CreateTrainingsDto) => {

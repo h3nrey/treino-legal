@@ -25,6 +25,8 @@ export interface Training {
     experienceLevel: string,
     exercises: TrainingExercise[],
     thumbnailUrl: string,
+    equipaments?: string[]
+    muscles: string[]
 
 }
 
@@ -41,6 +43,7 @@ export interface Exercise {
     tutorialUrl?: string,
     type: string,
     level: string,
+    instructions: { step: number, description: string }[],
 }
 
 export interface Muscle {

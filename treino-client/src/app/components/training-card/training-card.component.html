@@ -1,0 +1,23 @@
+<a href="trainings/{{ training.id }}"  class="rounded overflow-hidden cursor-pointer">
+    <div class="relative">
+        <div class="absolute p-3 right-0 flex flex-col items-end">
+            <button class="p-2 text-lightBlack" (click)="toggleFavorite($event)">
+                <img [src]="training?.favorited ? 'assets/icons/favorited.svg' : 'assets/icons/favorite.svg'" alt="" class="w-8 h-8">
+            </button>
+
+            @if(showLoginPopup) {
+                <div class="bg-lightGray text-lightBlack p-2 rounded-md flex flex-col items-end text-end gap-2">
+                    <h3 class="font-semibold text-sm">Quer favoritar essse exercicios?</h3>
+                    <p class="text-sm">Você precisa ter um conta para conseguir favoritar</p>
+                    <button class="bg-lightRed text-lightGray p-2 py-1 rounded-sm text-sm">logar</button>
+                </div>
+            }
+        </div>
+        <img src="{{training.thumbnailUrl || PLACEHOLDERIMAGE}}" class="w-full object-cover h-40" alt="">
+
+    </div>
+                    <div class="bg-lightRed p-2 text-white">
+                        <h3 class="font-semibold whitespace-nowrap text-ellipsis">{{ training.title }}</h3>
+                        <span class="rounded-full bg-white text-lightRed px-2 leading-tight">30 minutos</span>
+                    </div>
+                </a>

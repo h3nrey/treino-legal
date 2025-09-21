@@ -16,6 +16,12 @@ export class TrainingService {
   readonly apiUrl = environment.apiUrl
   constructor(private http: HttpClient) { }
 
+  favoritetraining(id: number) {
+    return this.http.post(`${this.apiUrl}/trainings/${id}/favorites`, {});
+  }
+  unFavoritetraining(id: number) {
+    return this.http.delete(`${this.apiUrl}/trainings/${id}/favorites`);
+  }
 
   getPopularTrainings(params: ReqParams): Observable<TrainingResponse>{
     const httpParams = buildHttpParams({...params});
@@ -29,13 +35,10 @@ export class TrainingService {
     return this.http.get<any>(url).pipe(
       map(res => {
         const data = res.data;
+        console.log(data);
         return {
           ...data,
-          exercises: data.TraningExercises.map((exercise: {exercise: Exercise, reps: number, sets: number}) => ({
-            ...exercise.exercise,
-            reps: exercise.reps,
-            sets: exercise.sets
-          })),
+          exercises: data.exercises
         } as Training;
       })
     );

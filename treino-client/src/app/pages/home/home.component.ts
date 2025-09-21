@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Equipament, Exercise, Muscle, User } from '../../utils/interfaces';
+import { Equipament, Exercise, Muscle, Training, User } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { ExercisesService } from '../../services/exercises.service';
 import { MuscleCardComponent } from '../../components/cards/muscle-card/muscle-card.component';
@@ -9,22 +9,26 @@ import { CommonModule, NgClass } from '@angular/common';
 import { BannerComponent } from '../../components/home/banner/banner.component';
 import { HomeSectionComponent } from "../../components/home-section/home-section.component";
 import { UserService } from '../../services/users.service.ts.service';
+import { TrainingService } from '../../services/training.service';
+import { TrainingCardComponent } from "../../components/training-card/training-card.component";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent, NgClass, CommonModule, BannerComponent, HomeSectionComponent],
+  imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent, NgClass, CommonModule, BannerComponent, HomeSectionComponent, TrainingCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private exerciseService: ExercisesService, 
+    private trainingService: TrainingService,
     protected sidebarService: SidebarService, 
     private userService: UserService
   ) { }
   title = 'treino-client';
   bannerClosed = false;
   popularExercises: Exercise[] = [];
+  popularTrainings: Training[] = [];
   muscles: Muscle[] = [];
   equipaments: Equipament[] = [];
   arrowRight = "assets/icons/arrowRight.svg"
@@ -51,6 +55,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.exerciseService.getExercises(params).subscribe({
       next: (res) => {
         this.popularExercises = res.data
+      }
+    })
+    this.trainingService.getPopularTrainings({ sortBy: 'popularity', page: 0, count: 6}).subscribe({
+      next: (res) => {
+        this.popularTrainings = res.data
       }
     })
   }

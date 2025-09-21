@@ -1,4 +1,4 @@
-import { GetTrainingsDto } from "../dtos/training.dto";
+import { GetTrainingsDto } from '../dtos/training.dto';
 
 export const buildTrainingOrderBy = (params: GetTrainingsDto) => {
   let orderBy: any = {};
@@ -7,16 +7,15 @@ export const buildTrainingOrderBy = (params: GetTrainingsDto) => {
 
   if (sortBy === 'popularity') {
     orderBy = {
-        favoritedByUsers: {
-            _count: order
-        }
+      favoritedByUsers: {
+        _count: order,
+      },
     };
-    } else {
+  } else {
     orderBy = {
-        [sortBy]: order
+      [sortBy]: order,
     };
-    }
+  }
 
-    console.log(orderBy);
   return orderBy;
 };

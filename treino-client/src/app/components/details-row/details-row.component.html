@@ -1,4 +1,13 @@
-<div class="flex items-center justify-between gap-2">
+<div class="flex items-start justify-between gap-4">
     <div>{{caption}}</div>
-    <div class="bg-white text-lightRed p-1 rounded-sm">{{value.toLowerCase()}}</div>
+
+    @if(isString()) {
+        <div class="bg-white text-lightRed p-1 rounded-sm">{{value.toLocaleString().toLowerCase()}}</div>
+    } @else {
+        <div class="flex max-w-[8rem] flex-wrap gap-1 justify-end">
+            @for (item of value; track $index) {
+                <div class="bg-white text-lightRed p-1 rounded-sm">{{item.toLocaleLowerCase()}}</div>
+            }
+        </div>
+    }
 </div>

@@ -38,9 +38,11 @@
                     
                     <span class="text-lg">Instruções</span>
                     <div class="flex flex-col gap-2">
-                        @for (item of training.exercises[currentExercise].name; track $index) {
-                            <span>{{$index}}</span>
-                            <span></span>
+                        @for (item of training.exercises[currentExercise].instructions; track $index) {
+                            <div class="flex gap-4">
+                                <span class="bg-lightRed rounded-md py-1 px-3 text-white">{{$index + 1}}</span>
+                                <span>{{item}}</span>
+                            </div>
                         }
                     </div>
                 </div>
@@ -53,7 +55,11 @@
             <span class="font-semibold text-xl">Detalhes</span>
             <div class="bg-lightRed text-white rounded-md flex flex-col gap-2 p-2 text-nowrap">
                 <!-- <DetailsRow [caption]="'Tipo'" [value]="training.goal"></DetailsRow> -->
-                <DetailsRow [caption]="'Duração'" [value]="training?.duration+'min'"></DetailsRow>
+                <DetailsRow [caption]="'Músculos Trabalhados'" [value]="training.muscles"></DetailsRow>
+                <DetailsRow [caption]="'Duração'" [value]="training?.duration+' min'"></DetailsRow>
+                <DetailsRow [caption]="'Tipo de Treino'" [value]="training.goal"></DetailsRow>
+                <DetailsRow [caption]="'Equipamentos'" [value]="training?.equipaments ?? []"></DetailsRow>
+
                 <DetailsRow [caption]="'Nível de experiência'" [value]="training.experienceLevel"></DetailsRow>
             </div>
         </div>

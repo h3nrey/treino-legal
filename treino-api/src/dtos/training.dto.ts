@@ -23,6 +23,30 @@ export const GetTrainingsSchema = z.object({
   userId: z.string().optional(),
 });
 
+export const TrainingResponseSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  description: z.string(),
+  duration: z.number(),
+  isPublic: z.boolean(),
+  thumbnailUrl: z.string().nullable().optional(),
+  goal: z.enum(["STRENGTH_GAIN", "CARDIO", "MUSCLE_GAIN", "WEIGHT_LOSS"]),
+  experienceLevel: z.enum(["BEGGINER", "INTERMEDIARY", "ADVANCED", "ATHLETE"]),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  exercises: z.array(
+    z.object({
+      id: z.number(),
+      name: z.string(),
+      instructions: z.array(z.string()),
+    })
+  ),
+  equipaments: z.array(z.string()),
+  muscles: z.array(z.string()),
+  favorited: z.boolean(),
+});
+
+export type TrainingResponseDto = z.infer<typeof TrainingResponseSchema>;
 
 export const CreateTrainingsSchema = z.object({
   title: z.string().min(2).max(100),

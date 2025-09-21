@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { CreateTrainingsDto } from "../dtos/training.dto";
+import { PrismaClient } from '@prisma/client';
+import { CreateTrainingsDto } from '../dtos/training.dto';
 
 const prisma = new PrismaClient();
 
@@ -21,35 +21,55 @@ export const list = async ({
     where,
     include: {
       TraningExercises: {
-        include:{
-          exercise: true
-        }
+        include: {
+          exercise: true,
+        },
       },
-      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false
+      favoritedByUsers: userId
+        ? { where: { userId }, select: { userId: true } }
+        : false,
     },
     take: count,
     skip: page * count,
-    orderBy
+    orderBy,
   });
 };
 
-export const findOne = async(id: number, userId: string | null = null) => {
+export const findOne = async (id: number, userId: string | null = null) => {
   return await prisma.training.findUnique({
     where: {
-      id
+      id,
     },
     include: {
-      favoritedByUsers: userId ? { where: { userId }, select: { userId: true } } : false,
+      favoritedByUsers: userId
+        ? { where: { userId }, select: { userId: true } }
+        : false,
       TraningExercises: {
         include: {
           exercise: {
             select: {
               name: true,
-            }
-          }
-        }
-      }
-    }
+              ExerciseInstruction: true,
+              usedMuscles: {
+                where: {
+                  isPrimary: true,
+                },
+                select: {
+                  muscle: {
+                    select: {
+                      name: true,
+                    },
+                  },
+                },
+              },
+              equipament: {
+                select: { name: true },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 };
 
