@@ -1,5 +1,5 @@
 export interface PaginatedResponse<T> {
-    data: T[];
+  data: T[];
   pagination: {
     currentPage: number;
     pageSize: number;
@@ -14,70 +14,69 @@ export interface PaginatedResponse<T> {
 
 export interface ExerciseResponse extends PaginatedResponse<Exercise> {}
 
-export interface TrainingResponse extends PaginatedResponse<Training>{}
+export interface TrainingResponse extends PaginatedResponse<Training> {}
 
 export interface Training {
-    id: number,
-    title: string,
-    description: string,
-    goal: string,
-    duration: number,
-    experienceLevel: string,
-    exercises: TrainingExercise[],
-    thumbnailUrl: string,
-    equipaments?: string[]
-    muscles: string[]
-
+  id: number;
+  title: string;
+  description: string;
+  goal: string;
+  duration: number;
+  experienceLevel: string;
+  exercises: TrainingExercise[];
+  thumbnailUrl: string;
+  equipaments?: string[];
+  muscles: string[];
 }
 
 export interface TrainingExercise extends Exercise {
-    reps: number,
-    sets: number,
+  reps: number;
+  sets: number;
 }
 
 export interface Exercise {
-    id: number,
-    name: string,
-    description?: string,
-    thumbnailUrl?: string,
-    tutorialUrl?: string,
-    type: string,
-    level: string,
-    instructions: { step: number, description: string }[],
+  id: number;
+  name: string;
+  description?: string;
+  thumbnailUrl?: string;
+  tutorialUrl?: string;
+  type: string;
+  level: string;
+  instructions: { step: number; description: string }[];
 }
 
 export interface Muscle {
-    id: number,
-    name: string
-    technicalName: string,
-    motorAction:string,
-    description?: string
-    synergists: string,
-    antagonists: string
-    imageUrl?: string
+  id: number;
+  name: string;
+  technicalName: string;
+  motorAction: string;
+  description?: string;
+  synergists: string;
+  antagonists: string;
+  imageUrl?: string;
 }
 
 export interface Equipament {
-    id: number,
-    name: string
-    description?: string,
-    imageUrl?: string
+  id: number;
+  name: string;
+  description?: string;
+  imageUrl?: string;
 }
 
 export interface ReqParams {
-    page?: number,
-    count?: number,
-    search?: string,
-    sortBy?: string
+  page?: number;
+  count?: number;
+  search?: string;
+  sortBy?: string;
 }
 
 export interface User {
-    username: string,
-    email: string,
-    id: string,
+  username: string;
+  email: string;
+  id: string;
 }
 
 export interface Enviroment {
-    production: boolean,
-    apiUrl: string,
+  production: boolean;
+  apiUrl: string;
 }

@@ -5,8 +5,8 @@ import {
   heroBell,
   heroCog,
   heroXMark,
-  heroCheck
+  heroCheck,
 } from '@ng-icons/heroicons/outline';
 
 export const provideNgIcons = () =>
-  provideIcons({ heroUsers, heroHome, heroBell, heroCog, heroXMark,heroCheck });
+  provideIcons({ heroUsers, heroHome, heroBell, heroCog, heroXMark, heroCheck });

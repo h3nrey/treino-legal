@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'CleanFiltersButton',
   imports: [],
   templateUrl: './clean-filters-button.component.html',
-  styleUrl: './clean-filters-button.component.scss'
+  styleUrl: './clean-filters-button.component.scss',
 })
 export class CleanFiltersButtonComponent {
   closeIcon = 'assets/icons/close.svg';

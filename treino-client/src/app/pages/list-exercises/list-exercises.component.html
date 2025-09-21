@@ -1,10 +1,9 @@
 <ul class="grid grid-cols-4 gap-4">
-    @for (exercise of exercises; track $index) {
-        <li>
-            <exercise-card [exercise]="exercise"/>
-        </li>
-    } @empty {
-        <p>Nenhum exercicio</p>
-    }
-
+  @for (exercise of exercises; track $index) {
+    <li>
+      <exercise-card [exercise]="exercise" />
+    </li>
+  } @empty {
+    <p>Nenhum exercicio</p>
+  }
 </ul>

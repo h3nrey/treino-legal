@@ -1,10 +1,10 @@
-import { data } from "cheerio/dist/commonjs/api/attributes";
-import * as repository from "../repositories/training.repository";
-import { paginate } from "../utils/pagination";
-import { buildTrainingOrderBy } from "../utils/trainingOrderByBuilder";
-import { buildTrainingWhere } from "../utils/trainingWhereBuilder";
-import { CreateTrainingsDto } from "../dtos/training.dto";
-import { toTrainingResponse } from "../mappers/training.mapper";
+import { data } from 'cheerio/dist/commonjs/api/attributes';
+import * as repository from '../repositories/training.repository';
+import { paginate } from '../utils/pagination';
+import { buildTrainingOrderBy } from '../utils/trainingOrderByBuilder';
+import { buildTrainingWhere } from '../utils/trainingWhereBuilder';
+import { CreateTrainingsDto } from '../dtos/training.dto';
+import { toTrainingResponse } from '../mappers/training.mapper';
 
 export const listTrainings = async (params: any) => {
   const where = buildTrainingWhere(params);
@@ -35,19 +35,23 @@ export const listTrainings = async (params: any) => {
   });
 };
 
+export const listRelated = async (id: number, userId: string | null) => {
+  const relatedTrainings = await repository.listRelated(id, userId);
+
+  return relatedTrainings;
+};
+
 export const findOne = async (id: number, userId: string | undefined) => {
   const foundExercise = await repository.findOne(id, userId);
 
-  if(!foundExercise) return null;
-
+  if (!foundExercise) return null;
 
   return toTrainingResponse(foundExercise, userId);
 };
 
 export const createTrainings = async (data: CreateTrainingsDto) => {
   return await repository.create(data);
-};  
-
+};
 
 export const favorite = async (userId: string, trainingId: number) => {
   return await repository.favorite(userId, trainingId);

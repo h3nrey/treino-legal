@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
-import { HeaderSearchresultsComponent } from "../header-searchresults/header-searchresults.component";
+import { HeaderSearchresultsComponent } from '../header-searchresults/header-searchresults.component';
 import { debounce } from '../../utils/utils';
 import { Exercise } from '../../utils/interfaces';
 import { ExercisesService } from '../../services/exercises.service';
@@ -10,43 +10,47 @@ import { FormsModule } from '@angular/forms';
   selector: 'HeaderSearchbar',
   imports: [HeaderSearchresultsComponent, FormsModule],
   templateUrl: './header-searchbar.component.html',
-  styleUrl: './header-searchbar.component.scss'
+  styleUrl: './header-searchbar.component.scss',
 })
 export class HeaderSearchbarComponent {
   constructor(
-    private exerciseService: ExercisesService, 
-    private eRef: ElementRef, 
+    private exerciseService: ExercisesService,
+    private eRef: ElementRef,
     private router: Router
   ) {}
   searchTerm: string = '';
   searchedResults: Exercise[] = [];
   private readonly searchDelay = 500;
   showResults = false;
-  searchIcon = "assets/icons/search.svg"
-  exercises = []
-  
+  searchIcon = 'assets/icons/search.svg';
+  exercises = [];
+
   debouncedSearch = debounce((term) => {
     this.searchedResults = this.exercises;
-    this.exerciseService.getExercises({
-      search: term,
-      count: 5,
-      page: 0,
-    }).subscribe(data => {
-      this.searchedResults = data.data;
-    })
+    this.exerciseService
+      .getExercises({
+        search: term,
+        count: 5,
+        page: 0,
+      })
+      .subscribe((data) => {
+        this.searchedResults = data.data;
+      });
   }, this.searchDelay);
 
   loadExercisesResults(term: string) {
     this.searchedResults = this.exercises;
-      this.exerciseService.getExercises({
+    this.exerciseService
+      .getExercises({
         search: term,
         count: 5,
         page: 0,
-      }).subscribe({
+      })
+      .subscribe({
         next: (data) => {
           this.searchedResults = data.data;
-        }
-      })
+        },
+      });
   }
 
   onSearchInput(event: Event) {
@@ -67,6 +71,6 @@ export class HeaderSearchbarComponent {
 
   submitSearch() {
     this.clearResults();
-    this.router.navigate(['/search'], {queryParams: {keyword: this.searchTerm}})
+    this.router.navigate(['/search'], { queryParams: { keyword: this.searchTerm } });
   }
 }

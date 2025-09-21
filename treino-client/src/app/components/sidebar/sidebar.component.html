@@ -1,29 +1,35 @@
-<div class="flex" [ngStyle]="{'margin-left': isOpen ? '21.5rem' : '5.125rem'}">
-    <div class="fixed left-0 flex flex-col p-8 justify-between bg-lightBlack text-lightGray h-full px-4 transition">
-        <div class="flex flex-col justify-between h-full">
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center gap-2">
-                    @if (isOpen) {
-                        <a [routerLink]="'/'">
-                            <h1 class="text-lightRed font-bold text-[3rem] w-max overflow-hidden">
-                                Treino Legal
-                            </h1>
-                        </a>
-                    }
-                    <button (click)="toggleSidebar()" class="p-1 h-fit hover:bg-red rounded-md w-min">
-                        <img [src]="expandArrowIcon" alt="" class="!w-6 !h-6 transition" [ngStyle]="{'transform': isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}">
-                    </button>
-                </div>
-        
-                <nav class="flex flex-col w-full mt-4 overflow-hidden">
-                    @for (link of siteLinks; track $index) {
-                        <sidebar-link [isOpen]="isOpen" [link]="link">
-                            {{link.text}}
-                        </sidebar-link>
-                    }
-        
-                </nav>
-            </div>
+<div class="flex" [ngStyle]="{ 'margin-left': isOpen ? '21.5rem' : '5.125rem' }">
+  <div
+    class="fixed left-0 flex flex-col p-8 justify-between bg-lightBlack text-lightGray h-full px-4 transition"
+  >
+    <div class="flex flex-col justify-between h-full">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          @if (isOpen) {
+            <a [routerLink]="'/'">
+              <h1 class="text-lightRed font-bold text-[3rem] w-max overflow-hidden">
+                Treino Legal
+              </h1>
+            </a>
+          }
+          <button (click)="toggleSidebar()" class="p-1 h-fit hover:bg-red rounded-md w-min">
+            <img
+              [src]="expandArrowIcon"
+              alt=""
+              class="!w-6 !h-6 transition"
+              [ngStyle]="{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }"
+            />
+          </button>
         </div>
+
+        <nav class="flex flex-col w-full mt-4 overflow-hidden">
+          @for (link of siteLinks; track $index) {
+            <sidebar-link [isOpen]="isOpen" [link]="link">
+              {{ link.text }}
+            </sidebar-link>
+          }
+        </nav>
+      </div>
     </div>
+  </div>
 </div>

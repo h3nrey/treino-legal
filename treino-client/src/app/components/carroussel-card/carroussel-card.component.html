@@ -1,10 +1,14 @@
-<a [routerLink]="'/trainings/'+data.id" class="p-2 rounded-md overflow-hidden">
-    <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2022/04/male-lifting-weight-1296x728-header.jpg?w=1155&h=1528" alt="" class="h-[14.75rem] w-[18.4rem] objec">
+<a [routerLink]="'/trainings/' + data.id" class="p-2 rounded-md overflow-hidden">
+  <img
+    src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2022/04/male-lifting-weight-1296x728-header.jpg?w=1155&h=1528"
+    alt=""
+    class="h-[14.75rem] w-[18.4rem] objec"
+  />
 
-    <div class="bg-lightRed text-white p-2">
-        <span>{{data.title}}</span>
-        <div class="flex gap-1">
-            <span class="bg-white text-lightRed"></span>
-        </div>
+  <div class="bg-lightRed text-white p-2">
+    <span>{{ data.title }}</span>
+    <div class="flex gap-1">
+      <span class="bg-white text-lightRed"></span>
     </div>
+  </div>
 </a>

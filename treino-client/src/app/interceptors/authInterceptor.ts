@@ -9,23 +9,24 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   if (token) {
     modifiedReq = modifiedReq.clone({
-      headers: modifiedReq.headers.set('Authorization', `Bearer ${token}`)
+      headers: modifiedReq.headers.set('Authorization', `Bearer ${token}`),
     });
   }
 
   if (userId) {
     modifiedReq = modifiedReq.clone({
       setParams: {
-        ...modifiedReq.params.keys().reduce((acc, key) => {
-          acc[key] = modifiedReq.params.get(key) ?? '';
-          return acc;
-        }, {} as Record<string, string>),
-        userId: JSON.parse(userId).id
-      }
+        ...modifiedReq.params.keys().reduce(
+          (acc, key) => {
+            acc[key] = modifiedReq.params.get(key) ?? '';
+            return acc;
+          },
+          {} as Record<string, string>
+        ),
+        userId: JSON.parse(userId).id,
+      },
     });
   }
 
-  return next(modifiedReq).pipe(
-    catchError(err => throwError(() => err))
-  );
+  return next(modifiedReq).pipe(catchError((err) => throwError(() => err)));
 };

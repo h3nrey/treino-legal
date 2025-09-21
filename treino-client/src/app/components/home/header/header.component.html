@@ -1,23 +1,30 @@
-<div 
-    class="mb-8 flex justify-between items-center"
->
-    <HeaderSearchbar></HeaderSearchbar>
+<div class="mb-8 flex justify-between items-center">
+  <HeaderSearchbar></HeaderSearchbar>
 
-    <div>
-        @if(!user) {
-            <div class="flex items-center gap-4">
-                <button (click)="navigateToLogin('login')" class="p-2 bg-brightBlack font-bol text-lightGray rounded-lg px-4">Login</button>
-                <button (click)="navigateToLogin('register')" class="p-2 bg-lightRed font-bol text-lightGray rounded-lg px-4">Criar Conta</button>
-    
-            </div>
-        } @else {
-            <div class="relative group">
-                <div class="flex items-center justify-center gap-2 cursor-pointer">
-                    <img src="assets/icons/userAvatar.svg" alt="" class="w-8 h-8 rounded-full">
-                    <span class="text-xl font-bold h-full">{{user.username}}</span>
-                </div>
-                <UserTooltip [user]="user"></UserTooltip>
-            </div>
-        }
-    </div>
+  <div>
+    @if (!user) {
+      <div class="flex items-center gap-4">
+        <button
+          (click)="navigateToLogin('login')"
+          class="p-2 bg-brightBlack font-bol text-lightGray rounded-lg px-4"
+        >
+          Login
+        </button>
+        <button
+          (click)="navigateToLogin('register')"
+          class="p-2 bg-lightRed font-bol text-lightGray rounded-lg px-4"
+        >
+          Criar Conta
+        </button>
+      </div>
+    } @else {
+      <div class="relative group">
+        <div class="flex items-center justify-center gap-2 cursor-pointer">
+          <img src="assets/icons/userAvatar.svg" alt="" class="w-8 h-8 rounded-full" />
+          <span class="text-xl font-bold h-full">{{ user.username }}</span>
+        </div>
+        <UserTooltip [user]="user"></UserTooltip>
+      </div>
+    }
+  </div>
 </div>

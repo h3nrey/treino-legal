@@ -1,33 +1,32 @@
 <div class="flex flex-col gap-2">
-    <h3 class="text-2xl font-semibold">Detalhes</h3>
-    
-    <div class="flex flex-col gap-2 bg-red p-2 rounded-md text-white">
-        <div class="flex justify-between">
-            <span>Músculo primário</span>
-            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.primaryMuscle}}</span>
-        </div>
-    @if(info && info.otherMuscles.length > 0) {
-            <div class="flex justify-between">
-                <span>Outros músculos</span>
-                <span class="flex gap-1">
-                    @for(muscle of info.otherMuscles; track $index){
-                        <span class="bg-lightBlack p-[2px] rounded-sm">{{muscle}}</span>
-                    }
-                </span>   
-            </div>
-        }
-        <div class="flex justify-between">
-            <span>Equipamentos</span>
-            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.equipament}}</span>
-        </div>
-        <!-- <div class="flex justify-between">
+  <h3 class="text-2xl font-semibold">Detalhes</h3>
+
+  <div class="flex flex-col gap-2 bg-red p-2 rounded-md text-white">
+    <div class="flex justify-between">
+      <span>Músculo primário</span>
+      <span class="bg-lightBlack p-[2px] rounded-sm">{{ info?.primaryMuscle }}</span>
+    </div>
+    @if (info && info.otherMuscles.length > 0) {
+      <div class="flex justify-between">
+        <span>Outros músculos</span>
+        <span class="flex gap-1">
+          @for (muscle of info.otherMuscles; track $index) {
+            <span class="bg-lightBlack p-[2px] rounded-sm">{{ muscle }}</span>
+          }
+        </span>
+      </div>
+    }
+    <div class="flex justify-between">
+      <span>Equipamentos</span>
+      <span class="bg-lightBlack p-[2px] rounded-sm">{{ info?.equipament }}</span>
+    </div>
+    <!-- <div class="flex justify-between">
             <span>Pegada</span>
             <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.grip}}</span>
         </div> -->
-        <div class="flex justify-between">
-            <span>Nivel de experiência</span>
-            <span class="bg-lightBlack p-[2px] rounded-sm">{{info?.experienceLevel}}</span>
-        </div>
-
+    <div class="flex justify-between">
+      <span>Nivel de experiência</span>
+      <span class="bg-lightBlack p-[2px] rounded-sm">{{ info?.experienceLevel }}</span>
     </div>
+  </div>
 </div>

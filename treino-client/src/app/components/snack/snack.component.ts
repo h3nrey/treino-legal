@@ -11,23 +11,29 @@ import { animate, style, transition, trigger } from '@angular/animations';
   animations: [
     trigger('snackAnimation', [
       transition(':enter', [
-        style({ 
-          opacity: 0, 
-          transform: 'translateX(-50%)' 
+        style({
+          opacity: 0,
+          transform: 'translateX(-50%)',
         }),
-        animate('300ms ease-out', style({ 
-          opacity: 1, 
-          transform: 'translateX(0)' 
-        })),
+        animate(
+          '300ms ease-out',
+          style({
+            opacity: 1,
+            transform: 'translateX(0)',
+          })
+        ),
       ]),
       transition(':leave', [
-        animate('300ms ease-in', style({ 
-          opacity: 0, 
-          transform: 'translateX(50%)' 
-        })),
+        animate(
+          '300ms ease-in',
+          style({
+            opacity: 0,
+            transform: 'translateX(50%)',
+          })
+        ),
       ]),
     ]),
-  ]
+  ],
 })
 export class SnackComponent {
   snack: SnackMessage | null = null;

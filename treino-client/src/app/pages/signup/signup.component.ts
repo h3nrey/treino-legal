@@ -8,34 +8,38 @@ import { UserService } from '../../services/users.service.ts.service';
   selector: 'app-signup',
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   signupForm: FormGroup;
   loading: boolean = false;
   response: any = null;
   loggedSucessfully: boolean | null = null;
-  
-  constructor(private readonly fb: FormBuilder, private readonly userService: UserService, private readonly router: Router) {
+
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly userService: UserService,
+    private readonly router: Router
+  ) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  closeModal () {
-    this.router.navigate([{outlets: {modal: null}}]);
+  closeModal() {
+    this.router.navigate([{ outlets: { modal: null } }]);
   }
 
   navigateToLogin() {
-    this.router.navigate([{outlets: {modal: ['login']}}]);
+    this.router.navigate([{ outlets: { modal: ['login'] } }]);
   }
 
   onSubmit() {
-    if(this.signupForm.valid) {
+    if (this.signupForm.valid) {
       this.loading = true;
-      this.signupForm.disable(); 
+      this.signupForm.disable();
 
       this.userService.createUser(this.signupForm.value).subscribe({
         next: (res) => {
@@ -47,9 +51,9 @@ export class SignupComponent {
         error: (err) => {
           this.response = err.error.message;
           this.loading = false;
-          this.signupForm.enable(); 
+          this.signupForm.enable();
           this.loggedSucessfully = false;
-        }
+        },
       });
     }
   }

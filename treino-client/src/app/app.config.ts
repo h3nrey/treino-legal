@@ -8,5 +8,11 @@ import { authInterceptor } from './interceptors/authInterceptor';
 import { provideNgIcons } from './app.icons';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideHttpClient(withInterceptors([authInterceptor])), provideNgIcons()]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideNgIcons(),
+  ],
 };

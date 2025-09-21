@@ -8,8 +8,8 @@ export const unAuthGuard: CanActivateFn = (route, state) => {
 
   const isLoggedIn = !!userService.getToken();
 
-  if(isLoggedIn) {
-    router.navigate([{outlets: {modal: null}}]);
+  if (isLoggedIn) {
+    router.navigate([{ outlets: { modal: null } }]);
     return false;
   }
 

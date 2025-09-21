@@ -7,11 +7,11 @@ import { CommonModule, NgClass } from '@angular/common';
   selector: 'HomeSection',
   imports: [RouterLink, NgClass, CommonModule],
   templateUrl: './home-section.component.html',
-  styleUrl: './home-section.component.scss'
+  styleUrl: './home-section.component.scss',
 })
 export class HomeSectionComponent {
-  constructor(protected sidebarService: SidebarService){}
+  constructor(protected sidebarService: SidebarService) {}
   @Input() sectionLink: string = '';
   @Input() sectionTitle: string = '';
-  arrowRight = "assets/icons/arrowRight.svg"
+  arrowRight = 'assets/icons/arrowRight.svg';
 }

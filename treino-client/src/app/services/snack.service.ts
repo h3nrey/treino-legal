@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -9,10 +8,10 @@ export interface SnackMessage {
   type: SnackType;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnackService {
-   private snackSubject = new BehaviorSubject<SnackMessage | null>(null);
+  private snackSubject = new BehaviorSubject<SnackMessage | null>(null);
   snack$ = this.snackSubject.asObservable();
 
   show(message: string, type: SnackType = 'success') {

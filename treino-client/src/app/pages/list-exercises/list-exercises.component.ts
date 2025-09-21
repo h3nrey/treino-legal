@@ -7,16 +7,19 @@ import { ExerciseCardComponent } from '../../components/exercise-card/exercise-c
   selector: 'app-list-exercises',
   imports: [ExerciseCardComponent],
   templateUrl: './list-exercises.component.html',
-  styleUrl: './list-exercises.component.scss'
+  styleUrl: './list-exercises.component.scss',
 })
 export class ListExercisesComponent {
-  constructor(private route: ActivatedRoute, private exercisesService: ExercisesService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private exercisesService: ExercisesService
+  ) {}
 
   muscleGroupId: string | null = null;
-  exercises: any[] = []
+  exercises: any[] = [];
 
   ngOnInit(): void {
-    this.muscleGroupId = this.route.snapshot.paramMap.get("musclegroup");
+    this.muscleGroupId = this.route.snapshot.paramMap.get('musclegroup');
     this.loadExercises();
   }
 
@@ -24,6 +27,4 @@ export class ListExercisesComponent {
     if (!this.muscleGroupId) return;
     this.exercises = await this.exercisesService.listMusclesByMuscleGroup(this.muscleGroupId);
   }
-
-
 }

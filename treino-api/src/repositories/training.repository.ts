@@ -35,6 +35,62 @@ export const list = async ({
   });
 };
 
+export const listRelated = async (
+  id: number,
+  userId: string | null,
+  count = 5,
+) => {
+  const training = await prisma.training.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      TraningExercises: {
+        include: {
+          exercise: {
+            include: {
+              usedMuscles: {
+                include: { muscle: true },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!training) return [];
+
+  const muscleIds = training.TraningExercises.flatMap((te) =>
+    te.exercise.usedMuscles.map((um) => um.muscle.id),
+  );
+
+  const related = await prisma.training.findMany({
+    where: {
+      id: { not: id },
+      // OR: [
+      //   { goal: training.goal },
+      //   {
+      //     TraningExercises: {
+      //       some: {
+      //         exercise: {
+      //           usedMuscles: {
+      //             some: {
+      //               muscleId: { in: muscleIds },
+      //             },
+      //           },
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
+    },
+    take: count,
+  });
+
+  return related;
+};
+
 export const findOne = async (id: number, userId: string | null = null) => {
   return await prisma.training.findUnique({
     where: {

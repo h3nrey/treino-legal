@@ -8,9 +8,8 @@ describe('InfoWrapperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InfoWrapperComponent]
-    })
-    .compileComponents();
+      imports: [InfoWrapperComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InfoWrapperComponent);
     component = fixture.componentInstance;

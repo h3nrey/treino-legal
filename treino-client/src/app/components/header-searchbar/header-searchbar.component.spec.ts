@@ -8,9 +8,8 @@ describe('HeaderSearchbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderSearchbarComponent]
-    })
-    .compileComponents();
+      imports: [HeaderSearchbarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderSearchbarComponent);
     component = fixture.componentInstance;

@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SidebarService {
-
-  constructor() { }
+  constructor() {}
 
   private sidebarOpen = new BehaviorSubject<boolean>(false); // Default state: closed
   sidebarStatus$ = this.sidebarOpen.asObservable(); // Observable for components to subscribe

@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
   selector: 'SearchResultsContainer',
   imports: [RouterLink],
   templateUrl: './header-searchresults.component.html',
-  styleUrl: './header-searchresults.component.scss'
+  styleUrl: './header-searchresults.component.scss',
 })
 export class HeaderSearchresultsComponent {
   @Input() results: any[] = [];

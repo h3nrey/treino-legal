@@ -2,24 +2,18 @@
   @if (!bannerClosed) {
     <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
   }
-  
+
   <div class="flex flex-col gap-8">
-
-
     <HomeSection [sectionLink]="'/exercises'" [sectionTitle]="'Exercicios Populares'">
-      @for(exercise of popularExercises; track $index) {
-        <exercise-card [exercise]=" exercise" />
+      @for (exercise of popularExercises; track $index) {
+        <exercise-card [exercise]="exercise" />
       }
     </HomeSection>
 
     <HomeSection [sectionLink]="'/trainings'" [sectionTitle]="'Treinos Populares'">
-      @for(training of popularTrainings; track $index) {
+      @for (training of popularTrainings; track $index) {
         <TrainingCard [training]="training" />
       }
     </HomeSection>
-
-    
   </div>
 </div>
-
-      

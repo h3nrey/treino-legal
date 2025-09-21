@@ -2,38 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-$red: #BA181B;
-$lightRed: #E5383B;
+$red: #ba181b;
+$lightRed: #e5383b;
 $darkRed: #660708;
-$grayRed: #A4161A;
-$lightGray: #F5F3F4;
-$gray: #D9D9D9;
-$mediumGray: #D9D9D9;
-$white: #FFFFFF;
-$darkGray: #B1A7A6;
-$black: #0B090A;
-$lightBlack: #161A1D;
+$grayRed: #a4161a;
+$lightGray: #f5f3f4;
+$gray: #d9d9d9;
+$mediumGray: #d9d9d9;
+$white: #ffffff;
+$darkGray: #b1a7a6;
+$black: #0b090a;
+$lightBlack: #161a1d;
 
 img {
-    max-width: none;
+  max-width: none;
 }
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .input-container label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #F5F3F4;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f3f4;
 }
 
 .input-container input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
 }

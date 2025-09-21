@@ -1,82 +1,102 @@
 <div class="flex justify-between gap-4">
-    <div class="flex flex-col gap-4">
-        <div class="flex flex-col gap-1">
-            <h1 class="font-bold text-2xl">
-                {{training?.title}}
-            </h1>
-            <p>
-                {{training?.description}}
-            </p>
-        </div>
-        
-        <div class="flex flex-col gap-2">
-            <h2 class="text-2xl font-semibold">Exercicios</h2>
-    
-            <div class="flex gap-2">
-                @for (exercise of training.exercises; track $index) {
-                    <button class="bg-lightBlack rounded-sm p-2 text-white max-w-48 whitespace-nowrap text-ellipsis text-nowrap transition-all" 
-                    (click)="selectExercise($index)" [ngClass]="currentExercise == $index ? 'bg-lightRed max-w-full' : ''">{{exercise.name}}</button>
-                }
-            </div>
-
-            <div class="flex flex-col items-start">
-                <div class="text-center font-semibold mt-2">{{training.exercises[currentExercise].name}}</div>
-                <img src="{{training.exercises[currentExercise].thumbnailUrl ?? PLACEHOLDERIMAGE}}" alt="">
-
-                <div class="flex gap-4">
-                    <div class="flex items-center gap-4 mt-2">
-                        <span>Séries</span>
-                        <span class="bg-lightRed rounded-sm p-1">{{training.exercises[currentExercise].sets}}</span>
-                    </div>
-                    <div class="flex items-center gap-4 mt-2">
-                        <span>Repetições</span>
-                        <span class="bg-lightRed rounded-sm p-1 h-fit">{{training.exercises[currentExercise].reps}}</span>
-                    </div>
-                </div>
-
-                <div>
-                    
-                    <span class="text-lg">Instruções</span>
-                    <div class="flex flex-col gap-2">
-                        @for (item of training.exercises[currentExercise].instructions; track $index) {
-                            <div class="flex gap-4">
-                                <span class="bg-lightRed rounded-md py-1 px-3 text-white">{{$index + 1}}</span>
-                                <span>{{item}}</span>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-1">
+      <h1 class="font-bold text-2xl">
+        {{ training?.title }}
+      </h1>
+      <p>
+        {{ training?.description }}
+      </p>
     </div>
 
-    <aside class="flex flex-col gap-4">
-        <div class="flex flex-col">
-            <span class="font-semibold text-xl">Detalhes</span>
-            <div class="bg-lightRed text-white rounded-md flex flex-col gap-2 p-2 text-nowrap">
-                <!-- <DetailsRow [caption]="'Tipo'" [value]="training.goal"></DetailsRow> -->
-                <DetailsRow [caption]="'Músculos Trabalhados'" [value]="training.muscles"></DetailsRow>
-                <DetailsRow [caption]="'Duração'" [value]="training?.duration+' min'"></DetailsRow>
-                <DetailsRow [caption]="'Tipo de Treino'" [value]="training.goal"></DetailsRow>
-                <DetailsRow [caption]="'Equipamentos'" [value]="training?.equipaments ?? []"></DetailsRow>
+    <div class="flex flex-col gap-2">
+      <h2 class="text-2xl font-semibold">Exercicios</h2>
 
-                <DetailsRow [caption]="'Nível de experiência'" [value]="training.experienceLevel"></DetailsRow>
-            </div>
+      <div class="flex gap-2">
+        @for (exercise of training.exercises; track $index) {
+          <button
+            class="bg-lightBlack rounded-sm p-2 text-white max-w-48 whitespace-nowrap text-ellipsis text-nowrap transition-all"
+            (click)="selectExercise($index)"
+            [ngClass]="currentExercise == $index ? 'bg-lightRed max-w-full' : ''"
+          >
+            {{ exercise.name }}
+          </button>
+        }
+      </div>
+
+      <div class="flex flex-col items-start">
+        <div class="text-center font-semibold mt-2">
+          {{ training.exercises[currentExercise].name }}
+        </div>
+        <img
+          src="{{ training.exercises[currentExercise].thumbnailUrl ?? PLACEHOLDERIMAGE }}"
+          alt=""
+        />
+
+        <div class="flex gap-4">
+          <div class="flex items-center gap-2 mt-2">
+            <span>Séries</span>
+            <span class="bg-lightRed rounded-sm p-1 text-white px-3">{{
+              training.exercises[currentExercise].sets
+            }}</span>
+          </div>
+          <div class="flex items-center gap-2 mt-2">
+            <span>Repetições</span>
+            <span class="bg-lightRed rounded-sm p-1 h-fit text-white px-3">{{
+              training.exercises[currentExercise].reps
+            }}</span>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-1">
-            <span class="font-semibold text-xl">Treinos Relacionados</span>
-            @for (relatedTraining of relatedTrainings; track $index) {
-                <a [routerLink]="'/trainings/'+relatedTraining.id" class="cursor-pointer">
-                    <img 
-                        [src]="relatedTraining.thumbnailUrl" alt="" 
-                        class="h-28 w-full object-cover rounded-sm"
-                    >
-                    <div>
-                        {{relatedTraining.title}}
-                    </div>
-                </a>
+        <div>
+          <span class="text-lg">Instruções</span>
+          <div class="flex flex-col gap-2">
+            @for (item of training.exercises[currentExercise].instructions; track $index) {
+              <div class="flex gap-4">
+                <span class="bg-lightRed rounded-md py-1 px-3 text-white">{{ $index + 1 }}</span>
+                <span>{{ item }}</span>
+              </div>
             }
+          </div>
         </div>
-    </aside>
+      </div>
+    </div>
+  </div>
+
+  <aside class="flex flex-col gap-4">
+    <div class="flex flex-col">
+      <span class="font-semibold text-xl">Detalhes</span>
+      <div class="bg-lightRed text-white rounded-md flex flex-col gap-2 p-2 text-nowrap">
+        <!-- <DetailsRow [caption]="'Tipo'" [value]="training.goal"></DetailsRow> -->
+        <DetailsRow [caption]="'Músculos Trabalhados'" [value]="training.muscles"></DetailsRow>
+        <DetailsRow [caption]="'Duração'" [value]="training?.duration + ' min'"></DetailsRow>
+        <DetailsRow [caption]="'Tipo de Treino'" [value]="training.goal"></DetailsRow>
+        <DetailsRow [caption]="'Equipamentos'" [value]="training?.equipaments ?? []"></DetailsRow>
+
+        <DetailsRow
+          [caption]="'Nível de experiência'"
+          [value]="training.experienceLevel"
+        ></DetailsRow>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <span class="font-semibold text-xl">Treinos Relacionados</span>
+      @for (relatedTraining of relatedTrainings; track $index) {
+        <a
+          [routerLink]="'/trainings/' + relatedTraining.id"
+          class="cursor-pointer rounded-sm overflow-hidden transition-all flex flex-col gap-1"
+        >
+          <img
+            [src]="relatedTraining.thumbnailUrl ?? PLACEHOLDERIMAGE"
+            alt=""
+            class="h-28 w-full object-cover rounded-sm"
+          />
+          <div>
+            {{ relatedTraining.title }}
+          </div>
+        </a>
+      }
+    </div>
+  </aside>
 </div>

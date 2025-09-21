@@ -1,6 +1,6 @@
-import { Enviroment } from "../app/utils/interfaces";
+import { Enviroment } from '../app/utils/interfaces';
 
 export const environment: Enviroment = {
-    production: false,
-    apiUrl: 'http://localhost:3000',
-}
+  production: false,
+  apiUrl: 'http://localhost:3000',
+};

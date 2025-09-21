@@ -1,13 +1,17 @@
 <div class="flex flex-col gap-2">
-    <div class="flex justify-between">
-      <h3 class="font-bold text-xl">{{sectionTitle}}</h3>
-      <div class="flex gap-2 items-center cursor-pointer">
-        <a [routerLink]="sectionLink" class="font-semibold min-w-fit text-black  transition">Ver mais </a>
-        <img [src]="arrowRight" />
-      </div>
-
-    </div>
-    <div class="grid gap-4 overflow-hidden max-h-48" [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-4' : 'grid-cols-5'">
-        <ng-content></ng-content>
+  <div class="flex justify-between">
+    <h3 class="font-bold text-xl">{{ sectionTitle }}</h3>
+    <div class="flex gap-2 items-center cursor-pointer">
+      <a [routerLink]="sectionLink" class="font-semibold min-w-fit text-black transition"
+        >Ver mais
+      </a>
+      <img [src]="arrowRight" />
     </div>
   </div>
+  <div
+    class="grid gap-4 overflow-hidden max-h-48"
+    [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-4' : 'grid-cols-5'"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

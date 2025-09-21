@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-paginator',
   imports: [NgStyle, NgClass],
   templateUrl: './paginator.component.html',
-  styleUrl: './paginator.component.scss'
+  styleUrl: './paginator.component.scss',
 })
 export class PaginatorComponent implements OnInit, OnChanges {
   @Input() totalCount: number = 0;
@@ -23,20 +23,18 @@ export class PaginatorComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.setPages();
   }
-    
 
   setPages() {
     const pages = Math.ceil(this.totalCount / this.cardsCount);
     this.items = Array.from({ length: pages }, (_, i) => i + 1);
   }
-  
 
   changePage(page: number) {
-    if(page < 0 || page >= this.items.length) return;
+    if (page < 0 || page >= this.items.length) return;
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { page: page },
-      queryParamsHandling: 'merge'
-    })
+      queryParamsHandling: 'merge',
+    });
   }
 }

@@ -1,51 +1,51 @@
 <div class="flex justify-between mb-8">
-    <div class="w-full max-w-[40rem]">
-        <div class="flex gap-3 items-center">
-            <h2 class="text-[2rem] font-bold">
-                {{exerciseData?.name}}
-            </h2>
-            <button class="rounded-sm h-fit px-2 outline relative" (click)="toggleFavorited()">
-                {{exerciseData?.favorited ? 'Favoritado' : 'Favoritar'}}
+  <div class="w-full max-w-[40rem]">
+    <div class="flex gap-3 items-center">
+      <h2 class="text-[2rem] font-bold">
+        {{ exerciseData?.name }}
+      </h2>
+      <button class="rounded-sm h-fit px-2 outline relative" (click)="toggleFavorited()">
+        {{ exerciseData?.favorited ? 'Favoritado' : 'Favoritar' }}
 
-                @if(showLoginPopup) {
-                    <div class="absolute min-w-full right-0">
-                        <LoginPopup class="flex items-end"></LoginPopup>
-                    </div>
-                }
-            </button>
-        </div>
-        <p>{{exerciseData?.description}}</p>
-        <img [src]="exerciseData?.thumbnailUrl" alt="" class="max-h-[19rem] object-cover">
+        @if (showLoginPopup) {
+          <div class="absolute min-w-full right-0">
+            <LoginPopup class="flex items-end"></LoginPopup>
+          </div>
+        }
+      </button>
+    </div>
+    <p>{{ exerciseData?.description }}</p>
+    <img [src]="exerciseData?.thumbnailUrl" alt="" class="max-h-[19rem] object-cover" />
 
-        <div>
-            <h3 class="text-[2rem] font-bold mt-4">Instruções</h3>
-            <ul class="flex flex-col gap-4">
-                @for(instruction of exerciseData?.instructions; track $index) {
-                <li class="flex gap-2 items-center">
-                    <div
-                        class="bg-red rounded-md text-white p-2 px-4 text-2xl">
-                        {{instruction.step}}</div>
-                        <span class="text-base text-lightBlack">
-                            {{instruction.description}}
-                        </span>
-                </li>
-                }
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="text-[2rem] font-bold mt-4">Dicas</h3>
-            <ul class="flex flex-col gap-4">
-                @for(instruction of exerciseData?.tips; track $index) {
-                <li class="bg-lightBlack text-white rounded-md p-2">
-                    <span class="">
-                        {{instruction.description}}
-                    </span>   
-                </li>
-                }
-            </ul>
-        </div>
+    <div>
+      <h3 class="text-[2rem] font-bold mt-4">Instruções</h3>
+      <ul class="flex flex-col gap-4">
+        @for (instruction of exerciseData?.instructions; track $index) {
+          <li class="flex gap-2 items-center">
+            <div class="bg-red rounded-md text-white p-2 px-4 text-2xl">
+              {{ instruction.step }}
+            </div>
+            <span class="text-base text-lightBlack">
+              {{ instruction.description }}
+            </span>
+          </li>
+        }
+      </ul>
     </div>
 
-    <app-info-wrapper [info]="exerciseData"></app-info-wrapper>
+    <div>
+      <h3 class="text-[2rem] font-bold mt-4">Dicas</h3>
+      <ul class="flex flex-col gap-4">
+        @for (instruction of exerciseData?.tips; track $index) {
+          <li class="bg-lightBlack text-white rounded-md p-2">
+            <span class="">
+              {{ instruction.description }}
+            </span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <app-info-wrapper [info]="exerciseData"></app-info-wrapper>
 </div>

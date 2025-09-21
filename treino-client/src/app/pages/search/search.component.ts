@@ -5,8 +5,8 @@ import { Exercise } from '../../utils/interfaces';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { SidebarService } from '../../services/sidebar.service';
 import { CommonModule, NgClass } from '@angular/common';
-import { PaginatorComponent } from "../../components/paginator/paginator.component";
-import { SelectComponent } from "../../components/select/select.component";
+import { PaginatorComponent } from '../../components/paginator/paginator.component';
+import { SelectComponent } from '../../components/select/select.component';
 import { SearchService } from '../../services/search.service';
 import { equipaments, muscles } from '../../../data';
 
@@ -21,41 +21,47 @@ interface ExerciseSearchParams {
   selector: 'app-search',
   imports: [ExerciseCardComponent, CommonModule, NgClass, PaginatorComponent, SelectComponent],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss'
+  styleUrl: './search.component.scss',
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute, 
-    private readonly exerciseService: ExercisesService, 
+    private readonly route: ActivatedRoute,
+    private readonly exerciseService: ExercisesService,
     protected sidebarService: SidebarService,
     private readonly searchService: SearchService
-  ){}
-  searchTerm: string = ''
+  ) {}
+  searchTerm: string = '';
   exercises: Exercise[] = [];
   totalCount = 0;
-  filters: {muscle: string, equipament: string} = {muscle: '', equipament: ''}
-  defaultParams: ExerciseSearchParams = { page: 0, count: 16, muscle: '', equipament: '', search: '' };
+  filters: { muscle: string; equipament: string } = { muscle: '', equipament: '' };
+  defaultParams: ExerciseSearchParams = {
+    page: 0,
+    count: 16,
+    muscle: '',
+    equipament: '',
+    search: '',
+  };
   params: ExerciseSearchParams = this.defaultParams;
-  closeIcon = 'assets/icons/close.svg'
+  closeIcon = 'assets/icons/close.svg';
   musclesOptions = muscles;
   equipamentsOptions = equipaments;
 
   ngOnInit() {
     // this.getFilters();
 
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       this.params = {
-      ...this.defaultParams,
-      page: +(params.get("page") ?? 0),
-      muscle: params.get("muscle") ?? '',
-      equipament: params.get("equipament") ?? '',
-      search: params.get("keyword") ?? ''
-    };
+        ...this.defaultParams,
+        page: +(params.get('page') ?? 0),
+        muscle: params.get('muscle') ?? '',
+        equipament: params.get('equipament') ?? '',
+        search: params.get('keyword') ?? '',
+      };
 
       this.filters = { muscle: this.params.muscle, equipament: this.params.equipament };
       this.loadExercises();
-    })
+    });
   }
 
   // getFilters() {
@@ -72,25 +78,25 @@ export class SearchComponent implements OnInit{
       relativeTo: this.route,
       queryParams: updated,
       queryParamsHandling: 'merge',
-      replaceUrl: true
-    })
+      replaceUrl: true,
+    });
   }
 
   clearFilters() {
-    this.searchService.emitClearFilters()
+    this.searchService.emitClearFilters();
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {keyword: ""},
+      queryParams: { keyword: '' },
       queryParamsHandling: 'replace',
-      replaceUrl: true
-    })
+      replaceUrl: true,
+    });
   }
 
   loadExercises() {
     this.params['search'] = this.searchTerm;
-    this.exerciseService.getExercises(this.params).subscribe(res => {
+    this.exerciseService.getExercises(this.params).subscribe((res) => {
       this.exercises = res.data;
       this.totalCount = res.pagination.totalCount;
-    })
+    });
   }
 }

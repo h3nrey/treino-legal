@@ -11,23 +11,26 @@ import { CommonModule, NgClass } from '@angular/common';
   selector: 'app-exercises-home',
   imports: [RouterLink, ExerciseCardComponent, MuscleCardComponent, NgClass, CommonModule],
   templateUrl: './exercises-home.component.html',
-  styleUrl: './exercises-home.component.scss'
+  styleUrl: './exercises-home.component.scss',
 })
 export class ExercisesHomeComponent {
-  constructor(private exerciseService: ExercisesService, protected sidebarService: SidebarService) { }
+  constructor(
+    private exerciseService: ExercisesService,
+    protected sidebarService: SidebarService
+  ) {}
   title = 'treino-client';
   bannerClosed = false;
   popularExercises: Exercise[] = [];
   muscles: Muscle[] = [];
   equipaments: Equipament[] = [];
-  arrowRight = "assets/icons/arrowRight.svg"
+  arrowRight = 'assets/icons/arrowRight.svg';
 
   ngOnInit() {
     this.checkBannerStatus();
   }
 
   ngAfterViewInit() {
-    this.popularExercises = []
+    this.popularExercises = [];
     // this.exerciseService.getPopularExercises().subscribe({
     //   next: (res) => {
     //     this.popularExercises = res
@@ -37,13 +40,13 @@ export class ExercisesHomeComponent {
     this.exerciseService.getMuscles().subscribe({
       next: (res) => {
         this.muscles = res;
-      }
+      },
     });
 
     this.exerciseService.getEquipaments().subscribe({
       next: (res) => {
         this.equipaments = res;
-      }
+      },
     });
   }
 

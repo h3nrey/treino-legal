@@ -7,13 +7,13 @@ import { SiteLink } from '../sidebar/sidebar.component';
   selector: 'sidebar-link',
   imports: [RouterLink, NgStyle],
   templateUrl: './sidebar-link.component.html',
-  styleUrl: './sidebar-link.component.scss'
+  styleUrl: './sidebar-link.component.scss',
 })
 export class SidebarLinkComponent {
   @Input() isOpen: boolean = false;
   @Input() link: SiteLink | null = null;
   isContentOpen: boolean = false;
-  dumbellIcon = "assets/icons/dumbell.svg";
+  dumbellIcon = 'assets/icons/dumbell.svg';
 
   toggleSublinks() {
     if (this.link && this.link?.sublinks.length < 1) return;

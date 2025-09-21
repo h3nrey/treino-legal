@@ -9,20 +9,19 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { unAuthGuard } from './guards/auth.guard';
-import { RenderMode} from "@angular/ssr"
+import { RenderMode } from '@angular/ssr';
 import { TrainingPageComponent } from './pages/training-page/training-page.component';
 import { TrainingDetailsComponent } from './pages/training-details/training-details.component';
- 
-export const routes: Routes = [
-    { path: "", component: HomeComponent },
-    { path: "exercises/:exercise", component: ExerciseDetailsComponent },
-    { path: "exercises", component: ExercisesHomeComponent},
-    { path: "exercises/section/:sectionType", component: ExerciseSectionComponent},
-    { path: "trainings", component: TrainingPageComponent},
-    { path: "trainings/:id", component: TrainingDetailsComponent},
-    { path: "search", component: SearchComponent},
-    {path: "users/:id", component: UserProfileComponent},
-    {path: "register", component: SignupComponent, outlet: "modal", canActivate: [unAuthGuard]},
-    {path: "login", component: LoginComponent, outlet: "modal", canActivate: [unAuthGuard]},
 
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'exercises/:exercise', component: ExerciseDetailsComponent },
+  { path: 'exercises', component: ExercisesHomeComponent },
+  { path: 'exercises/section/:sectionType', component: ExerciseSectionComponent },
+  { path: 'trainings', component: TrainingPageComponent },
+  { path: 'trainings/:id', component: TrainingDetailsComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'users/:id', component: UserProfileComponent },
+  { path: 'register', component: SignupComponent, outlet: 'modal', canActivate: [unAuthGuard] },
+  { path: 'login', component: LoginComponent, outlet: 'modal', canActivate: [unAuthGuard] },
 ];

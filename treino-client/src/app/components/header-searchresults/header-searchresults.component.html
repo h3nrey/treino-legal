@@ -1,14 +1,13 @@
-<div   
-    class="bg-lightBlack absolute top-full text-lightGray w-full z-10 mt-1 overflow-hidden flex flex-col rounded-md pb-4"
+<div
+  class="bg-lightBlack absolute top-full text-lightGray w-full z-10 mt-1 overflow-hidden flex flex-col rounded-md pb-4"
 >
-    @for (item of results; track $index) {
-        <a 
-            (click)="clearResults()"
-            class="p-2 cursor-pointer hover:bg-red" 
-            [routerLink]="'exercises/'+item.id"
-        >
-            {{item.name}}
-        </a>
-    }
-
+  @for (item of results; track $index) {
+    <a
+      (click)="clearResults()"
+      class="p-2 cursor-pointer hover:bg-red"
+      [routerLink]="'exercises/' + item.id"
+    >
+      {{ item.name }}
+    </a>
+  }
 </div>

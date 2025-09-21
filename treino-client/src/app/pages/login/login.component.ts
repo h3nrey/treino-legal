@@ -8,7 +8,7 @@ import { UserService } from '../../services/users.service.ts.service';
   selector: 'app-login',
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -16,26 +16,26 @@ export class LoginComponent {
   loading: boolean = false;
 
   constructor(
-    private readonly fb: FormBuilder, 
-    private readonly userService: UserService, 
-    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly userService: UserService,
+    private readonly router: Router
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  closeModal () {
-    this.router.navigate([{outlets: {modal: null}}]);
+  closeModal() {
+    this.router.navigate([{ outlets: { modal: null } }]);
   }
 
   navigateToSignup() {
-    this.router.navigate([{outlets: {modal: ['register']}}]);
+    this.router.navigate([{ outlets: { modal: ['register'] } }]);
   }
 
   onSubmit() {
-    if(!this.loginForm.valid) return;
+    if (!this.loginForm.valid) return;
 
     this.loading = true;
 
@@ -43,14 +43,14 @@ export class LoginComponent {
       next: (res) => {
         this.loggedSucessfully = true;
         this.loading = false;
-        this.router.navigate(["/"]).then(() => {
+        this.router.navigate(['/']).then(() => {
           window.location.reload();
-        })
-      }, 
+        });
+      },
       error: (err) => {
         this.loading = false;
         this.loggedSucessfully = false;
-      }
+      },
     });
   }
 }

@@ -6,7 +6,7 @@ import { UserService } from '../../services/users.service.ts.service';
   selector: 'UserTooltip',
   imports: [RouterLink],
   templateUrl: './user-tooltip.component.html',
-  styleUrl: './user-tooltip.component.scss'
+  styleUrl: './user-tooltip.component.scss',
 })
 export class UserTooltipComponent {
   @Input() user: any = null;

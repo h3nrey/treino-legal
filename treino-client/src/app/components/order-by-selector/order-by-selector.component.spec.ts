@@ -8,9 +8,8 @@ describe('OrderBySelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderBySelectorComponent]
-    })
-    .compileComponents();
+      imports: [OrderBySelectorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OrderBySelectorComponent);
     component = fixture.componentInstance;
