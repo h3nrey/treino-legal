@@ -18,12 +18,17 @@
         </button>
       </div>
     } @else {
-      <div class="relative group">
-        <div class="flex items-center justify-center gap-2 cursor-pointer">
-          <img src="assets/icons/userAvatar.svg" alt="" class="w-8 h-8 rounded-full" />
-          <span class="text-xl font-bold h-full">{{ user.username }}</span>
+      <div class="flex gap-2">
+        <a [routerLink]="'/trainings/create'" class="bg-lightRed px-2 rounded-full text-white">
+          Criar treino
+        </a>
+        <div class="relative group">
+          <div class="flex items-center justify-center gap-2 cursor-pointer">
+            <img src="assets/icons/userAvatar.svg" alt="" class="w-8 h-8 rounded-full" />
+            <span class="text-xl font-bold h-full">{{ user.username }}</span>
+          </div>
+          <UserTooltip [user]="user"></UserTooltip>
         </div>
-        <UserTooltip [user]="user"></UserTooltip>
       </div>
     }
   </div>

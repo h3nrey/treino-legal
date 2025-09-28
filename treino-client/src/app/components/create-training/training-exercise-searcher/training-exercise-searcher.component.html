@@ -1,0 +1,28 @@
+<div class="flex flex-col relative">
+  <input
+    type="text"
+    class="input"
+    [formControl]="search"
+    placeholder="Buscar"
+    ngModelOptions="{standalone: true}"
+  />
+  @if (!loadinig) {
+    @if (search.value) {
+      <div class="flex flex-col bg-red gap-1 p-1 rounded-sm absolute top-full left-0 w-full">
+        @for (exercise of exercises; track $index) {
+          <div class="flex justify-between bg-lightRed text-white p-2 rounded-sm">
+            <div class="flex gap-2 items-center">
+              <img [src]="PLACEHOLDERIMAGE" [alt]="exercise.name" class="rounded-sm w-20 h-12" />
+              <span> {{ exercise.name }}</span>
+            </div>
+            <button (click)="selectExercise(exercise)">
+              {{ selectedExercises.includes(exercise) ? 'adicionado' : 'adicionar' }}
+            </button>
+          </div>
+        }
+      </div>
+    }
+  } @else {
+    <p>Carregando...</p>
+  }
+</div>

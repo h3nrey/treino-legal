@@ -1,0 +1,14 @@
+<div class="rounded-md bg-lightRed p-2 text-white flex items-start">
+  <div class="flex w-full">
+    <img [src]="PLACEHOLDERIMAGE" alt="" />
+    <div class="flex flex-col">
+      <p class="text-2xl font-semibold">{{ exercise.name }}</p>
+
+      <!-- @for (item of exercise.m; track $index) {} -->
+      <p>{{ exercise.name }}</p>
+    </div>
+  </div>
+  <button (click)="removeExercise()">
+    <img [src]="closeIcon" alt="" />
+  </button>
+</div>

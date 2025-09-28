@@ -12,6 +12,7 @@ import { unAuthGuard } from './guards/auth.guard';
 import { RenderMode } from '@angular/ssr';
 import { TrainingPageComponent } from './pages/training-page/training-page.component';
 import { TrainingDetailsComponent } from './pages/training-details/training-details.component';
+import { CreateTrainingComponent } from './pages/create-training/create-training.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'exercises', component: ExercisesHomeComponent },
   { path: 'exercises/section/:sectionType', component: ExerciseSectionComponent },
   { path: 'trainings', component: TrainingPageComponent },
+  { path: 'trainings/create', component: CreateTrainingComponent },
   { path: 'trainings/:id', component: TrainingDetailsComponent },
   { path: 'search', component: SearchComponent },
   { path: 'users/:id', component: UserProfileComponent },

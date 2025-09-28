@@ -1,0 +1,109 @@
+<div class="flex justify-center">
+  <div class="bg-white rounded-lg flex flex-col items-center justify-center p-8 w-[600px]">
+    <div class="flex justify-between w-full">
+      <h2 class="font-semibold text-2xl">Criar um treino</h2>
+      <button (click)="closeForm()">
+        <img [src]="closeIcon" alt="" />
+      </button>
+    </div>
+
+    <form [formGroup]="trainingForm" class="flex flex-col mt-8 w-full">
+      <div class="flex flex-col gap-6 w-full">
+        <div class="flex flex-col gap-4 w-full">
+          <fieldset>
+            <label for="">Título</label>
+            <input
+              class="input"
+              type="text"
+              formControlName="title"
+              placeholder="Título do trieno"
+            />
+          </fieldset>
+          <fieldset>
+            <label for="">Descrição</label>
+            <textarea
+              class="text-area max-h-32 min-h-16"
+              formControlName="description"
+              placeholder="Descrição..."
+            ></textarea>
+          </fieldset>
+        </div>
+
+        <div class="flex gap-4 w-full">
+          <fieldset class="flex flex-col w-32">
+            <label for="">Duração</label>
+            <input type="text" class="input" formControlName="duration" placeholder="Duração" />
+          </fieldset>
+          <fieldset class="flex flex-col w-full">
+            <label for="">Adicione uma imagem</label>
+            <input
+              type="ext"
+              class="input"
+              formControlName="thumbnailUrl"
+              placeholder="Url da thumbnail"
+            />
+          </fieldset>
+        </div>
+
+        <div class="flex gap-4">
+          <fieldset class="flex flex-col gap-2">
+            <label for="">Objetivo de treino</label>
+            <filter-select
+              placeholderText="Objetivo"
+              [options]="goalsOptions"
+              [currentOption]="goalsOptions[0].value.toString()"
+              (changeOptionEvent)="changeTrainingFormKey('goal', $event)"
+              [bgColor]="'bg-white outline outline-2 outline-lightRed text-lightRed'"
+              [dropdownColor]="'bg-lightRed outline outline-2 text-white text-lightRed'"
+              [arrowIcon]="arrowIcon"
+            />
+          </fieldset>
+          <fieldset class="flex flex-col gap-2">
+            <label for="">Nível de experiência</label>
+            <filter-select
+              placeholderText="Nivel intermediario"
+              [options]="experienceLevelOptions"
+              [currentOption]="experienceLevelOptions[0].value.toString()"
+              (changeOptionEvent)="changeTrainingFormKey('experienceLevel', $event)"
+              [bgColor]="'bg-white outline outline-2 outline-lightRed text-lightRed'"
+              [dropdownColor]="'bg-lightRed outline outline-2 text-white text-lightRed'"
+              [arrowIcon]="arrowIcon"
+            />
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 mt-4">
+        <h3 class="font-semibold text-xl">Selecione os exercicios</h3>
+        <div class="flex flex-col gap-2 relative">
+          <TrainingExerciseSearcher
+            [selectedExercises]="selectedExercises"
+            (onSelectExercise)="selectExercise($event)"
+          />
+
+          <div class="mt-4 flex flex-col gap-2">
+            @for (exercise of selectedExercises; track $index) {
+              <selectedExerciseCard
+                [exercise]="exercise"
+                (onRemoveExercise)="removeExercise($event)"
+              />
+            } @empty {
+              <div class="outline-2 outline-lightBlack outline p-4 rounded-sm">
+                <p class="text-center">Nenhum exercicio foi selecionado</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 w-full flex items-center">
+        <button
+          class="bg-lightRed cursor-pointer rounded-sm p-2 px-4 text-white"
+          (click)="saveTraining()"
+        >
+          Salvar Treino
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

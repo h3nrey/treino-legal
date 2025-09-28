@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Exercise, ReqParams, Training, TrainingResponse } from '../utils/interfaces';
+import { Exercise, ReqParams, Training, TrainingResponse, User } from '../utils/interfaces';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../enviroments/enviroment';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { buildHttpParams } from '../utils/utils';
+import { UserService } from './users.service.ts.service';
 
 interface TrainingRes {}
 
@@ -12,7 +13,11 @@ interface TrainingRes {}
 })
 export class TrainingService {
   readonly apiUrl = environment.apiUrl;
-  constructor(private http: HttpClient) {}
+  user: User | null = null;
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) {}
 
   favoritetraining(id: number) {
     return this.http.post(`${this.apiUrl}/trainings/${id}/favorites`, {});
@@ -50,6 +55,21 @@ export class TrainingService {
           exercises: data.exercises,
         } as Training;
       })
+    );
+  }
+
+  createTraininig(training: Training) {
+    console.log('training service');
+    return this.userService.getUser().pipe(
+      map((res) => ({
+        ...training,
+        duration: Number(training.duration),
+        exercises: training.exercises.map((e) => ({ exerciseId: e.id })),
+        userId: res?.id,
+      })),
+      switchMap((formattedTraining) =>
+        this.http.post(`${this.apiUrl}/trainings/`, formattedTraining)
+      )
     );
   }
 }

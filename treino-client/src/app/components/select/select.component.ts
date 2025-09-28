@@ -9,8 +9,9 @@ import {
   Output,
 } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+import { chooseIcon } from '../../utils/chooseIcon';
 
-type Option = { value: string | number; label: string };
+export type Option = { value: string | number; label: string };
 
 @Component({
   selector: 'filter-select',
@@ -28,8 +29,10 @@ export class SelectComponent implements OnInit {
   @Output() changeOptionEvent = new EventEmitter();
 
   @Input() currentOption!: string;
+  @Input() bgColor: string = 'bg-lightBlack text-white';
+  @Input() dropdownColor: string = 'bg-lightBlack text-white';
   currentOptionIndex = 0;
-  arrowIcon = 'assets/icons/arrowDown.svg';
+  @Input() arrowIcon = chooseIcon('arrowDown');
   checkIcon = 'assets/icons/check.svg';
 
   optionsOpened = false;
