@@ -1,6 +1,3 @@
-<!-- @if (!bannerClosed) {
-      <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
-      } -->
 <div class="flex flex-col gap-8">
   <!-- <div class="flex flex-col gap-2">
           <div class="flex justify-between">
@@ -52,5 +49,12 @@
         />
       }
     </div>
+  </div>
+</div>
+
+<div class="mt-8">
+  <div class="grid grid-cols-3 gap-4">
+    <SummarySectionCard [summaryText]="summaryText" [summaryTitle]="summaryTitle" />
+    <RecomendedCard class="col-span-2" [data]="recommendedExercise" />
   </div>
 </div>
