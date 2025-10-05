@@ -7,7 +7,11 @@
   <div class="mt-4">
     <div class="flex gap-4">
       @for (item of sections; track $index) {
-        <a [routerLink]="['/users', user?.username, item.url]">
+        <a
+          class="border-b-8 border-b-lightRed"
+          [routerLink]="['/users', user?.username, item.url]"
+          [ngClass]="currSection == item.url ? 'border-b-lightRed' : 'border-b-lightGray'"
+        >
           <h2 class="font-semibold text-2xl">{{ item.text }}</h2>
         </a>
       }
