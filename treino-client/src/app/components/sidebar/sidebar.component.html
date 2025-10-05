@@ -1,6 +1,6 @@
-<div class="flex" [ngStyle]="{ 'margin-left': isOpen ? '21.5rem' : '5.125rem' }">
+<div class="flex ml-[21.5rem]">
   <div
-    class="fixed left-0 flex flex-col p-8 justify-between bg-lightBlack text-lightGray h-full px-4 transition"
+    class="fixed left-0 flex flex-col p-8 justify-between bg-white text-lightRed h-full px-4 transition"
   >
     <div class="flex flex-col justify-between h-full">
       <div class="flex flex-col gap-4">
@@ -24,7 +24,7 @@
 
         <nav class="flex flex-col w-full mt-4 overflow-hidden">
           @for (link of siteLinks; track $index) {
-            <sidebar-link [isOpen]="isOpen" [link]="link">
+            <sidebar-link [isOpen]="isOpen" [selected]="isActive(link.url)" [link]="link">
               {{ link.text }}
             </sidebar-link>
           }

@@ -1,17 +1,18 @@
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteLink } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'sidebar-link',
-  imports: [RouterLink, NgStyle],
+  imports: [RouterLink, NgStyle, NgClass],
   templateUrl: './sidebar-link.component.html',
   styleUrl: './sidebar-link.component.scss',
 })
 export class SidebarLinkComponent {
   @Input() isOpen: boolean = false;
   @Input() link: SiteLink | null = null;
+  @Input() selected: boolean = false;
   isContentOpen: boolean = false;
   dumbellIcon = 'assets/icons/dumbell.svg';
 

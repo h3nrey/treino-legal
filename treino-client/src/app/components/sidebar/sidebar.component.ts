@@ -1,14 +1,16 @@
 import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { SidebarLinkComponent } from '../sidebar-link/sidebar-link.component';
 import { SidebarService } from '../../services/sidebar.service';
 import { User } from '../../utils/interfaces';
 import { UserService } from '../../services/users.service.ts.service';
+import { filter } from 'rxjs';
 export interface SiteLink {
   text: string;
   url: string;
   sublinks: { text: string; url: string }[];
+  icon: string;
 }
 @Component({
   selector: 'sidebar',
@@ -16,21 +18,30 @@ export interface SiteLink {
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   isOpen: boolean = true;
   expandArrowIcon = 'assets/icons/arrowExpand.svg';
   user: User | null = null;
+  currRoute = '';
 
   siteLinks: SiteLink[] = [
     {
       sublinks: [],
+      text: 'Início',
+      url: '',
+      icon: 'home',
+    },
+    {
+      sublinks: [],
       text: 'Exercicios',
       url: 'exercises',
+      icon: 'exercise',
     },
     {
       text: 'Treinos',
       url: 'trainings',
       sublinks: [],
+      icon: 'dumbell',
     },
     // {
     //   text: "Rotinas",
@@ -56,14 +67,18 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private sidebarService: SidebarService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly router: Router
   ) {
-    this.sidebarService.sidebarStatus$.subscribe((status) => {
-      this.isOpen = status;
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.currRoute = event.urlAfterRedirects;
+      });
   }
-  ngOnInit() {
-    // this.user = this.userService.getUser();
+
+  isActive(route: string): boolean {
+    return this.currRoute == `/${route}`;
   }
 
   toggleSidebar() {

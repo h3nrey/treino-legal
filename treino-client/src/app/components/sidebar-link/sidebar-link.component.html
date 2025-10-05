@@ -1,13 +1,14 @@
 <div
-  class="flex flex-col justify-center overflow-hidden lightBlack rounded-sm hover:bg-red"
+  class="flex flex-col justify-center overflow-hidden lightBlack rounded-sm hover:bg-lightGray"
   (click)="toggleSublinks()"
+  [ngClass]="selected ? 'bg-gray' : 'bg-white'"
 >
   <a
     [routerLink]="link?.url"
     class="flex items-center gap-2 bg-opacity-0 p-2 cursor-pointer w-full rounded-md"
     [ngStyle]="{ 'justify-content': isOpen ? 'left' : 'center' }"
   >
-    <img [src]="dumbellIcon" alt="" class="!w-6 !h-6" />
+    <img [src]="`assets/icons/${link?.icon}.svg`" alt="" class="!w-6 !h-6" />
     @if (isOpen) {
       <span class="text-[1.5rem]">
         <ng-content></ng-content>
@@ -19,7 +20,7 @@
       @for (sublink of link?.sublinks; track $index) {
         <a
           [routerLink]="link?.url + '/' + sublink.url"
-          class="hover:bg-red hover:text-gray p-2 rounded-md text-[1.2rem]"
+          class="hover:bg-lightBlack p-2 rounded-md text-[1.2rem]"
         >
           {{ sublink.text }}>
         </a>
