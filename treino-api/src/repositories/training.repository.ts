@@ -174,14 +174,11 @@ export const count = async (where: any) => {
   return count;
 };
 
-export async function listFavoritedByUser(userId: any) {
-  return await prisma.userTranings.findMany({
-    where: {
-      training: {
-        favoritedByUsers: {
-          some: { userId },
-        },
-      },
-    },
+export async function listFavoritedByUser(userId: string) {
+  const favorites = await prisma.favoritedTrainings.findMany({
+    where: { userId },
+    include: { training: true },
   });
+
+  return favorites.map((fav) => fav.training);
 }
