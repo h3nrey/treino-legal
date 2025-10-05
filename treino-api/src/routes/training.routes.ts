@@ -6,8 +6,8 @@ const router = Router();
 
 router.get('/', controller.list);
 router.get('/favorited', authMiddleware, controller.listFavoritedByUser);
-router.delete('/favorites/:id', authMiddleware, controller.unfavoriteTraining);
-router.post('/favorites/:id', authMiddleware, controller.favorite);
+router.delete('/:id/favorites', authMiddleware, controller.unfavoriteTraining);
+router.post('/:id/favorites', authMiddleware, controller.favorite);
 router.get('/:id/related', controller.listRelated);
 router.get('/:id', controller.findOne);
 router.post('/', authMiddleware, controller.create);
