@@ -49,7 +49,6 @@ export class TrainingService {
     return this.http.get<any>(url).pipe(
       map((res) => {
         const data = res.data;
-        console.log(data);
         return {
           ...data,
           exercises: data.exercises,
@@ -71,5 +70,14 @@ export class TrainingService {
         this.http.post(`${this.apiUrl}/trainings/`, formattedTraining)
       )
     );
+  }
+
+  getFavoritedTrainings(params: ReqParams): Observable<Training[]> {
+    const httpParams = buildHttpParams(params);
+    const url = `${this.apiUrl}/trainings/favorited/`;
+
+    return this.http
+      .get<TrainingResponse>(url, { params: httpParams })
+      .pipe(map((res) => res.data));
   }
 }

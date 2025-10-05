@@ -83,19 +83,13 @@ export class UserService {
     });
   }
 
-  getUserProfile(username: string) {
-    return this.http
-      .get<User>(`${environment.apiUrl}/users/me`, {
-        headers: {
-          Authorization: `Bearer ${this.getToken()}`,
-        },
+  getUserProfile() {
+    return this.http.get<User>(`${environment.apiUrl}/users/me`).pipe(
+      catchError((error) => {
+        console.error('Error fetching user profile:', error);
+        return throwError(() => new Error('Error fetching user profile'));
       })
-      .pipe(
-        catchError((error) => {
-          console.error('Error fetching user profile:', error);
-          return throwError(() => new Error('Error fetching user profile'));
-        })
-      );
+    );
   }
 
   getToken() {

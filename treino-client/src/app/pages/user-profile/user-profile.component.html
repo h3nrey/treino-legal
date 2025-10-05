@@ -1,8 +1,17 @@
 <div>
-  <h1 class="font-bold text-3xl">{{ user?.username }}</h1>
+  <div class="flex items-center gap-2">
+    <img [src]="userIcon" alt="" class="h-16 w-16" />
+    <h1 class="font-bold text-3xl">{{ user?.username }}</h1>
+  </div>
 
   <div class="mt-4">
-    <h2 class="font-semibold text-2xl">Meus Exercicios favoritos</h2>
+    <div class="flex gap-4">
+      @for (item of sections; track $index) {
+        <a [routerLink]="['/users', user?.username, item.url]">
+          <h2 class="font-semibold text-2xl">{{ item.text }}</h2>
+        </a>
+      }
+    </div>
     <div class="grid grid-cols-4">
       @for (exercise of favoritedExercises; track $index) {
         <exercise-card

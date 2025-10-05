@@ -23,6 +23,7 @@ export const routes: Routes = [
   { path: 'trainings/create', component: CreateTrainingComponent },
   { path: 'trainings/:id', component: TrainingDetailsComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'users/:id/:section', component: UserProfileComponent },
   { path: 'users/:id', component: UserProfileComponent },
   { path: 'register', component: SignupComponent, outlet: 'modal', canActivate: [unAuthGuard] },
   { path: 'login', component: LoginComponent, outlet: 'modal', canActivate: [unAuthGuard] },

@@ -1,40 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/users.service.ts.service';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
-import { Exercise } from '../../utils/interfaces';
+import { Exercise, Training } from '../../utils/interfaces';
 import { ExercisesService } from '../../services/exercises.service';
+import { ActivatedRoute, Params, RouterLink } from '@angular/router';
+import { Observable, Observer } from 'rxjs';
+import { TrainingService } from '../../services/training.service';
 
+interface pageParams extends Params {
+  section: string;
+}
 @Component({
   selector: 'app-user-profile',
-  imports: [ExerciseCardComponent],
+  imports: [ExerciseCardComponent, RouterLink],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent implements OnInit {
   user: { username: string; email: string } | null = null;
   favoritedExercises: Exercise[] = [];
+  favoritedTrainings: Training[] = [];
+  userIcon = 'assets/icons/userAvatar.svg';
+  sections = [
+    { text: 'Exercicios', url: 'exercises' },
+    { text: 'Treinos', url: 'trainings' },
+  ];
+  currSection = '';
   constructor(
     private readonly userService: UserService,
-    private readonly exerciseService: ExercisesService
+    private readonly exerciseService: ExercisesService,
+    private readonly trainingService: TrainingService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    const token = this.userService.getToken();
-    if (!token) return;
-    this.userService.getUserProfile(token).subscribe({
+    this.userService.getUserProfile().subscribe({
       next: (user) => {
-        console.log(user);
         this.user = user;
       },
     });
-    this.loadFavoritedExercises();
+    this.route.params.subscribe((params: any) => {
+      this.currSection = params?.section;
+
+      this.favoritedExercises = [];
+      this.favoritedTrainings = [];
+      switch (this.currSection) {
+        case 'exercises':
+          this.loadFavoritedExercises();
+          break;
+
+        case 'trainings':
+          this.loadFavoritedTrainings();
+          break;
+
+        default:
+          this.loadFavoritedExercises();
+          break;
+      }
+    });
   }
 
   loadFavoritedExercises() {
     this.exerciseService.getFavoritedExercises().subscribe({
       next: (data) => {
         this.favoritedExercises = data;
-        console.log(this.favoritedExercises);
+      },
+    });
+  }
+
+  loadFavoritedTrainings() {
+    this.trainingService.getFavoritedTrainings({ count: 20 }).subscribe({
+      next: (data) => {
+        this.favoritedTrainings = data;
       },
     });
   }
