@@ -5,10 +5,11 @@ import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
 router.get('/', controller.list);
+router.get('/favorited', authMiddleware, controller.listFavoritedByUser);
+router.delete('/favorites/:id', authMiddleware, controller.unfavoriteTraining);
+router.post('/favorites/:id', authMiddleware, controller.favorite);
 router.get('/:id/related', controller.listRelated);
 router.get('/:id', controller.findOne);
 router.post('/', authMiddleware, controller.create);
-router.post('/favorites/:id', authMiddleware, controller.favorite);
-router.delete('/favorites/:id', authMiddleware, controller.unfavoriteTraining);
 
 export default router;

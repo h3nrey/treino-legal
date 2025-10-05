@@ -60,3 +60,7 @@ export const favorite = async (userId: string, trainingId: number) => {
 export const unfavorite = async (userId: string, trainingId: number) => {
   return await repository.unfavorite(userId, trainingId);
 };
+
+export const listFavorited = async (userId: string) => {
+  return await repository.listFavoritedByUser(userId);
+};

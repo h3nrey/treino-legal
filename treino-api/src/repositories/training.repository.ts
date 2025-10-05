@@ -173,3 +173,15 @@ export const count = async (where: any) => {
   });
   return count;
 };
+
+export async function listFavoritedByUser(userId: any) {
+  return await prisma.userTranings.findMany({
+    where: {
+      training: {
+        favoritedByUsers: {
+          some: { userId },
+        },
+      },
+    },
+  });
+}

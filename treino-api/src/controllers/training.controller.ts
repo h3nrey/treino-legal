@@ -28,6 +28,19 @@ export const listRelated = asyncHandler(async (req: Request, res: Response) => {
   res.json({ data: trainings });
 });
 
+export const listFavoritedByUser = asyncHandler(
+  async (req: AuthRequest, res: Response) => {
+    const favoritedTrainings = await service.listFavorited(
+      req.user?.id as string,
+    );
+
+    if (favoritedTrainings.length < 0)
+      res.status(404).json({ error: 'Trainings not found' });
+
+    res.json({ data: favoritedTrainings });
+  },
+);
+
 export async function findOne(req: Request, res: Response) {
   const id = Number(req.params.id);
   const userId = req.query.userId as string | undefined;
