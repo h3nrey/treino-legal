@@ -12,14 +12,20 @@
         </a>
       }
     </div>
-    <div class="grid grid-cols-4">
-      @for (exercise of favoritedExercises; track $index) {
-        <exercise-card
-          [exercise]="exercise"
-          (unfavoriteEv)="loadFavoritedExercises()"
-        ></exercise-card>
-      } @empty {
-        <p>Você ainda não tem exercícios favoritos</p>
+    <div class="grid grid-cols-4 gap-4 mt-4">
+      @if (currSection == 'exercises') {
+        @for (exercise of favoritedExercises; track $index) {
+          <exercise-card
+            [exercise]="exercise"
+            (unfavoriteEv)="loadFavoritedExercises()"
+          ></exercise-card>
+        } @empty {
+          <p>Você ainda não tem exercícios favoritos</p>
+        }
+      } @else if (currSection == 'trainings') {
+        @for (training of favoritedTrainings; track $index) {
+          <TrainingCard [training]="training" />
+        }
       }
     </div>
   </div>

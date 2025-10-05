@@ -37,17 +37,7 @@
     [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-3' : 'grid-cols-4'"
   >
     @for (training of popularTrainings; track $index) {
-      <a href="trainings/{{ training.id }}" class="rounded overflow-hidden cursor-pointer">
-        <img
-          src="{{ training.thumbnailUrl || PLACEHOLDERIMAGE }}"
-          class="w-full object-cover h-40"
-          alt=""
-        />
-        <div class="bg-lightRed p-2 text-white">
-          <h3 class="font-semibold whitespace-nowrap text-ellipsis">{{ training.title }}</h3>
-          <span class="rounded-full bg-white text-lightRed px-2 leading-tight">30 minutos</span>
-        </div>
-      </a>
+      <TrainingCard [training]="training" />
     } @empty {
       <div class="text-xl w-max mt-4">Nenhum resultados encontrado :(</div>
     }

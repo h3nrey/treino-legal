@@ -6,13 +6,14 @@ import { ExercisesService } from '../../services/exercises.service';
 import { ActivatedRoute, Params, RouterLink } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 import { TrainingService } from '../../services/training.service';
+import { TrainingCardComponent } from '../../components/training-card/training-card.component';
 
 interface pageParams extends Params {
   section: string;
 }
 @Component({
   selector: 'app-user-profile',
-  imports: [ExerciseCardComponent, RouterLink],
+  imports: [ExerciseCardComponent, RouterLink, TrainingCardComponent],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })

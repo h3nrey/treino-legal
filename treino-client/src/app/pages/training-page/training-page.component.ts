@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingParams } from '../../services/exercises.service';
 import { CleanFiltersButtonComponent } from '../../components/clean-filters-button/clean-filters-button.component';
 import { OrderBySelectorComponent } from '../../components/order-by-selector/order-by-selector.component';
+import { TrainingCardComponent } from '../../components/training-card/training-card.component';
 
 @Component({
   selector: 'app-training-page',
@@ -19,6 +20,7 @@ import { OrderBySelectorComponent } from '../../components/order-by-selector/ord
     SelectComponent,
     CleanFiltersButtonComponent,
     OrderBySelectorComponent,
+    TrainingCardComponent,
   ],
   templateUrl: './training-page.component.html',
   styleUrl: './training-page.component.scss',
