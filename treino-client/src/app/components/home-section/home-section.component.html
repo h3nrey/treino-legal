@@ -10,7 +10,7 @@
   </div>
   <div
     class="grid gap-4 overflow-hidden"
-    [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-4' : 'grid-cols-5'"
+    [ngClass]="(sidebarService.sidebarStatus$ | async) ? 'grid-cols-4' : 'grid-cols-4'"
   >
     <ng-content></ng-content>
   </div>

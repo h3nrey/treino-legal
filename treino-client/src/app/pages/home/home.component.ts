@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const params = {
       sort_by: 'popularity',
       page: 0,
-      count: 5,
+      count: 4,
       userId: this.user?.id,
     };
     this.exerciseService.getExercises(params).subscribe({
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
     });
     this.trainingService
-      .getPopularTrainings({ sortBy: 'popularity', page: 0, count: 5 })
+      .getPopularTrainings({ sortBy: 'popularity', page: 0, count: 4 })
       .subscribe({
         next: (res) => {
           this.popularTrainings = res.data;

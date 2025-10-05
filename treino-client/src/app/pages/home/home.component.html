@@ -1,7 +1,5 @@
 <div class="flex flex-col gap-4">
-  @if (!bannerClosed) {
-    <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
-  }
+  <app-banner (closeBannerEvent)="checkBannerStatus()"></app-banner>
 
   <div class="flex flex-col gap-8">
     <HomeSection [sectionLink]="'/exercises'" [sectionTitle]="'Exercicios Populares'">
