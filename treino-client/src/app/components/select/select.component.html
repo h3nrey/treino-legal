@@ -1,9 +1,9 @@
 <div class="relative cursor-pointer" (click)="toggleSelect()">
-  <div class="flex gap-4 rounded-full p-2 px-4" [ngClass]="bgColor">
+  <div class="flex items-center gap-4 rounded-full p-2 px-4" [ngClass]="bgColor">
     <span class="min-w-28 w-full text-nowrap">
       {{ displaySelectText() }}
     </span>
-    <img [src]="arrowIcon" alt="" class="h-6 w-6" />
+    <img [src]="arrowIcon" alt="" class="h-4 w-4" />
   </div>
 
   @if (optionsOpened) {

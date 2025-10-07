@@ -1,0 +1,31 @@
+<div class="flex gap-4">
+  <div class="flex outline outline-2 bg-white outline-lightRed p-2 gap-4 rounded-sm">
+    <img [src]="searchIcon" alt="" />
+    <input
+      class="bg-[transparent] focus-within:outline-none w-52"
+      type="text"
+      placeholder="Buscar"
+      [formControl]="searchTerm"
+    />
+  </div>
+  <div class="flex gap-2">
+    <filter-select
+      placeholderText="Grupo muscular"
+      [options]="musclesOptions"
+      [currentOption]="''"
+      (changeOptionEvent)="updateFilters('muscle', $event)"
+      [bgColor]="'bg-white outline outline-2 outline-lightRed text-lightRed'"
+      [dropdownColor]="'bg-lightRed outline outline-2 text-white text-lightRed'"
+      [arrowIcon]="arrowIcon"
+    />
+    <filter-select
+      placeholderText="Equipamento"
+      [options]="equipamentsOptions"
+      [currentOption]="''"
+      (changeOptionEvent)="updateFilters('equipament', $event)"
+      [bgColor]="'bg-white outline outline-2 outline-lightRed text-lightRed'"
+      [dropdownColor]="'bg-lightRed outline outline-2 text-white text-lightRed'"
+      [arrowIcon]="arrowIcon"
+    />
+  </div>
+</div>

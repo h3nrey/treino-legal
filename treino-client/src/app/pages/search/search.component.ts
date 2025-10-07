@@ -10,7 +10,7 @@ import { SelectComponent } from '../../components/select/select.component';
 import { SearchService } from '../../services/search.service';
 import { equipaments, muscles } from '../../../data';
 
-interface ExerciseSearchParams {
+export interface ExerciseSearchParams {
   page: number;
   count: number;
   muscle: string;

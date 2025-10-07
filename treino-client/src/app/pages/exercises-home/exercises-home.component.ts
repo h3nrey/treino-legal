@@ -11,6 +11,10 @@ import {
   RecommendedCardProps,
 } from '../../components/recomended-card/recomended-card.component';
 import { SummarySectionCardComponent } from '../../components/summary-section-card/summary-section-card.component';
+import { Option, SelectComponent } from '../../components/select/select.component';
+import { OrderBySelectorComponent } from '../../components/order-by-selector/order-by-selector.component';
+import { SearchWrapperComponent } from './components/search-wrapper/search-wrapper.component';
+import { ExerciseSearchParams } from '../search/search.component';
 
 @Component({
   selector: 'app-exercises-home',
@@ -22,6 +26,9 @@ import { SummarySectionCardComponent } from '../../components/summary-section-ca
     CommonModule,
     RecomendedCardComponent,
     SummarySectionCardComponent,
+    SelectComponent,
+    OrderBySelectorComponent,
+    SearchWrapperComponent,
   ],
   templateUrl: './exercises-home.component.html',
   styleUrl: './exercises-home.component.scss',
@@ -35,23 +42,27 @@ export class ExercisesHomeComponent {
   bannerClosed = false;
   recommendedExercise: RecommendedCardProps | null = null;
   popularExercises: Exercise[] = [];
+  exercises: Exercise[] = [];
   muscles: Muscle[] = [];
   equipaments: Equipament[] = [];
-  arrowRight = 'assets/icons/arrowRight.svg';
 
   summaryTitle = 'Exercícios';
   summaryText =
     'Descubra uma coleção completa de exercícios com instruções claras, variações e dicas de execução. Aprenda a fazer cada movimento com segurança e eficiência, e combine-os para montar seus próprios treinos.';
 
-  ngOnInit() {
-    this.checkBannerStatus();
+  searchIcon = 'assets/icons/search.svg';
+  arrowRight = 'assets/icons/arrowRight.svg';
+  defaultParams: ExerciseSearchParams = {
+    page: 0,
+    count: 16,
+    muscle: '',
+    equipament: '',
+    search: '',
+  };
 
-    const params = {
-      sort_by: 'popularity',
-      page: 0,
-      count: 1,
-    };
-    this.exerciseService.getExercises(params).subscribe({
+  ngOnInit() {
+    this.loadExercises(this.defaultParams);
+    this.exerciseService.getExercises({ sortBy: 'createdAt', count: 1 }).subscribe({
       next: (res) => {
         console.log(res);
         this.popularExercises = res.data;
@@ -88,7 +99,12 @@ export class ExercisesHomeComponent {
     });
   }
 
-  checkBannerStatus() {
-    this.bannerClosed = localStorage.getItem('home__banner__closed') === 'true';
+  updateFilters() {}
+
+  loadExercises(filters: ExerciseSearchParams) {
+    this.exerciseService.getExercises(filters).subscribe((res) => {
+      console.log(res);
+      this.exercises = res.data;
+    });
   }
 }

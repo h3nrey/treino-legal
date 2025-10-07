@@ -15,7 +15,7 @@
           </div>
         </div> -->
 
-  <div class="flex flex-col gap-2">
+  <!-- <div class="flex flex-col gap-2">
     <div class="flex justify-between">
       <h3 class="font-bold text-xl">Exercicios por grupo musculares</h3>
     </div>
@@ -50,11 +50,22 @@
       }
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="mt-8">
-  <div class="grid grid-cols-3 gap-4">
-    <SummarySectionCard [summaryText]="summaryText" [summaryTitle]="summaryTitle" />
-    <RecomendedCard class="col-span-2" [data]="recommendedExercise" />
+  <div class="mt-8">
+    <div class="grid grid-cols-3 gap-4">
+      <SummarySectionCard [summaryText]="summaryText" [summaryTitle]="summaryTitle" />
+      <RecomendedCard class="col-span-2" [data]="recommendedExercise" />
+    </div>
+
+    <div class="mt-8">
+      <ExerciseSearchWrapper (onUpdateFilters)="loadExercises($event)" />
+    </div>
+
+    <div class="grid grid-cols-4 gap-2 gap-y-4 mt-4">
+      @for (item of exercises; track $index) {
+        <exercise-card [exercise]="item" />
+      }
+    </div>
   </div>
 </div>
